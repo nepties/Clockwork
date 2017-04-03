@@ -176,42 +176,31 @@ class MusicMetaData
 }
 
 
-//보면 데이터 큐 관리 클래스
+//보면 데이터 리스트 관리 클래스
 public class MusicScroll
 {
-	Queue<ScrollNote> [] innerNoteQueue;  //안쪽 노트 배치 큐 배열
-	Queue<ScrollNote> outerNoteQueue;  //바깥쪽 노트 배치 큐
-	Queue beatTimer;  //마디 타이머 큐 : 변속 BPM 저장
+	List<NoteUnit> UnitList;  //노트 배열 정보 리스트
 
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-	public void readFirstNote()
-	{
-		//noteQueue.Peek().getLocatedUnit();
-	}
-
-	public void insertNoteArray()
-	{
-
-	}
 }
 
 
 //실질 보면 데이터 저장 구조체
-public struct ScrollNote
+public struct NoteUnit
 {
-	int locatedUnit;  //노트 위치 유닛
-	int noteType;  //숏노트, 좌-하프노트, 우-하프노트
+	int[] noteData;  // 노트 배치 정보. 크기는 13
+	float time;  // 해당 NoteUnit의 재생 시간
 
-	public ScrollNote(int placedUnit, int defType)
+    public NoteUnit(int[] unitNoteData, float unitTime)
 	{
-		locatedUnit = placedUnit;
-		noteType = defType;
+        noteData = unitNoteData;
+        time = unitTime;
 	}
 
-	public int getLocatedUnit()
+	public int[] getLocatedUnit()
 	{
-		return locatedUnit;
+		return noteData;
 	}
 }
 
