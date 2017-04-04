@@ -7,8 +7,7 @@ public class Rotator : MonoBehaviour
 	[SerializeField]
 	int needlePhase;  // 0, 1, 2  :  phase 3 바늘 위치 상태 값
 
-	float currentDegree;  //현재 회전 각도
-	//[SerializeField]
+	float currentDegree;  //현재 회전 각도	
 	float targetDegree;  //회전 목표 각도
 
 	[SerializeField]
