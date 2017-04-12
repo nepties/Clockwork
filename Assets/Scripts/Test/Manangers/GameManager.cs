@@ -23,12 +23,24 @@ public class GameManager : MonoBehaviour
 	{
 		
 	}
-
+	 
 
 	//바늘 회전 키입력 감지 & 명령 하달
 	public void NeedleCtrlKeyInput(float rotDegree)
 	{
 		dataCtrl.rotateNeedleData(rotDegree);
 		resourceCtrl.rotateNeedleObject(rotDegree);
+	}
+
+	//롱노트 활성화 키입력 감지 & 명령 하달
+	public void longActiveKeyInput()
+	{
+		dataCtrl.LongNoteEngage();
+	}
+
+	//롱노트 '비'활성화 키입력 감지 & 명령 하달
+	public void longDeactiveKeyInput()
+	{
+		dataCtrl.LongNoteRelease();
 	}
 }

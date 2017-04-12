@@ -3,6 +3,7 @@ using System.Collections;
 
 public class GameObjectsManager : MonoBehaviour
 {
+	ClockNeedle NeedleCtrl;
 
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -10,6 +11,7 @@ public class GameObjectsManager : MonoBehaviour
 	void Start()
 	{
 		//제어 개체 레퍼런스 받아오기
+		NeedleCtrl = GameObject.Find("clockNeedle").GetComponent<ClockNeedle>();
 	}
 
 
@@ -17,5 +19,12 @@ public class GameObjectsManager : MonoBehaviour
 	void Update()
 	{
 
+	}
+
+
+	//바늘 회전 명령 하달
+	public void rotateNeedleObject(float rotDegree)
+	{
+		NeedleCtrl.rotateNeedle(rotDegree);
 	}
 }

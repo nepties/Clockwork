@@ -5,6 +5,7 @@ public class GraphicMananger : MonoBehaviour
 {
 	ResourceManager resourceCtrl;
 	GameObjectsManager gameObjectCtrl;
+
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 	// Use this for initialization
@@ -20,5 +21,12 @@ public class GraphicMananger : MonoBehaviour
 	void Update()
 	{
 
+	}
+
+
+	//바늘 회전 명령 하달
+	public void rotateNeedleObject(float rotDegree)
+	{
+		gameObjectCtrl.rotateNeedleObject(rotDegree);
 	}
 }

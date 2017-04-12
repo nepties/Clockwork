@@ -7,8 +7,7 @@ public class DataManager : MonoBehaviour
 
 	[SerializeField]
 	int needlePhase;  // 0, 1, 2  :  phase 3 바늘 위치 상태 값
-	float currentDegree;  //현재 회전 각도	
-	float targetDegree;  //회전 목표 각도
+	bool isLongactivated;  // 롱노트 활성화 여부
 
 	
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -18,9 +17,6 @@ public class DataManager : MonoBehaviour
 	{
 		//제어 개체 레퍼런스 받아오기
 		coreCtrl = GameObject.Find("GameMainCore").GetComponent<GameManager>();
-
-		targetDegree = 0f;
-		currentDegree = 0f;
 	}
 	
 
@@ -35,8 +31,19 @@ public class DataManager : MonoBehaviour
 	public void rotateNeedleData(float rotateDegree)  // rotateDegree : 1, -1, 3, -3 칸 회전 값
 	{
 		needlePhase = (needlePhase + 3 + (int)rotateDegree) % 3;  //바늘 위치 단계 계산
-		targetDegree = targetDegree + rotateDegree * -30f;  //목표 회전 각도 계산
-		//transform.Rotate(Vector3.right * rotateDegree);
+	}
+	
+	//롱노트 입력 활성화 정보 수정
+	public void LongNoteEngage()
+	{
+		isLongactivated = true;
+		Debug.Log("force Long Active");
 	}
 
+	//롱노트 입력 활성화 정보 수정
+	public void LongNoteRelease()
+	{
+		isLongactivated = false;
+		Debug.Log("force Long DeActive");
+	}
 }

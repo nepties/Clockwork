@@ -20,17 +20,21 @@ public class InputKeyManager : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		//if (Input.GetKeyDown("space"))  // 스페이스바 푸시 : 롱노트 입력 활성화
-		if (Input.GetKeyDown(KeyCode.F))  // F키 스트록 시, 왼쪽 한 칸
+		if (Input.GetKeyDown("space"))  // 스페이스바 스트록 : 롱노트 입력 활성화
+			coreCtrl.longActiveKeyInput();
+		if (Input.GetKeyUp("space"))  // : 릴리즈 : 롱노트 입력 '비'활성화
+			coreCtrl.longDeactiveKeyInput();
+
+		if (Input.GetKeyDown(KeyCode.F))  // F키 스트록 : 왼쪽 한 칸
 			coreCtrl.NeedleCtrlKeyInput(-1f);
 
-		if (Input.GetKeyDown(KeyCode.D))  // D키 스트록 시, 왼쪽 세 칸
+		if (Input.GetKeyDown(KeyCode.D))  // D키 스트록 : 왼쪽 세 칸
 			coreCtrl.NeedleCtrlKeyInput(-3f);
 
-		if (Input.GetKeyDown(KeyCode.J))  // J키 스트록 시, 오른쪽 한 칸
+		if (Input.GetKeyDown(KeyCode.J))  // J키 스트록 : 오른쪽 한 칸
 			coreCtrl.NeedleCtrlKeyInput(1f);
 
-		if (Input.GetKeyDown(KeyCode.K))  // K키 스트록 시, 오른쪽 한 칸
+		if (Input.GetKeyDown(KeyCode.K))  // K키 스트록 : 오른쪽 한 칸
 			coreCtrl.NeedleCtrlKeyInput(3f);
 	}
 }

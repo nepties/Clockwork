@@ -1,12 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Rotator : MonoBehaviour
-{
-	//public GameObject needleObject;  //시계 바늘 오브젝트
-	[SerializeField]
-	int needlePhase;  // 0, 1, 2  :  phase 3 바늘 위치 상태 값
-
+public class ClockNeedle : MonoBehaviour
+{	
+	[SerializeField]	
 	float currentDegree;  //현재 회전 각도	
 	float targetDegree;  //회전 목표 각도
 
@@ -36,7 +33,7 @@ public class Rotator : MonoBehaviour
 			//구형 보간 : 부드러운 회전
 			Quaternion target = Quaternion.Euler(0, 0, targetDegree);
 			transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * rotationSmooth);
-			Debug.Log("force Rotate");
+			//Debug.Log("force Rotate");
 		}
 		else
 		{
@@ -46,8 +43,7 @@ public class Rotator : MonoBehaviour
 
 	//바늘 회전 메소드
 	public void rotateNeedle(float rotateDegree)  // rotateDegree : 1, -1, 3, -3 칸 회전 값
-	{  
-		needlePhase = (needlePhase + 3 + (int)rotateDegree) % 3;  //바늘 위치 단계 계산
+	{  		
 		targetDegree = targetDegree + rotateDegree * -30f;  //목표 회전 각도 계산
 		//transform.Rotate(Vector3.right * rotateDegree);
 	}

@@ -5,6 +5,7 @@ public class ResourceManager : MonoBehaviour
 {
 	GameManager coreCtrl;
 	GraphicMananger graphicCtrl;
+	SoundManager soundCtrl;
 
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -14,6 +15,7 @@ public class ResourceManager : MonoBehaviour
 		//제어 개체 레퍼런스 받아오기
 		coreCtrl = GameObject.Find("GameMainCore").GetComponent<GameManager>();
 		graphicCtrl = GameObject.Find("GraphicManager").GetComponent<GraphicMananger>();
+		soundCtrl = GameObject.Find("SoundMaster").GetComponent<SoundManager>();
 	}
 
 
@@ -23,9 +25,11 @@ public class ResourceManager : MonoBehaviour
 
 	}
 
+	
+	//바늘 회전 명령 하달
 	public void rotateNeedleObject(float rotDegree)
 	{
-		
+		graphicCtrl.rotateNeedleObject(rotDegree);
 	}
 }
 
