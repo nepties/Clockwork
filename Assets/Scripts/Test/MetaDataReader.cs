@@ -7,20 +7,24 @@ using System.IO;
 public class MetaDataReader : MonoBehaviour
 {
 	StreamReader reader;  //읽기스트림 객체	
-	MusicMetaData selectedMusic;    //메타데이터 클래스
 
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+	//생성자
+	public MetaDataReader()
+	{
+
+	}
 
 	// Use this for initialization
 	void Start()
 	{
 		reader = new StreamReader("Tulip(Pro).txt");  //객체 생성 후 개방		
-		selectedMusic = readMetaData();  //보면 객체 생성
-		readMetaData();  //메타 데이터 읽기	
+		readMetaData();  //메타 데이터 읽기
 	}	
 
 	//메타데이터 저장 객체 생성 메소드
-	MusicMetaData readMetaData()
+	public MusicMetaData readMetaData()
 	{
 		List<string> metaList = new List<string>();  //메타데이터 저장 리스트 객체		
 		
@@ -48,8 +52,11 @@ public class MetaDataReader : MonoBehaviour
 			selectedMusic.importMetaData(metaList);			
 			selectedMusic.printMetaData();  //데이터 출력 Test
 			*/
-		
-		//읽은 메타 데이터 객체 반환
+
+		//마무리
+		//읽기스트림 닫기
+		reader.Close( );
+		//읽은 메타 데이터 객체 레퍼런스 반환
 		return new MusicMetaData(metaList);
 	}
 }
@@ -68,7 +75,7 @@ public class MusicMetaData
 	int unit;  //보면 유닛 수
 
 	//노트 배치 데이터
-	MusicNoteData noteStruct;  //노트 데이터 관리 클래스 레퍼런스
+	//MusicNoteData noteStruct;  //노트 데이터 관리 클래스 레퍼런스
 	
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 	

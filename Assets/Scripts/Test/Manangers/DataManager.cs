@@ -4,12 +4,17 @@ using System.Collections;
 public class DataManager : MonoBehaviour
 {
 	GameManager coreCtrl;
-
-	[SerializeField]
+	
+	//노트 관련
 	int needlePhase;  // 0, 1, 2  :  phase 3 바늘 위치 상태 값
 	bool isLongactivated;  // 롱노트 활성화 여부
 
-	
+	//배속 관련 
+	float curBpm;  //현재 재생 곡 BPM
+	[SerializeField]  float speedConstant;  //배속 상수
+	float speedMultiplier;  //배속 승수
+	float finalSpeed;  //최종 계산 배속
+
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 	// Use this for initialization

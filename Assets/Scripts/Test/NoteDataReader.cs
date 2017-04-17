@@ -22,10 +22,10 @@ public class NoteDataReader : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-		reader = new StreamReader("Tulip(Pro).txt");  //객체 생성 후 개방		
-		readTranscriptionData(); //보면 읽기
-		readNoteData(); //다음 유닛 읽기(한 줄)
-		curReadingUnit = 1;
+		//reader = new StreamReader("Tulip(Pro).txt");  //객체 생성 후 개방		
+		//readTranscriptionData(); //보면 읽기
+		//readNoteData(); //다음 유닛 읽기(한 줄)
+		curReadingUnit = 1;  //현재읽는 유닛 초기화 수치
 	}	
 
 	//노트 배치 마디부분 읽기 메소드
@@ -52,7 +52,6 @@ public class NoteDataReader : MonoBehaviour
 			}
 		}
 	}
-
 
 
 
@@ -97,7 +96,7 @@ public class NoteDataReader : MonoBehaviour
 		//(한 Unit 씩 == 한 줄) : 롱노트 추출 부
 		if(determineBuffer[4].CompareTo("0") == 0)  //롱노트 없을 시
 		{
-			noteDataBuffer[12] = 0;
+				noteDataBuffer[12] = 0;
 			notebufferEmpty++;
 		}
 		else  //롱노트 존재 시
