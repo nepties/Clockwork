@@ -17,7 +17,7 @@ public class NoteDealer : MonoBehaviour
 	void Start ()
 	{
 		//초기, 임의값 초기화 부
-		poolSize = 5;  //생성량 초기설정값
+		poolSize = 20;  //생성량 초기설정값
 		finalSpeed = 600f;  //임의 지정 최종 속도
 
 		//대기큐 배열 생성 부
@@ -48,7 +48,7 @@ public class NoteDealer : MonoBehaviour
 			for(int j = 0; j < poolSize; j++)
 			{
 				GameObject creation = (GameObject)Instantiate(noteObject, this.transform.position, Quaternion.identity);  //생성
-				//creation.SetActive(false);  //비활성화
+				creation.SetActive(false);  //비활성화
 				creation.transform.Rotate(i * -30f * Vector3.forward);  //알맞게 회전
 				creation.GetComponent<NoteObjectMethod>( ).setQueueNumber(i);  //출신 대기큐 번호 부여
 				poolQueue[i].Enqueue(creation);  //오브젝트를 대기큐 입력
