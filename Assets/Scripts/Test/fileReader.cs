@@ -28,6 +28,10 @@ public class fileReader : MonoBehaviour
 		//저장소 객체화
 		metaDataStorage = new List<MusicMetaData>( );
 		noteDataStorage = new List<MusicNoteData>( );
+
+		//test
+		forceReadMetaData( );
+		forceReadNoteData( );
 	}
 
 
@@ -41,6 +45,6 @@ public class fileReader : MonoBehaviour
 	//노트 데이터 읽기 명령
 	void forceReadNoteData()
 	{
-		noteDataStorage.AddRange( NoteReaderCtrl.readAllnoteData() );  //리스트에 하나 추가(임시)
+		noteDataStorage.AddRange( NoteReaderCtrl.readAllnoteData() );  //리스트에 추가(임시)		
 	}
 }

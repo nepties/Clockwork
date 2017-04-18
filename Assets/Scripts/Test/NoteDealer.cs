@@ -64,7 +64,7 @@ public class NoteDealer : MonoBehaviour
 	}
 
 
-	//현재 읽기 시점(다음)에 노트 배치
+	//읽기 시점(다음)에 노트 배치
 	void dealNotes()
 	{
 		
@@ -75,12 +75,5 @@ public class NoteDealer : MonoBehaviour
 	public void collectObject(GameObject endedNote, int birthQueueNumber)
 	{
 		poolQueue[birthQueueNumber].Enqueue(endedNote);  //알맞는 큐에 다시 입력(오브젝트 회수)
-	}
-
-
-	//페이드 코루틴
-	IEnumerator noteActive()
-	{
-		yield return new WaitForSeconds(0.4f);		
 	}
 }

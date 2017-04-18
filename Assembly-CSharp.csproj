@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\Test\Manangers\InputKeyManager.cs" />
      <Compile Include="Assets\Scripts\Test\Manangers\ResourceManager.cs" />
      <Compile Include="Assets\Scripts\Test\Manangers\SoundManager.cs" />
+     <Compile Include="Assets\Scripts\Test\Manangers\StageManager.cs" />
      <Compile Include="Assets\Scripts\Test\Manangers\UIManager.cs" />
      <Compile Include="Assets\Scripts\Test\MetaDataReader.cs" />
      <Compile Include="Assets\Scripts\Test\NoteDataReader.cs" />

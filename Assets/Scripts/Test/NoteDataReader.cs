@@ -177,4 +177,19 @@ public struct MusicNoteData
 	{
 		return this.noteData;
 	}
+
+	//가공된 전체 노트 데이터 반환 메소드
+	public MusicNoteData getNoteDataStruct()
+	{
+		return this;
+	}
+
+	//Test 출력
+	public void printNoteArray()
+	{
+		foreach(int i in noteData)
+		{
+			Debug.Log(i + " : " + unitTiming);
+		}
+	}
 }

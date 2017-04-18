@@ -45,9 +45,10 @@ public class MetaDataReader
 			selectedMusic.printMetaData();  //데이터 출력 Test
 			*/
 
-		//마무리
+		//마무리 부
 		//읽기스트림 닫기
-		reader.Close( );
+		//reader.Close( );
+		
 		//읽은 메타 데이터 객체 레퍼런스 반환
 		return new MusicMetaData(metaList);
 	}
