@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class NoteDealer : MonoBehaviour
 {
 	[SerializeField]  GameObject noteObject;  //숏 노트 오브젝트	
-	[SerializeField]  int poolSize;  //풀링 오브젝트 생성량
+	int poolSize;  //풀링 오브젝트 생성량
 
 
 	Queue<GameObject> [] poolQueue;  //비활성 오브젝트 대기큐
@@ -75,5 +75,12 @@ public class NoteDealer : MonoBehaviour
 	public void collectObject(GameObject endedNote, int birthQueueNumber)
 	{
 		poolQueue[birthQueueNumber].Enqueue(endedNote);  //알맞는 큐에 다시 입력(오브젝트 회수)
+	}
+
+
+	//페이드 코루틴
+	IEnumerator noteActive()
+	{
+		yield return new WaitForSeconds(0.4f);		
 	}
 }

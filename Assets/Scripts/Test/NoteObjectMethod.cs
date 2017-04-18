@@ -6,7 +6,7 @@ public class NoteObjectMethod : MonoBehaviour
 	NoteDealer spawnPool;  //노트 배치 클래스 레퍼런스
 
 	int birthNumber;  //몇 번째 대기큐에서 나온 오브젝트 인지 기억(출신 대기큐 번호)
-	float maxSpeed;  //계산 속도 ???
+	float maxSpeed;  //노트 진행 속도 배수
 
 	//시작벡터, 진행 벡터
     Vector2 firstVector;
@@ -55,7 +55,7 @@ public class NoteObjectMethod : MonoBehaviour
 
 
 	//페이드 코루틴
-	IEnumerator noteActive()
+	IEnumerator smoothFade()
 	{
 		yield return new WaitForSeconds(0.4f);		
 	}

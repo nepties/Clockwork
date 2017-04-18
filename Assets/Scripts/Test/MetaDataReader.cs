@@ -1,27 +1,19 @@
 ﻿using UnityEngine;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-public class MetaDataReader : MonoBehaviour
+public class MetaDataReader
 {
 	StreamReader reader;  //읽기스트림 객체	
 
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 	//생성자
-	public MetaDataReader()
+	public MetaDataReader(StreamReader readIndicator)
 	{
-
+		reader = readIndicator;		
 	}
-
-	// Use this for initialization
-	void Start()
-	{
-		reader = new StreamReader("Tulip(Pro).txt");  //객체 생성 후 개방		
-		readMetaData();  //메타 데이터 읽기
-	}	
 
 	//메타데이터 저장 객체 생성 메소드
 	public MusicMetaData readMetaData()
@@ -71,7 +63,7 @@ public class MusicMetaData
 	string difficulty;  //보면 난이도
 	string music;  //음악 파일명 
 	int length;  //음악 길이(second)
-	int bpm;  //Beat Per Minute
+	float bpm;  //Beat Per Minute
 	int unit;  //보면 유닛 수
 
 	//노트 배치 데이터
@@ -87,7 +79,7 @@ public class MusicMetaData
 		difficulty = metaList[2];
 		music = metaList[3];
 		length = int.Parse(metaList[4]);
-		bpm = int.Parse(metaList[5]);
+		bpm = float.Parse(metaList[5]);
 		unit = int.Parse(metaList[6]);
 	}
 

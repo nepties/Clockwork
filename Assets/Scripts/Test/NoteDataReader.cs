@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-public class NoteDataReader : MonoBehaviour
+public class NoteDataReader
 {
 	StreamReader reader;  //읽기스트림 객체	
 	byte curReadingState;  //읽기 모드
 	int curReadingUnit;  //현재 읽는 시점의 유닛
+	List<MusicNoteData> noteDataStorage;  //임시 노트 저장공간
+	float barBeatPerUnit;  //해당 마디의 유닛 수
 
 	enum ReadingState : byte  //보면 읽기 모드
 	{
@@ -19,14 +20,33 @@ public class NoteDataReader : MonoBehaviour
 
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-	// Use this for initialization
-	void Start()
+	//생성자
+	public NoteDataReader(StreamReader readIndicator)
 	{
-		//reader = new StreamReader("Tulip(Pro).txt");  //객체 생성 후 개방		
-		//readTranscriptionData(); //보면 읽기
-		//readNoteData(); //다음 유닛 읽기(한 줄)
-		curReadingUnit = 1;  //현재읽는 유닛 초기화 수치
-	}	
+		curReadingUnit = 0;  //현재읽는 유닛 초기화 수치
+		barBeatPerUnit = 64;  //기본
+
+		reader = readIndicator;  //리더 스트림 받기
+		
+		noteDataStorage = new List<MusicNoteData>();  //저장소 객체화	
+	}
+
+	//노트 데이터 끝까지 읽어들이기
+	public List<MusicNoteData> readAllnoteData()
+	{
+		noteDataStorage.Clear( );  //임시 저장공간 청소
+
+		//마디 읽기 부
+		readTranscriptionData(); //마디 첫 줄 읽기
+		
+		//노트 읽기 부
+		for(int i = 0; i < barBeatPerUnit; i++)
+			noteDataStorage.Add( readNoteData() ); //다음 유닛 읽기(한 줄)		
+		
+		//담은 노트 데이터 송출
+		return noteDataStorage;
+	}
+
 
 	//노트 배치 마디부분 읽기 메소드
 	void readTranscriptionData()
@@ -46,7 +66,7 @@ public class NoteDataReader : MonoBehaviour
 				char[] tempDelimiter = { '=' };  //'이퀄' 구분자를 구분
 				string[] temp = (reader.ReadLine()).Split(tempDelimiter);  //'=' 문자를 기준으로 분석				
 
-				//BPM 변속 적용 부
+				//BPM 변속 적용 부(미연결)
 				//currentBpm = int.Parse(temp[1]);  //temp[1]이 파싱되어 나온 BPM 값
 				//Debug.Log("BPM : " + bpm);
 			}
@@ -54,9 +74,8 @@ public class NoteDataReader : MonoBehaviour
 	}
 
 
-
 	//실질적인 노트 배치 부분 읽는 메소드 (한 줄)
-	void readNoteData()
+	MusicNoteData readNoteData()
 	{
 		curReadingState = (byte)ReadingState.unitRead;  //노트 읽기 전환
 		int[] noteDataBuffer = new int[13];  //추출 노트데이터 저장 버퍼
@@ -105,34 +124,31 @@ public class NoteDataReader : MonoBehaviour
 		}
 		//노트데이터 한 줄 추출 완료
 
-
-		//노트데이터 송출
-		if(notebufferEmpty == 5)  //한 줄 공백 시
-		{
-			//송출 안함
-		}
-		else  //한 줄에 노트 데이터 존재
-		{
-			//송출
-		}
-
-
 			/*
-			//ForTest
-			string bufferTest = null;
-			for(int i = 0; i < 13; i++)
+			//노트데이터 송출
+			if(notebufferEmpty == 5)  //한 줄 공백 시
 			{
-				bufferTest = string.Concat(bufferTest, noteDataBuffer[i].ToString());
+				//송출 안함
 			}
-
-			if (notebufferEmpty == 5)  Debug.Log("한줄 공백 감지");
-
-			Debug.Log(bufferTest + " :: " + notebufferEmpty);
-			*/
-
+			else  //한 줄에 노트 데이터 존재
+			{
+				//송출
+			}*/
 
 		//다음 유닛으로 설정 부
 		curReadingUnit++;  //현재 시점 유닛수 증가
+
+		//노트데이터 송출(한 줄)
+		return new MusicNoteData(noteDataBuffer, 0, curReadingUnit - 1);
+	}
+
+
+	//메타 데이터 부분 건너뛰기 메소드
+	void skipMetaDataPart()
+	{
+		//메타 데이터 줄 수 만큼 읽고 넘기기
+		for(int i = 0; i < 7; i++)
+			reader.ReadLine();
 	}
 }
 
