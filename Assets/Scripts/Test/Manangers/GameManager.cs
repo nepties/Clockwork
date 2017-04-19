@@ -7,6 +7,18 @@ public class GameManager : MonoBehaviour
 	DataManager dataCtrl;
 	ResourceManager resourceCtrl;
 
+	//클라이언트 게임 진행 상태
+	enum clientStata : byte
+	{
+		firstEntry,  //최초 로딩
+		InMainMenu,  //메인 메뉴
+		enteringList,  //선곡 화면 로딩
+		InList,  //선곡 화면
+		enteringStage,  //스테이지 로딩
+		InStage,  //스테이지 화면
+		result  //결과 화면
+	};
+
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 	// Use this for initialization
