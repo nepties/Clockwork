@@ -6,9 +6,10 @@ public class GameManager : MonoBehaviour
 	InputKeyManager inputCtrl;
 	DataManager dataCtrl;
 	ResourceManager resourceCtrl;
+	byte clientState;
 
 	//클라이언트 게임 진행 상태
-	enum clientStata : byte
+	enum gameState : byte
 	{
 		firstEntry,  //최초 로딩
 		InMainMenu,  //메인 메뉴
@@ -28,6 +29,9 @@ public class GameManager : MonoBehaviour
 		inputCtrl = GameObject.Find("KeyInputMananger").GetComponent<InputKeyManager>();
 		dataCtrl = GameObject.Find("DataManager").GetComponent<DataManager>();
 		resourceCtrl = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
+
+		//상태 설정 부
+		clientState = (byte)gameState.enteringStage;  //최초 상태 : 스테이지 로딩
 	}	
 
 	// Update is called once per frame

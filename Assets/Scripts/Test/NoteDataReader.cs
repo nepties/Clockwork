@@ -5,14 +5,19 @@ using System.IO;
 
 public class NoteDataReader
 {
+	//클래스 레퍼런스s
+	//상위 개체 제어 레퍼런스
+	fileReader fileDataCtrl;  //파일 정보 수입 클래스
+
 	StreamReader reader;  //읽기스트림 객체	
 	byte curReadingState;  //읽기 모드
 	int curReadingUnit;  //현재 읽는 시점의 유닛
 	List<MusicNoteData> noteDataStorage;  //임시 노트 저장공간
-	float barBeatPerUnit;  //해당 마디의 유닛 수
+	float barBeatPerUnit;  //해당 마디의 유닛 수	
 
 	enum ReadingState : byte  //보면 읽기 모드
 	{
+		Idle,  //idle
 		barRead,  //마디 읽기
 		bpmRead,  //BPM 읽기
 		unitRead  //유닛 읽기(노트)
@@ -23,8 +28,13 @@ public class NoteDataReader
 	//생성자
 	public NoteDataReader(StreamReader readIndicator)
 	{
+		//제어 개체 레퍼런스 받아오기
+		fileDataCtrl = GameObject.Find("fileReader").GetComponent<fileReader>();
+
+		//초기화 부
+		curReadingState = (byte)ReadingState.Idle;  //유휴 상태
 		curReadingUnit = 0;  //현재읽는 유닛 초기화 수치
-		barBeatPerUnit = 64;  //기본
+		barBeatPerUnit = 64;  //기본 4/4
 
 		reader = readIndicator;  //리더 스트림 받기
 		
@@ -67,7 +77,7 @@ public class NoteDataReader
 				string[] temp = (reader.ReadLine()).Split(tempDelimiter);  //'=' 문자를 기준으로 분석				
 
 				//BPM 변속 적용 부(미연결)
-				//currentBpm = int.Parse(temp[1]);  //temp[1]이 파싱되어 나온 BPM 값
+				//currentBpm = float.Parse(temp[1]);  //temp[1]이 파싱되어 나온 BPM 값
 				//Debug.Log("BPM : " + bpm);
 			}
 		}

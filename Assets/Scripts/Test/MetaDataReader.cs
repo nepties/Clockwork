@@ -59,13 +59,13 @@ public class MetaDataReader
 public class MusicMetaData
 {
 	//채보 메타 데이터
-	string title;  //음악제목
-	string jacket;  //음악이미지 파일명
-	string difficulty;  //보면 난이도
-	string music;  //음악 파일명 
-	int length;  //음악 길이(second)
-	float bpm;  //Beat Per Minute
-	int unit;  //보면 유닛 수
+	string title { get; }  //음악제목
+	string jacket { get; }  //음악이미지 파일명(경로)
+	string difficulty { get; }  //보면 난이도
+	string music { get; }  //음악 파일명(경로)
+	int length { get; }  //음악 길이(second)
+	public float bpm { get; set; }  //Beat Per Minute
+	public int unit { get; }  //보면 유닛 수
 
 	//노트 배치 데이터
 	//MusicNoteData noteStruct;  //노트 데이터 관리 클래스 레퍼런스
