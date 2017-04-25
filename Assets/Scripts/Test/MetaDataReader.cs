@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
@@ -39,15 +38,10 @@ public class MetaDataReader
 			metaList.Add(values[1]);
 		}
 
-			/*
-			//분석된 메타데이터 보면 클래스로 데이터 입력 부
-			selectedMusic.importMetaData(metaList);			
-			selectedMusic.printMetaData();  //데이터 출력 Test
-			*/
-
 		//마무리 부
-		//읽기스트림 닫기
-		//reader.Close( );
+		//읽기스트림 되감기
+		reader.BaseStream.Seek(0, SeekOrigin.Begin);
+		reader.DiscardBufferedData();
 		
 		//읽은 메타 데이터 객체 레퍼런스 반환
 		return new MusicMetaData(metaList);
@@ -59,13 +53,13 @@ public class MetaDataReader
 public class MusicMetaData
 {
 	//채보 메타 데이터
-	string title { get; }  //음악제목
-	string jacket { get; }  //음악이미지 파일명(경로)
-	string difficulty { get; }  //보면 난이도
-	string music { get; }  //음악 파일명(경로)
-	int length { get; }  //음악 길이(second)
+	public string title { get; private set; }  //음악제목
+	public string jacket { get; private set; }  //음악이미지 파일명(경로)
+	public string difficulty { get; private set; }  //보면 난이도
+	public string music { get; private set; }  //음악 파일명(경로)
+	public int length { get; set; }  //음악 길이(second)
 	public float bpm { get; set; }  //Beat Per Minute
-	public int unit { get; }  //보면 유닛 수
+	public int unit { get; set; }  //보면 유닛 수
 
 	//노트 배치 데이터
 	//MusicNoteData noteStruct;  //노트 데이터 관리 클래스 레퍼런스

@@ -10,8 +10,9 @@ public class DataManager : MonoBehaviour
 	fileReader fileDataCtrl;  //파일 정보 수입 클래스
 
 	//노트 관련
-	int needlePhase;  // 0, 1, 2  :  phase 3 바늘 위치 상태 값
-	bool isLongactivated;  // 롱노트 활성화 여부
+	public int needlePhase { get; set; }  // 0, 1, 2  :  phase 3 바늘 위치 상태 값
+	public bool isLongactivated { get; set; }  // 롱노트 활성화 여부
+	public int curReadingUnit  { get; set; }  //현재 읽기 위치 (유닛 단위)
 	
 	//배속 관련
 	float curBpm;  //현재 재생 곡 BPM
@@ -22,9 +23,6 @@ public class DataManager : MonoBehaviour
 	float finalSpeed;  //최종 계산 배속
 	float noteReadDelay;//bpm에 따른 읽기 지연 시간(ms)
 
-	//수입 파일 데이터 저장 공간
-	List<MusicMetaData> metaDataStorage;  //읽은 곡들 메타 데이터
-	List<MusicNoteData> noteDataStorage;  //선택 곡의 노트 데이터
 
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -36,12 +34,6 @@ public class DataManager : MonoBehaviour
 		refereeCtrl = GameObject.Find("NoteReferee").GetComponent<NoteReferee>();
 		fileDataCtrl = GameObject.Find("fileReader").GetComponent<fileReader>();
 
-		//설정 초기화 부
-		//파일 데이터 저장소 연결
-		metaDataStorage = fileDataCtrl.getMetaStorageLink( );
-		noteDataStorage = fileDataCtrl.getNoteStorageLink( );
-
-		updateReadingDelay();  //노트 데이터 읽기 지연 시간 계산
 	}
 	
 
@@ -52,7 +44,7 @@ public class DataManager : MonoBehaviour
 	}
 
 
-	//바늘 회전 메소드
+	//바늘 회전 메소드(숏노트 계)
 	public void rotateNeedleData(float rotateDegree)  // rotateDegree : 1, -1, 3, -3 칸 회전 값
 	{
 		needlePhase = (needlePhase + 3 + (int)rotateDegree) % 3;  //바늘 위치 단계 계산
@@ -72,15 +64,25 @@ public class DataManager : MonoBehaviour
 		Debug.Log("force Long DeActive");
 	}
 
-	//노트 읽기 지연시간 계산 메소드
-	public void updateReadingDelay()
+	//곡 하나 읽기 명령 하달(For Test)
+	public void forceLoadOneFile()
 	{
-		noteReadDelay = 3750f / curBpm;
+		fileDataCtrl.readOneFullFile( );
 	}
 
-	//선곡된 곡 메타데이터 정보 받아오기
-	void applySelectedMusicMeta( )
+	//상태 보고 to GM : 선곡 음악 파일 로드 완료
+	public void reportLoadfinished( )
 	{
-		
+		coreCtrl.receiveState_fileLoaded( );
+	}
+
+	//스테이지 로딩 상태 2 : 변수 초기화
+	public void prepareStage( )
+	{
+		//현재 BPM 정보 최초 초기화
+		curBpm = fileDataCtrl.metaDataStorage[0].bpm;
+		noteReadDelay = 3750f / curBpm; //읽기 지연 시간 초기화
+		Debug.Log("first set BPM : " + curBpm);
+		Debug.Log("first set readDelay : " + noteReadDelay);
 	}
 }
