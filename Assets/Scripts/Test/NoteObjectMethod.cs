@@ -15,7 +15,7 @@ public class NoteObjectMethod : MonoBehaviour
     //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
 		firstVector = transform.position;
 		maxSpeed = 2.5f;
@@ -30,7 +30,7 @@ public class NoteObjectMethod : MonoBehaviour
 
 		//판정선까지 이동 여부 판단 부
 		secVector = (Vector2)transform.position - firstVector;  //나아간 벡터 계산
-		if (secVector.magnitude >= 5f)  //벡터 길이가 일정 이상이면
+		if (secVector.magnitude >= 5f)  //벡터 길이가 일정 이상이면(희망 : 판정선에서 일정거리 벗어난 거리)
 		{
 			//비활성, 백 투더 풀
 			this.gameObject.SetActive(false);  //비활성화

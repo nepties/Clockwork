@@ -198,7 +198,7 @@ public struct MusicNoteData
 	int[] noteData;  // 노트 배치 정보. 크기는 13
 	float time;  // 해당 NoteUnit의 재생 시간
 	int unitTiming; //처리 유닛 시점
-	bool hasNoteData;  //해당 유닛에 숏노트 존재 여부
+	bool hasNoteData;  //해당 유닛에 노트 존재 여부
 
 	//000 | 000 | 000 | 000 | 0  ---+ 처리 시점
 
@@ -226,5 +226,11 @@ public struct MusicNoteData
 		{
 			Debug.Log(i + " : " + unitTiming);
 		}
+	}
+
+	//Get : 노트 여부
+	public bool noteExistCheck()
+	{
+		return this.hasNoteData;
 	}
 }

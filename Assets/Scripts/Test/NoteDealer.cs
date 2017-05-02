@@ -4,27 +4,42 @@ using System.Collections.Generic;
 
 public class NoteDealer : MonoBehaviour
 {
+	//클래스 레퍼런스s
+	//상위
+	GameObjectsManager gameObjectCtrl;
+
 	[SerializeField]  GameObject noteObject;  //숏 노트 오브젝트	
 	int poolSize;  //풀링 오브젝트 생성량
 
 
 	Queue<GameObject> [] poolQueue;  //비활성 오브젝트 대기큐
+	Queue<GameObject> [] activePoolQueue;  //활성 오브젝트 관리큐
 	float finalSpeed;  //임의 최종 속도
 
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 	// Use this for initialization
-	void Start ()
+	void Awake ()
 	{
+		//제어 개체 레퍼런스 받아오기
+		gameObjectCtrl = GameObject.Find("GameObjects").GetComponent<GameObjectsManager>();
+		
 		//초기, 임의값 초기화 부
 		poolSize = 20;  //생성량 초기설정값
 		finalSpeed = 600f;  //임의 지정 최종 속도
 
-		//대기큐 배열 생성 부
+		//비활성 오브젝트 대기큐 배열 생성 부
 		poolQueue = new Queue<GameObject>[12]; 
-		for(int i = 0; i < 12; i++)
+		for(int i = 0; i < 12; i++)  //12개 대기열
 		{
-			poolQueue[i] = new Queue<GameObject>(poolSize);
+			poolQueue[i] = new Queue<GameObject>(poolSize);  //설정 크기 만큼 
+		}
+
+		//활성 오브젝트 관리큐 배열 생성 부
+		activePoolQueue = new Queue<GameObject>[12];
+		for(int i = 0; i < 12; i++)  //12개 대기열
+		{
+			activePoolQueue[i] = new Queue<GameObject>(poolSize);  //설정 크기 만큼 
 		}
 				
 		//오브젝트 생성 부
@@ -37,7 +52,6 @@ public class NoteDealer : MonoBehaviour
 	{
 		
 	}
-
 
 	//풀링할 오브젝트 생성 메소드
 	void createNoteObject()
@@ -56,21 +70,18 @@ public class NoteDealer : MonoBehaviour
 		}
 	}
 
-
 	//스테이지 최초 로드 직후 노트 배치
 	void dealInitialNote()
 	{
 
 	}
 
-
-	//읽기 시점(다음)에 노트 배치
-	void dealNotes()
+	//알맞는 시점(다음)에 노트 배치
+	void forceDealNotes()
 	{
 		
 	}
-
-
+	
 	//풀링 오브젝트 회수 메소드(백 투더 풀)
 	public void collectObject(GameObject endedNote, int birthQueueNumber)
 	{

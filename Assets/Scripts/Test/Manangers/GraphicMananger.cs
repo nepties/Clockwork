@@ -3,7 +3,10 @@ using System.Collections;
 
 public class GraphicMananger : MonoBehaviour
 {
+	//클래스 레퍼런스s
+	//상위
 	ResourceManager resourceCtrl;
+	//하위
 	GameObjectsManager gameObjectCtrl;
 
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -24,9 +27,15 @@ public class GraphicMananger : MonoBehaviour
 	}
 
 
-	//바늘 회전 명령 하달
+	//명령 하달 : 바늘 회전
 	public void rotateNeedleObject(float rotDegree)
 	{
 		gameObjectCtrl.rotateNeedleObject(rotDegree);
+	}
+
+	//명령 하달 : 초기 스테이지 준비!
+	public void prepareStage()
+	{
+		gameObjectCtrl.prepareStage( );
 	}
 }

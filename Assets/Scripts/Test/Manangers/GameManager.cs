@@ -3,11 +3,14 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
+	//클래스 레퍼런스s
+	//하위
 	InputKeyManager inputCtrl;
 	DataManager dataCtrl;
 	ResourceManager resourceCtrl;
-	byte gameState;
-
+		
+	//상태 계
+	public byte gameState { get; set; }  //현 상태
 	//클라이언트 게임 진행 상태
 	public enum clientState : byte
 	{
@@ -41,7 +44,6 @@ public class GameManager : MonoBehaviour
 		
 	}
 	 
-
 	//바늘 회전 키입력 감지 & 명령 하달
 	public void NeedleCtrlKeyInput(float rotDegree)
 	{
@@ -83,6 +85,12 @@ public class GameManager : MonoBehaviour
 		Debug.Log("Prepare Stage...(Phase 01)");
 		//스테이지 준비!
 		dataCtrl.prepareStage( );
+	}
+
+	//명령 : 스테이지 극초기 상태 준비
+	public void forcePrepareInitialStage()
+	{
+		resourceCtrl.forcePrepareStage( );
 	}
 
 	IEnumerator loadForTest()

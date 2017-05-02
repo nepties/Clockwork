@@ -3,7 +3,10 @@ using System.Collections;
 
 public class ResourceManager : MonoBehaviour
 {
+	//클래스 레퍼런스s
+	//상위
 	GameManager coreCtrl;
+	//하위
 	GraphicMananger graphicCtrl;
 	SoundManager soundCtrl;
 
@@ -26,10 +29,16 @@ public class ResourceManager : MonoBehaviour
 	}
 
 	
-	//바늘 회전 명령 하달
+	//명령 하달 : 바늘 회전 
 	public void rotateNeedleObject(float rotDegree)
 	{
 		graphicCtrl.rotateNeedleObject(rotDegree);
+	}
+
+	//명령 하달 : 극초기 상태 스테이지 준비
+	public void forcePrepareStage()
+	{
+		graphicCtrl.prepareStage( );
 	}
 }
 
