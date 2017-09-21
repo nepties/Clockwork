@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using ReferenceSetting;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
 		enteringStage,  //스테이지 로딩
 		InStage,  //스테이지 화면
 		result  //결과 화면
-	};
+	};	
 
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -29,13 +30,12 @@ public class GameManager : MonoBehaviour
 	void Start ()
 	{
 		//제어 개체 레퍼런스 받아오기
-		inputCtrl = GameObject.Find("KeyInputMananger").GetComponent<InputKeyManager>();
-		dataCtrl = GameObject.Find("DataManager").GetComponent<DataManager>();
-		resourceCtrl = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
+		inputCtrl = AddressBook.inputCtrl;
+		dataCtrl = AddressBook.dataCtrl;
+		resourceCtrl = AddressBook.resourceCtrl;
 
 		//상태 설정 부
-		gameState = (byte)clientState.enteringStage;  //최초 상태 : 스테이지 로딩
-		forceloadingStage( );  //상태에 따른 명령 하달(For Test)
+		gameState = (byte)clientState.enteringStage;  //최초 상태 : 스테이지 로딩			
 	}
 
 	// Update is called once per frame
@@ -63,41 +63,16 @@ public class GameManager : MonoBehaviour
 		dataCtrl.LongNoteRelease();
 	}
 
-	//상태에 따른 명령 : 스테이지 로딩(선곡 후 행할 로직)
-	void forceloadingStage( )
+	//선곡 정보 받은 후 동작
+	public void receiveMusicData()
 	{
-		Debug.Log("Music selected, force stage Loading...");
-		//곡 하나 읽어들이기
-		StartCoroutine(loadForTest( ));
-	}
-
-	//상태 접수 : 파일 로드 끝
-	public void receiveState_fileLoaded( )
-	{
-		//바로 명령 하달
-		Debug.Log("file Data load complete!");
-		forceUpdateDataFromFileData( );
-	}
-
-	//상태에 따른 명령 : 선곡 음악 데이터 업데이트(스테이지 로딩 2단계)
-	void forceUpdateDataFromFileData( )
-	{
-		Debug.Log("Prepare Stage...(Phase 01)");
-		//스테이지 준비!
 		dataCtrl.prepareStage( );
 	}
 
-	//명령 : 스테이지 극초기 상태 준비
-	public void forcePrepareInitialStage()
+	//스테이지 준비 관련 데이터 처리 모두 완료(바로 스테이지 온)
+	public void dataAllLoaded()
 	{
-		resourceCtrl.forcePrepareStage( );
-	}
-
-	IEnumerator loadForTest()
-	{
-		Debug.Log("waiting for fileReader Object making...");
-		yield return new WaitForSeconds(1f);
-		//곡 하나 읽어들이기
-		dataCtrl.forceLoadOneFile( );
+		dataCtrl.stageStarting( );
+		resourceCtrl.stageStarting( );
 	}
 }

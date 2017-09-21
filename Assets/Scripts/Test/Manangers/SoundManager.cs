@@ -19,18 +19,19 @@ public class SoundManager : MonoBehaviour
 	{
 		//제어 개체 레퍼런스 받아오기
 		resourceCtrl = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	
+
+		musicPlayer = GetComponent<AudioSource>();  //컴포넌트의 음악 플레이어 연결
 	}
 
 	//BGM 선택 재생
-    public void playMusic (int clipNum)
+    void playMusic (int clipNum)
     {
         musicPlayer.clip = auidioFile[clipNum];  //특정 번호의 클립 연결
         musicPlayer.Play();  //재생
     }
+
+	public void musicOn()
+	{
+		playMusic(1);
+	}
 }

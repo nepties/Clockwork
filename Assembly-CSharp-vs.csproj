@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Test\AddressBook.cs" />
      <Compile Include="Assets\Scripts\Test\ClockNeedle.cs" />
      <Compile Include="Assets\Scripts\Test\Manangers\DataManager.cs" />
      <Compile Include="Assets\Scripts\Test\Manangers\EffectManager.cs" />
@@ -55,7 +56,6 @@
      <Compile Include="Assets\Scripts\Test\Manangers\InputKeyManager.cs" />
      <Compile Include="Assets\Scripts\Test\Manangers\ResourceManager.cs" />
      <Compile Include="Assets\Scripts\Test\Manangers\SoundManager.cs" />
-     <Compile Include="Assets\Scripts\Test\Manangers\StageManager.cs" />
      <Compile Include="Assets\Scripts\Test\Manangers\UIManager.cs" />
      <Compile Include="Assets\Scripts\Test\MetaDataReader.cs" />
      <Compile Include="Assets\Scripts\Test\NoteDataReader.cs" />
@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\Test\NoteObjectMethod.cs" />
      <Compile Include="Assets\Scripts\Test\NoteReferee.cs" />
      <Compile Include="Assets\Scripts\Test\ScoreCalculator.cs" />
+     <Compile Include="Assets\Scripts\Test\StageTrigger.cs" />
      <Compile Include="Assets\Scripts\Test\TestButtonMethod.cs" />
      <Compile Include="Assets\Scripts\Test\fileReader.cs" />
      <Compile Include="Assets\test.cs" />

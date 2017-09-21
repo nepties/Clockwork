@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using MusicScrolls;
 
 public class NoteDataReader
 {
@@ -53,14 +53,19 @@ public class NoteDataReader
 		//메타데이터 읽기 부
 		readCertainMetaData( );
 
-
-		//마디 읽기 부
-		readTranscriptionData(); //마디 첫 줄 읽기
-		//노트 읽기 부
-		for(int i = 0; i < barBeatPerUnit; i++)
+		//끝까지 읽기
+		while(reader.EndOfStream == false)
+		{
+			//마디 읽기 부
+			readTranscriptionData(); //마디 첫 줄 읽기
+			//노트 읽기 부
+			for(int i = 0; i < barBeatPerUnit; i++)
 			noteDataStorage.Add( readNoteData() ); //다음 유닛 읽기(한 줄)		
-		
-		
+		}
+
+		//스트림 닫기
+		reader.Close( );
+
 		//담은 노트 데이터 송출
 		return noteDataStorage;
 	}
@@ -142,11 +147,12 @@ public class NoteDataReader
 		//노트데이터 한 줄 추출 완료
 
 		//다음 유닛으로 설정 부
-		curReadingUnit++;  //현재 시점 유닛수 증가
+		++curReadingUnit;  //현재 시점 유닛수 증가
 
 		//노트데이터 송출(한 줄)
 		if(notebufferEmpty < 5)  //한 줄에 적어도 한 개 노트 존재 시
 		{
+			//Debug.Log((curReadingUnit - 1) * noteReadDelay);			
 			return new MusicNoteData(noteDataBuffer, (curReadingUnit - 1) * noteReadDelay, curReadingUnit - 1, true);
 		}  //하나도 없다면
 		else  return new MusicNoteData(noteDataBuffer, (curReadingUnit - 1) * noteReadDelay, curReadingUnit - 1, false);
@@ -166,7 +172,7 @@ public class NoteDataReader
 		noteReadDelay = 3750f / currentBpm;
 	}
 
-	//메타데이터 부분 일정 정보 읽기 메소드(for Test)
+	//메타데이터 부분 특정 정보 읽기 메소드(for Test)
 	void readCertainMetaData()
 	{		
 		//구분자 문자 설정 부
@@ -192,45 +198,3 @@ public class NoteDataReader
 }
 
 
-//노트 데이터 저장 구조체
-public struct MusicNoteData
-{
-	int[] noteData;  // 노트 배치 정보. 크기는 13
-	float time;  // 해당 NoteUnit의 재생 시간
-	int unitTiming; //처리 유닛 시점
-	bool hasNoteData;  //해당 유닛에 노트 존재 여부
-
-	//000 | 000 | 000 | 000 | 0  ---+ 처리 시점
-
-	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-	//구조체 생성자 & 입력
-	public MusicNoteData(int[] unitNoteData, float unitTime, int treatUnit, bool hasNoteData)
-	{
-        noteData = unitNoteData;
-        time = unitTime;
-		unitTiming = treatUnit;
-		this.hasNoteData = hasNoteData;
-	}
-
-	//현재시점 노트 정보 전달 메소드
-	public int[] getLocatedUnit()
-	{
-		return this.noteData;
-	}
-
-	//Test 출력
-	public void printNoteArray()
-	{
-		foreach(int i in noteData)
-		{
-			Debug.Log(i + " : " + unitTiming);
-		}
-	}
-
-	//Get : 노트 여부
-	public bool noteExistCheck()
-	{
-		return this.hasNoteData;
-	}
-}

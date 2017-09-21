@@ -40,5 +40,10 @@ public class ResourceManager : MonoBehaviour
 	{
 		graphicCtrl.prepareStage( );
 	}
+
+	public void stageStarting()
+	{
+		soundCtrl.musicOn( );
+	}
 }
 

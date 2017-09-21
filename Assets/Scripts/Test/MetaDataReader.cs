@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.IO;
+using MusicScrolls;
 
 public class MetaDataReader
 {
@@ -39,7 +40,7 @@ public class MetaDataReader
 		}
 
 		//마무리 부
-		//읽기스트림 되감기
+		//읽기스트림 되감기(For Test)
 		reader.BaseStream.Seek(0, SeekOrigin.Begin);
 		reader.DiscardBufferedData();
 		
@@ -49,38 +50,3 @@ public class MetaDataReader
 }
 
 
-//메타 데이터 클래스
-public class MusicMetaData
-{
-	//채보 메타 데이터
-	public string title { get; private set; }  //음악제목
-	public string jacket { get; private set; }  //음악이미지 파일명(경로)
-	public string difficulty { get; private set; }  //보면 난이도
-	public string music { get; private set; }  //음악 파일명(경로)
-	public int length { get; set; }  //음악 길이(second)
-	public float bpm { get; set; }  //Beat Per Minute
-	public int unit { get; set; }  //보면 유닛 수
-
-	//노트 배치 데이터
-	//MusicNoteData noteStruct;  //노트 데이터 관리 클래스 레퍼런스
-	
-	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-	
-	//메타 데이터 추가 생성자
-	public MusicMetaData(List<string> metaList)
-	{
-		title = metaList[0];
-		jacket = metaList[1];
-		difficulty = metaList[2];
-		music = metaList[3];
-		length = int.Parse(metaList[4]);
-		bpm = float.Parse(metaList[5]);
-		unit = int.Parse(metaList[6]);
-	}
-
-	//메타 데이터 리스트 출력 (한 줄로 Test)
-	public void printMetaData()
-	{
-		Debug.Log(title + " || " + jacket + " || " + difficulty + " || " + music + " || " + length + " || " + bpm + " || " + unit);
-	}
-}

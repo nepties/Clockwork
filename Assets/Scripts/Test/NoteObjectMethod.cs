@@ -6,7 +6,7 @@ public class NoteObjectMethod : MonoBehaviour
 	NoteDealer spawnPool;  //노트 배치 클래스 레퍼런스
 
 	int birthNumber;  //몇 번째 대기큐에서 나온 오브젝트 인지 기억(출신 대기큐 번호)
-	float maxSpeed;  //노트 진행 속도 배수
+	public float Speed { set; get; }  //노트 진행 속도 배수
 
 	//시작벡터, 진행 벡터
     Vector2 firstVector;
@@ -17,8 +17,9 @@ public class NoteObjectMethod : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+		//초기화 부
 		firstVector = transform.position;
-		maxSpeed = 2.5f;
+		Speed = 2.5f;
 		spawnPool = GameObject.Find("NoteDealer").GetComponent<NoteDealer>();
     }
 
@@ -26,7 +27,7 @@ public class NoteObjectMethod : MonoBehaviour
     void Update()
     {
 		//노트가 설정 방향으로 계속 진행 부
-		transform.Translate(Vector3.up * maxSpeed * Time.deltaTime, Space.Self);  //이동
+		transform.Translate(Vector3.up * Speed * Time.deltaTime, Space.Self);  //이동
 
 		//판정선까지 이동 여부 판단 부
 		secVector = (Vector2)transform.position - firstVector;  //나아간 벡터 계산
@@ -38,14 +39,6 @@ public class NoteObjectMethod : MonoBehaviour
 			spawnPool.collectObject(this.gameObject, this.birthNumber);  //백 투더 풀	
 		}
     }
-
-
-	//속도 설정 메소드
-	public void setSpeed(float speed)
-	{
-		this.maxSpeed = speed;
-	}
-
 
 	//출신 대기큐 번호 부여 메소드
 	public void setQueueNumber(int number)
