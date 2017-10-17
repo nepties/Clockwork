@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Test\Manangers\SoundManager.cs" />
      <Compile Include="Assets\Scripts\Test\Manangers\UIManager.cs" />
      <Compile Include="Assets\Scripts\Test\MetaDataReader.cs" />
+     <Compile Include="Assets\Scripts\Test\MusicScrollsDefine.cs" />
      <Compile Include="Assets\Scripts\Test\NoteDataReader.cs" />
      <Compile Include="Assets\Scripts\Test\NoteDealer.cs" />
      <Compile Include="Assets\Scripts\Test\NoteObjectMethod.cs" />

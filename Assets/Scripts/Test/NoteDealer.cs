@@ -44,7 +44,7 @@ public class NoteDealer : MonoBehaviour
 				
 		//오브젝트 생성 부
 		createNoteObject();
-		//로드 완료
+		//로드 완료		
 	}
 	
 	// Update is called once per frame

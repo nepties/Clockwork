@@ -7,14 +7,17 @@ using Debug = UnityEngine.Debug;
 
 public class NoteReferee : MonoBehaviour
 {
+	//sigleTon parts
+	public static NoteReferee instance;
+
 	//클래스 레퍼런스s
 	//직속 매니저
 	[SerializeField] DataManager DataCtrl;
 
 	Queue<NoteJudgeCard> [] judgeScroll;  //각 라인에 노트 판정을 위한 노트배치표 큐
-	[SerializeField] float perfectJudgeflexibility = 40f;  //판정 상수(ms)
-	[SerializeField] float niceJudgeflexibility = 80f;  //판정 상수(ms)
-	[SerializeField] float judgeMultiple;  //판정 배수(널널함, 엄격함)	
+	[SerializeField] float perfectJudgeflexibility = 200f;  //판정 상수(ms)
+	[SerializeField] float niceJudgeflexibility = 450f;  //판정 상수(ms)
+	[SerializeField] float judgeFactor;  //판정 배수(널널함, 엄격함)
 	
 	//스톱 워치
 	public static Stopwatch stopwatch = new Stopwatch( );
@@ -24,12 +27,14 @@ public class NoteReferee : MonoBehaviour
 	// Use this for initialization
 	void Awake()
 	{
-		
+		//sigleTon parts
+		instance = this;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{		
+		/*
 		foreach(Queue<NoteJudgeCard> judgeLine in judgeScroll)
 		{
 			//나이스 판정 시간대보다 뒤에 있는경우
@@ -39,7 +44,20 @@ public class NoteReferee : MonoBehaviour
 				judgeLine.Dequeue( );
 				Debug.Log("Miss...");
 			}
-		}		
+		}
+		*/
+		for(int i = 0; i < 12; i++)
+		{
+			Queue<NoteJudgeCard> judgeLine = judgeScroll[i];
+
+			//나이스 판정 시간대보다 뒤에 있는경우
+			if(judgeLine.Peek().time < stopwatch.ElapsedMilliseconds - niceJudgeflexibility)
+			{
+				// Miss 처리
+				judgeLine.Dequeue( );
+				Debug.Log("Miss...");
+			}
+		}
 	}
 
 	//숏노트 판정 실행
@@ -50,7 +68,8 @@ public class NoteReferee : MonoBehaviour
 		{
 			//퍼팩트 처리 (판정 1)
 			Debug.Log("PERFECT!!");
-		}			
+		}
+		//그 다음 나이스 처리			
 		else if(judgeScroll[LineNum].Peek().time <= stopwatch.ElapsedMilliseconds + niceJudgeflexibility && judgeScroll[LineNum].Peek().time >= stopwatch.ElapsedMilliseconds - niceJudgeflexibility)
 		{
 			//나이스 처리 (판정 2)
