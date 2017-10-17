@@ -37,4 +37,15 @@ public class GameObjectsManager : MonoBehaviour
 	{
 
 	}
+
+	//노트풀에 미싱 노트 처리 명령
+	public void sendMissingNote(int lineNum)
+	{
+		noteObjectPoolCtrl.returnMissingNote(lineNum);
+	}
+
+	public void sendStageStart( )
+	{
+		noteObjectPoolCtrl.requestRefinedData( );
+	}
 }

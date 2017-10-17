@@ -9,12 +9,11 @@ public class NoteObjectMethod : MonoBehaviour
     //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
     // Use this for initialization
-    void Awake()
+    void Start()
     {
 		//초기화 부
-		Speed = 2.5f;  //임의 초기화 속도값		
+		Speed = DataManager.instance.railSpeed;  //속도값 초기화		
     }
-
 
     // Update is called once per frame
     void Update()

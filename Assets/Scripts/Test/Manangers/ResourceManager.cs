@@ -41,9 +41,17 @@ public class ResourceManager : MonoBehaviour
 		graphicCtrl.prepareStage( );
 	}
 
+	//명령 하달 : 스테이지 시작
 	public void stageStarting()
 	{
+		graphicCtrl.sendStageStart( );
 		soundCtrl.musicOn( );
+	}
+
+	//미싱 노트 오브젝트 처리 명령 하달
+	public void sendMissingNote(int lineNum)
+	{
+		graphicCtrl.sendMissingNote(lineNum);
 	}
 }
 

@@ -4,6 +4,9 @@ using MusicScrolls;
 
 public class DataManager : MonoBehaviour
 {
+	//sigleTon parts
+	public static DataManager instance;
+
 	//클래스 레퍼런스s
 	//최상위 (임시)
 	[SerializeField] StageTrigger triggerCtrl;
@@ -21,33 +24,41 @@ public class DataManager : MonoBehaviour
 	public int initialLoadaAmount  { get; set; }  //초기 로딩 노트 수 : 프론트와 커런트 사이 유닛 값
 	
 	//배속 관련
-	float curBpm;  //현재 재생 곡 BPM
-	[SerializeField] [Range((0), (10))]	float speedConstant;  //배속 상수
-	float speedMultiplier;  //배속 승수
-	float railSpeed;  //레일 스피드 : 최종 노트 속도
+	public float curBpm { get; set; }  //현재 재생 곡 BPM
+	float speedConstant = 1f;  //배속 상수
+	[SerializeField] [Range((0), (10))] float speedMultiplier;  //배속 배수
+	public float railSpeed { get; set; }  //레일 스피드 : 최종 노트 속도
+
 	float noteReadDelay;  //bpm에 따른 읽기 지연 시간(단위 : ms)
-	float noteReadDelayForSecond;  //bpm에 따른 읽기 지연 시간(단위 : sec)
+		float noteReadDelayForSecond;  //bpm에 따른 읽기 지연 시간(단위 : sec)
 
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 	// Use this for initialization
 	void Awake()
 	{
+		//sigleTon parts
+		instance = this;
+
 		//제어 개체 레퍼런스 받아오기				
 		triggerCtrl = GameObject.Find("StageTrigger(Temp)").GetComponent<StageTrigger>( );  //임시
 
 		//초기화 부
+		speedMultiplier = 1f;
 		curReadingUnit = 0;
 		initialLoadaAmount = 20;  //초기 스테이지 배치 유닛 수
 		frontReadingUnit = initialLoadaAmount;
 		needlePhase = 0;  //최초 바늘 상태에 맞춰
+		railSpeed = speedConstant * speedMultiplier;  //최종 배속 설정
+
 	}
 
 	// Update is called once per frame
+	/*
 	void Update()
 	{
 		
-	}
+	}*/
 
 	//숏노트 처리 관련 메소드
 	public void rotateNeedleData(float rotateDegree)  //rotateDegree : 1, -1, 3, -3 칸 회전 값(음수값 왼쪽)
@@ -124,5 +135,11 @@ public class DataManager : MonoBehaviour
 	public void stageStarting()
 	{
 		refereeCtrl.receiveStarting( );
+	}
+
+	//미싱 노트 받고 인식 from Referee
+	public void recognizeMissingNote(int lineNum)
+	{
+		coreCtrl.receiveMissingNote(lineNum);
 	}
 }

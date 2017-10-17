@@ -14,7 +14,7 @@ public class NoteReferee : MonoBehaviour
 	//직속 매니저
 	[SerializeField] DataManager DataCtrl;
 
-	Queue<NoteJudgeCard> [] judgeScroll;  //각 라인에 노트 판정을 위한 노트배치표 큐
+	public Queue<NoteJudgeCard> [] judgeScroll { get; set; }  //각 라인에 노트 판정을 위한 노트배치표 큐
 	[SerializeField] float perfectJudgeflexibility = 200f;  //판정 상수(ms)
 	[SerializeField] float niceJudgeflexibility = 450f;  //판정 상수(ms)
 	[SerializeField] float judgeFactor;  //판정 배수(널널함, 엄격함)
@@ -29,6 +29,7 @@ public class NoteReferee : MonoBehaviour
 	{
 		//sigleTon parts
 		instance = this;
+		judgeFactor = 1.0f;
 	}
 
 	// Update is called once per frame
@@ -45,7 +46,7 @@ public class NoteReferee : MonoBehaviour
 				Debug.Log("Miss...");
 			}
 		}
-		*/
+		
 		for(int i = 0; i < 12; i++)
 		{
 			Queue<NoteJudgeCard> judgeLine = judgeScroll[i];
@@ -54,10 +55,12 @@ public class NoteReferee : MonoBehaviour
 			if(judgeLine.Peek().time < stopwatch.ElapsedMilliseconds - niceJudgeflexibility)
 			{
 				// Miss 처리
-				judgeLine.Dequeue( );
+				judgeLine.Dequeue( );  //큐에서 제외
+				treatMissingNote(i);  //해당 노트 관련 처리 푸시
 				Debug.Log("Miss...");
 			}
 		}
+		*/
 	}
 
 	//숏노트 판정 실행
@@ -101,6 +104,12 @@ public class NoteReferee : MonoBehaviour
 	{
 		//시간 멈춤
 		stopwatch.Stop( );
+	}
+
+	//미싱 노트 처리 관련
+	public void treatMissingNote(int lineNum)
+	{
+		DataCtrl.recognizeMissingNote(lineNum);
 	}
 }
 

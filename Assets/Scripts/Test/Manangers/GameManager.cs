@@ -69,4 +69,10 @@ public class GameManager : MonoBehaviour
 		dataCtrl.stageStarting( );
 		resourceCtrl.stageStarting( );
 	}
+
+	//미싱 노트 관련 처리
+	public void receiveMissingNote(int lineNum)
+	{
+		resourceCtrl.sendMissingNote(lineNum);
+	}
 }
