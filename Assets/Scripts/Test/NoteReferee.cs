@@ -9,7 +9,7 @@ public class NoteReferee : MonoBehaviour
 {
 	//클래스 레퍼런스s
 	//직속 매니저
-	DataManager DataCtrl;
+	[SerializeField] DataManager DataCtrl;
 
 	Queue<NoteJudgeCard> [] judgeScroll;  //각 라인에 노트 판정을 위한 노트배치표 큐
 	[SerializeField] float perfectJudgeflexibility = 40f;  //판정 상수(ms)
@@ -18,14 +18,13 @@ public class NoteReferee : MonoBehaviour
 	
 	//스톱 워치
 	public static Stopwatch stopwatch = new Stopwatch( );
-
+	
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 	// Use this for initialization
-	void Start()
+	void Awake()
 	{
-		//제어 개체 레퍼런스 받아오기
-		DataCtrl = AddressBook.dataCtrl;
+		
 	}
 
 	// Update is called once per frame
@@ -78,6 +77,7 @@ public class NoteReferee : MonoBehaviour
 		stopwatch.Start( );
 	}
 
+	//무대 막 내리기
 	public void receiveEnding()
 	{
 		//시간 멈춤

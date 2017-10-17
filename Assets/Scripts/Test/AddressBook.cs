@@ -23,14 +23,14 @@ namespace ReferenceSetting
 		public static NoteDealer noteObjectPoolCtrl { get; private set; }  //노트 배분기 오브젝트 클래스
 		
 		//로딩완료시간 측정
-		public static Stopwatch stopwatch = new Stopwatch( );
+		//public static Stopwatch stopwatch = new Stopwatch( );
 
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 		// Use this for initialization
 		public static void linkReference ()
 		{
-			stopwatch.Start( );
+			//stopwatch.Start( );  //시간 측정 : 시작
 			
 			//제어 개체 레퍼런스 받아오기
 			coreCtrl = GameObject.Find("GameMainCore").GetComponent<GameManager>( );
@@ -43,8 +43,8 @@ namespace ReferenceSetting
 			NeedleCtrl = GameObject.Find("clockNeedle").GetComponent<ClockNeedle>( );
 			noteObjectPoolCtrl = GameObject.Find("NoteDealer").GetComponent<NoteDealer>( );
 
-			stopwatch.Stop( );
-			Debug.Log( "linking Ref loading Time : " + stopwatch.ElapsedTicks + " (tick)");
+			//stopwatch.Stop( );  //시간 측정 : 마침
+			//Debug.Log( "linking Ref loading Time : " + stopwatch.ElapsedTicks + " (tick)");  //경과시간 출력
 		}
 	}
 }

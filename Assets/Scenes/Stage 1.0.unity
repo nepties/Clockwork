@@ -275,6 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   auidioFile:
   - {fileID: 8300000, guid: e242ded06dc2fe24f9aa315ca46d9a02, type: 3}
+  - {fileID: 8300000, guid: 6a142fd06ae33ec4cb629e27985c15c0, type: 3}
 --- !u!4 &345542900
 Transform:
   m_ObjectHideFlags: 0
@@ -493,6 +494,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c0c4a3c36d6c524fbcca55a49e4b11a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  perfectJudgeflexibility: 40
+  niceJudgeflexibility: 80
+  judgeMultiple: 0
 --- !u!1 &863023635
 GameObject:
   m_ObjectHideFlags: 0

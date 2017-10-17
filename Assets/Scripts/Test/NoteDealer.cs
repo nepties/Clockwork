@@ -9,7 +9,7 @@ public class NoteDealer : MonoBehaviour
 	GameObjectsManager gameObjectCtrl;
 
 	[SerializeField]  GameObject noteObject;  //숏 노트 오브젝트	
-	int poolSize;  //풀링 오브젝트 생성량
+	int poolSize;  //오브젝트 풀 최대 수용량
 
 
 	Queue<GameObject> [] poolQueue;  //비활성 오브젝트 대기큐
@@ -61,10 +61,10 @@ public class NoteDealer : MonoBehaviour
 		{
 			for(int j = 0; j < poolSize; j++)
 			{
-				GameObject creation = (GameObject)Instantiate(noteObject, this.transform.position, Quaternion.identity);  //생성
-				creation.SetActive(false);  //비활성화
+				GameObject creation = (GameObject)Instantiate(noteObject, this.transform.position, Quaternion.identity);  //오브젝트 생성
 				creation.transform.Rotate(i * -30f * Vector3.forward);  //알맞게 회전
-				creation.GetComponent<NoteObjectMethod>( ).setQueueNumber(i);  //출신 대기큐 번호 부여
+				creation.SetActive(false);  //비활성화				
+				//creation.GetComponent<NoteObjectMethod>( ).setQueueNumber(i);  //출신 대기큐 번호 부여
 				poolQueue[i].Enqueue(creation);  //오브젝트를 대기큐 입력
 			}
 		}

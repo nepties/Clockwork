@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
-using ReferenceSetting;
 
 public class GameManager : MonoBehaviour
 {
 	//클래스 레퍼런스s
-	//하위
-	InputKeyManager inputCtrl;
-	DataManager dataCtrl;
-	ResourceManager resourceCtrl;
+	//하위 매니저
+	[SerializeField] InputKeyManager inputCtrl;
+	[SerializeField] DataManager dataCtrl;
+	[SerializeField] ResourceManager resourceCtrl;
 		
 	//상태 계
 	public byte gameState { get; set; }  //현 상태
@@ -29,11 +28,6 @@ public class GameManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		//제어 개체 레퍼런스 받아오기
-		inputCtrl = AddressBook.inputCtrl;
-		dataCtrl = AddressBook.dataCtrl;
-		resourceCtrl = AddressBook.resourceCtrl;
-
 		//상태 설정 부
 		gameState = (byte)clientState.enteringStage;  //최초 상태 : 스테이지 로딩			
 	}

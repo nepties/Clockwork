@@ -1,18 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using ReferenceSetting;
 using MusicScrolls;
 
 public class DataManager : MonoBehaviour
 {
 	//클래스 레퍼런스s
 	//최상위 (임시)
-	StageTrigger triggerCtrl;
+	[SerializeField] StageTrigger triggerCtrl;
 	//상위
-	GameManager coreCtrl;  //GM
+	[SerializeField] GameManager coreCtrl;  //GM
 	//하위
-	NoteReferee refereeCtrl;  //노트 판정확인 클래스
-	fileReader fileDataCtrl;  //파일 정보 수입 클래스
+	[SerializeField] NoteReferee refereeCtrl;  //노트 판정확인 클래스
+	[SerializeField] fileReader fileDataCtrl;  //파일 정보 수입 클래스
 
 	//노트 관련
 	public int needlePhase { get; set; }  // 0, 1, 2  :  phase 3 바늘 위치 상태 값
@@ -23,21 +22,18 @@ public class DataManager : MonoBehaviour
 	
 	//배속 관련
 	float curBpm;  //현재 재생 곡 BPM
-	[SerializeField]	[Range((0), (10))]	float speedConstant;  //배속 상수
+	[SerializeField] [Range((0), (10))]	float speedConstant;  //배속 상수
 	float speedMultiplier;  //배속 승수
 	float railSpeed;  //레일 스피드 : 최종 노트 속도
 	float noteReadDelay;  //bpm에 따른 읽기 지연 시간(단위 : ms)
-	float noteReadDelayForSecond;  //bpm에 따른 읽기 지연 시간(단위 : sec)	
+	float noteReadDelayForSecond;  //bpm에 따른 읽기 지연 시간(단위 : sec)
 
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 	// Use this for initialization
-	void Start()
+	void Awake()
 	{
-		//제어 개체 레퍼런스 받아오기		
-		coreCtrl = AddressBook.coreCtrl;
-		refereeCtrl = AddressBook.refereeCtrl;
-		fileDataCtrl = AddressBook.fileDataCtrl;
+		//제어 개체 레퍼런스 받아오기				
 		triggerCtrl = GameObject.Find("StageTrigger(Temp)").GetComponent<StageTrigger>( );  //임시
 
 		//초기화 부

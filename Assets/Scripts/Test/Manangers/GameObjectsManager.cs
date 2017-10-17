@@ -5,20 +5,17 @@ public class GameObjectsManager : MonoBehaviour
 {
 	//클래스 레퍼런스s
 	//상위
-	GraphicMananger graphicCtrl;
+	[SerializeField] GraphicMananger graphicCtrl;
 	//하위
-	ClockNeedle NeedleCtrl;
-	NoteDealer noteObjectPoolCtrl;
+	[SerializeField] ClockNeedle NeedleCtrl;
+	[SerializeField] NoteDealer noteObjectPoolCtrl;
 
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 	// Use this for initialization
-	void Start()
+	void Awake()
 	{
-		//제어 개체 레퍼런스 받아오기
-		graphicCtrl = GameObject.Find("GraphicManager").GetComponent<GraphicMananger>();
-		NeedleCtrl = GameObject.Find("clockNeedle").GetComponent<ClockNeedle>();
-		noteObjectPoolCtrl = GameObject.Find("NoteDealer").GetComponent<NoteDealer>();
+
 	}
 
 

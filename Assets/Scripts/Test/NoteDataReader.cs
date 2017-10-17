@@ -54,7 +54,7 @@ public class NoteDataReader
 		readCertainMetaData( );
 
 		//끝까지 읽기
-		while(reader.EndOfStream == false)
+		while(!(reader.EndOfStream))
 		{
 			//마디 읽기 부
 			readTranscriptionData(); //마디 첫 줄 읽기
@@ -196,5 +196,3 @@ public class NoteDataReader
 		reader.ReadLine( );		
 	}
 }
-
-
