@@ -65,9 +65,9 @@
      <Compile Include="Assets\Scripts\Test\NoteReferee.cs" />
      <Compile Include="Assets\Scripts\Test\ScoreCalculator.cs" />
      <Compile Include="Assets\Scripts\Test\StageTrigger.cs" />
+     <Compile Include="Assets\Scripts\Test\TestCode.cs" />
      <Compile Include="Assets\Scripts\Test\VerdicText.cs" />
      <Compile Include="Assets\Scripts\Test\fileReader.cs" />
-     <Compile Include="Assets\test.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

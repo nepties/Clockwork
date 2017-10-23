@@ -38,7 +38,7 @@ public class NoteDealer : MonoBehaviour
 		preLoadingTime = 1f;  //1초 프리로딩
 
 		//비활성 오브젝트 대기큐 배열 생성 부
-		poolQueue = new Queue<GameObject>[12]; 
+		poolQueue = new Queue<GameObject>[12];
 		for(int i = 0; i < 12; i++)  //12개 대기열
 		{
 			poolQueue[i] = new Queue<GameObject>(poolSize);  //설정 크기 만큼 

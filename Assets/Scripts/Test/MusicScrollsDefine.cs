@@ -4,15 +4,23 @@ using System.Collections.Generic;
 //노트, 메타데이터 정의 
 namespace MusicScrolls
 {
-	//큐에 넣어질 노트 배치 요소
+	/// <summary>
+	///		노트판정 큐에 넣어질 노트 배치 요소
+	/// </summary>
 	public struct NoteJudgeCard
 	{
 		public int noteType { get; private set; }  //노트 타입
 		public float time { get; private set; }  // 해당 NoteUnit의 재생 시간
-		public int unitNum { get; private set; } //유닛 일련번호
+		public int unitNum { get; private set; }  //유닛 일련번호
 	
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 		
+		/// <summary>
+		///		노트판정 카드 생성자
+		/// </summary>
+		/// <param name="noteType">어떤 노트 형태인지</param>
+		/// <param name="time">처리 예정 시점</param>
+		/// <param name="unitNum">처리 예정 시점 유닛</param>
 		public NoteJudgeCard(int noteType, float time, int unitNum)
 		{
 			this.noteType = noteType;
@@ -20,13 +28,18 @@ namespace MusicScrolls
 			this.unitNum = unitNum;
 		}
 
+		/// <summary>
+		///		해당 카드 내용 출력 for Test
+		/// </summary>
 		public void printContent()
 		{
 			Debug.Log(noteType + "::" + time + "__(" + unitNum + ")");
 		}
 	}
 
-	//메타 데이터 클래스
+	/// <summary>
+	///		메타 데이터 클래스
+	/// </summary>
 	public class MusicMetaData
 	{
 		//채보 메타 데이터
@@ -43,7 +56,10 @@ namespace MusicScrolls
 	
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 	
-		//메타 데이터 추가 생성자
+		/// <summary>
+		///		메타 데이터 클래스 생성자
+		/// </summary>
+		/// <param name="metaList">관련 정보 문자열 리스트 레퍼런스</param>
 		public MusicMetaData(List<string> metaList)
 		{
 			title = metaList[0];
@@ -55,14 +71,18 @@ namespace MusicScrolls
 			unit = int.Parse(metaList[6]);
 		}
 
-		//메타 데이터 리스트 출력 (한 줄로 Test)
+		/// <summary>
+		///		메타 데이터 리스트 출력 (한 줄로 Test)
+		/// </summary>
 		public void printMetaData()
 		{
 			Debug.Log(title + " || " + jacket + " || " + difficulty + " || " + music + " || " + length + " || " + bpm + " || " + unit);
 		}
 	}
 
-	//노트 데이터 저장 구조체
+	/// <summary>
+	///		노트 데이터 저장 구조체
+	/// </summary>
 	public struct MusicNoteData
 	{
 		int[] noteData;  // 노트 배치 정보. 크기는 13
@@ -74,7 +94,13 @@ namespace MusicScrolls
 
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-		//구조체 생성자 & 입력
+		/// <summary>
+		///		노트 데이터 저장 구조체 생성자
+		/// </summary>
+		/// <param name="unitNoteData">노트 정보 배열 레퍼런스</param>
+		/// <param name="unitTime">노트 시점</param>
+		/// <param name="treatUnit">노트 시점 유닛</param>
+		/// <param name="hasNoteData">노트 데이터 존재 여부</param>
 		public MusicNoteData(int[] unitNoteData, float unitTime, int treatUnit, bool hasNoteData)
 		{
 			noteData = unitNoteData;
@@ -83,13 +109,20 @@ namespace MusicScrolls
 			this.hasNoteData = hasNoteData;
 		}
 
-		//현재시점 노트 정보 전달 메소드
+		/// <summary>
+		///		get : 현재시점 노트 정보 배열 반환 메소드
+		/// </summary>
+		/// <returns>
+		///		노트 정보 배열 레퍼런스
+		/// </returns>
 		public int[] getLocatedArray()
 		{
 			return noteData;
 		}
 
-		//(Test) 해당 시점 노트 정보 전체 출력
+		/// <summary>
+		///		get : 현재 시점 노트 데이터 출력
+		/// </summary>
 		public void printNoteArray()
 		{
 			foreach(int i in noteData)
@@ -98,19 +131,29 @@ namespace MusicScrolls
 			}
 		}
 
-		//Get : 노트 여부
+		/// <summary>
+		///		get : 현재 시점 노트 데이터 존재 여부
+		/// </summary>
+		/// <returns>
+		///		적어도 노트 데이터 존재 : true
+		///		존재 하지 않음 : false
+		/// </returns>
 		public bool noteExistCheck()
 		{
 			return hasNoteData;
 		}
 
-		//Get : 노트가 위치하는 유닛번호
+		/// <summary>
+		///		get : 노트가 위치하는 유닛번호
+		/// </summary>
 		public int getLineUnit()
 		{
 			return unitTiming;
 		}
 
-		//Get : 해당 유닛의 재생 시점(ms)
+		/// <summary>
+		///		get : 해당 유닛의 재생 시점(ms)
+		/// </summary>		
 		public float getLineTiming()
 		{
 			return time;

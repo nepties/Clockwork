@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class VerdicText : MonoBehaviour
 {
 	float fadingDuration;
 	
+    [SerializeField] List<GameObject> cupList = new List<GameObject>();
 
 	// Use this for initialization
 	void Awake ()
