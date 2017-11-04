@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using MusicScrolls;
@@ -19,7 +20,6 @@ public class NoteDealer : MonoBehaviour
 	Queue<GameObject> [] activePoolQueue;  //활성 오브젝트 관리큐
 
 	//기타
-	float finalSpeed;  //임의 최종 속도
 	Queue<NoteJudgeCard> [] judgeScroll;  //복사본(임시)
 	Stopwatch stopwatch = NoteReferee.stopwatch;  //노트 딜러 클래스의 스톱워치 받기
 	float preLoadingTime;
@@ -33,9 +33,8 @@ public class NoteDealer : MonoBehaviour
 		gameObjectCtrl = GameObject.Find("GameObjects").GetComponent<GameObjectsManager>();
 		
 		//초기, 임의값 초기화 부
-		poolSize = 20;  //생성량 초기설정값
-		finalSpeed = 600f;  //임의 지정 최종 속도
-		preLoadingTime = 1f;  //1초 프리로딩
+		poolSize = 20;  //생성량 초기설정값		
+		preLoadingTime = 1000f;  //1초 프리로딩
 
 		//비활성 오브젝트 대기큐 배열 생성 부
 		poolQueue = new Queue<GameObject>[12];
@@ -64,11 +63,20 @@ public class NoteDealer : MonoBehaviour
 		{
 			Queue<NoteJudgeCard> judgeLine = judgeScroll[i];
 
+			try {
+
 			//프리로드 시점에 걸친 노트 발견
 			if(judgeLine.Peek().time <= stopwatch.ElapsedMilliseconds + preLoadingTime)
 			{				
 				forceDealNotes(judgeLine.Dequeue( ), i);  //큐에서 제외
-				Debug.Log("Pop ShortNote! __ PreLoading");
+				Debug.Log("Pop ShortNote! __ PreLoading ( "  + (stopwatch.ElapsedMilliseconds + preLoadingTime) + " )" );
+			}
+
+			} //try close
+
+			catch(InvalidOperationException)
+			{
+				
 			}
 		}
 	}

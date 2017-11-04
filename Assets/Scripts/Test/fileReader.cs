@@ -5,6 +5,7 @@ using MusicScrolls;
 
 public class fileReader : MonoBehaviour
 {
+	
 	//클래스 레퍼런스s
 	//상위 개체 제어 레퍼런스
 	DataManager dataCtrl;
@@ -71,12 +72,22 @@ public class fileReader : MonoBehaviour
 	//노트 데이터 읽기 명령
 	void forceReadNoteData( )
 	{
-		noteDataStorage.AddRange(NoteReaderCtrl.readAllnoteData( ));  //리스트에 추가(임시)		
+		noteDataStorage.AddRange(NoteReaderCtrl.readAllnoteData( ));  //리스트에 추가(임시)	
+
+		//Test : 리스트 내용 텍본으로 출력
+		StreamWriter fp = new StreamWriter("curNoteData.Txt");
+		foreach(MusicNoteData arrList in noteDataStorage)
+		{
+			if(arrList.noteExistCheck())
+				fp.WriteLine(arrList.getCurNoteDataAsString( ));
+		}
+		fp.Close( );
 	}
 
 	//노트 데이터 재가공
 	public void extractJudgeScroll( )
 	{
+		Debug.Log("start Refine NoteData...List size : " + noteDataStorage.Count);
 		//노트 데이터 순차 접근
 		foreach(MusicNoteData indic in noteDataStorage)
 		{
@@ -89,9 +100,9 @@ public class fileReader : MonoBehaviour
 					int note = indic.getLocatedArray( )[i];
 					if(note >= 1)  //노트 데이터만 검출
 					{
-						judgeScroll[i].Enqueue(new NoteJudgeCard(note, indic.getLineTiming(), indic.getLineUnit()));
+						judgeScroll[i].Enqueue( new NoteJudgeCard(note, indic.getLineTiming(), indic.getLineUnit()) );						
 						//Debug.Log(indic.getLineTiming( ));
-						judgeScroll[i].Peek( ).printContent( );
+						judgeScroll[i].Peek( ).printContent( ); //입력된 정보 출력
 					}
 				}
 			}
@@ -99,5 +110,35 @@ public class fileReader : MonoBehaviour
 
 		//마무리 보고
 		dataCtrl.sendRefineData(judgeScroll);	
+	}
+
+	/// <summary>
+	///		가공된 노트데이터 저장 큐 내부 데이터 전체 텍본으로 출력
+	/// </summary>
+	public void exportJudgeScrollToTxT()
+	{
+		StreamWriter fp = new StreamWriter("CurMusicNoteData.txt");
+
+		//노트 데이터 순차 접근
+		foreach(MusicNoteData indic in noteDataStorage)
+		{
+			//노트데이터 있는 unit 찾을 시
+			if(indic.noteExistCheck() == true)
+			{
+				
+				//해당 유닛의 노트데이터 배열에 순차 접근
+				int [] note = indic.getLocatedArray( );
+				for(int i = 0; i < 13; i++)
+				{
+					
+					if(note[i] >= 1)  //노트 데이터만 검출
+					{
+						judgeScroll[i].Enqueue( new NoteJudgeCard(note[i], indic.getLineTiming(), indic.getLineUnit()) );						
+						//Debug.Log(indic.getLineTiming( ));
+						judgeScroll[i].Peek( ).printContent( ); //입력된 정보 출력
+					}
+				}
+			}
+		}
 	}
 }

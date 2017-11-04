@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using MusicScrolls;
 
-public class DataManager : MonoBehaviour
+public partial class DataManager : MonoBehaviour
 {
 	//sigleTon parts
 	public static DataManager instance;
@@ -44,7 +44,7 @@ public class DataManager : MonoBehaviour
 		triggerCtrl = GameObject.Find("StageTrigger(Temp)").GetComponent<StageTrigger>( );  //임시
 
 		//초기화 부
-		speedMultiplier = 1f;
+		speedMultiplier = 5f;
 		curReadingUnit = 0;
 		initialLoadaAmount = 20;  //초기 스테이지 배치 유닛 수
 		frontReadingUnit = initialLoadaAmount;
@@ -72,7 +72,7 @@ public class DataManager : MonoBehaviour
 			refereeCtrl.judgeShortNote(accessIndex, Mathf.Abs((int)rotateDegree));
 		}
 		else  //왼쪽 회전일 경우
-		{  //숏 노트 판정 실행 
+		{  //숏 노트 판정 실행
 			int accessIndex = (needlePhase + 2) % 3;  //접근할 인덱스 계산 :  (x + 2) % 3
 			
 			//알맞는 숏 노트 판정 실행
@@ -97,6 +97,12 @@ public class DataManager : MonoBehaviour
 		Debug.Log("force Long DeActive");
 	}
 
+
+}
+
+
+public partial class DataManager : MonoBehaviour
+{
 	//곡 하나 읽기 명령 하달(For Test)
 	public void forceLoadOneFile( )
 	{

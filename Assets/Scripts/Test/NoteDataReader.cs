@@ -152,7 +152,7 @@ public class NoteDataReader
 		//노트데이터 송출(한 줄)
 		if(notebufferEmpty < 5)  //한 줄에 적어도 한 개 노트 존재 시
 		{
-			//Debug.Log((curReadingUnit - 1) * noteReadDelay);			
+			//Debug.Log("unit : " + (curReadingUnit - 1) + " 노트입력 됨");
 			return new MusicNoteData(noteDataBuffer, (curReadingUnit - 1) * noteReadDelay, curReadingUnit - 1, true);
 		}  //하나도 없다면
 		else  return new MusicNoteData(noteDataBuffer, (curReadingUnit - 1) * noteReadDelay, curReadingUnit - 1, false);

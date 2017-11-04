@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+
 //노트, 메타데이터 정의 
 namespace MusicScrolls
 {
@@ -9,9 +10,9 @@ namespace MusicScrolls
 	/// </summary>
 	public struct NoteJudgeCard
 	{
-		public int noteType { get; private set; }  //노트 타입
-		public float time { get; private set; }  // 해당 NoteUnit의 재생 시간
-		public int unitNum { get; private set; }  //유닛 일련번호
+		public int noteType { get;  set; }  //노트 타입
+		public float time { get;  set; }  // 해당 NoteUnit의 재생 시간
+		public int unitNum { get;  set; }  //유닛 일련번호
 	
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 		
@@ -28,12 +29,19 @@ namespace MusicScrolls
 			this.unitNum = unitNum;
 		}
 
+		public void setPropertyAsPureStruct(int noteType, float time, int unitNum)
+		{
+			this.noteType = noteType;
+			this.time = time;
+			this.unitNum = unitNum;
+		}
+
 		/// <summary>
 		///		해당 카드 내용 출력 for Test
 		/// </summary>
 		public void printContent()
 		{
-			Debug.Log(noteType + "::" + time + "__(" + unitNum + ")");
+			Debug.Log("Type : " + noteType + " :: " + time + " (ms)__[ " + unitNum + " ]");
 		}
 	}
 
@@ -157,6 +165,17 @@ namespace MusicScrolls
 		public float getLineTiming()
 		{
 			return time;
+		}
+
+		public string getCurNoteDataAsString( )
+		{
+			string temp = time + " (ms) :: " ;
+			for(int i = 0; i < 13; i++)
+			{
+				temp += noteData[i].ToString( );
+			}
+			temp += "(" + unitTiming + ")";
+			return temp;
 		}
 	}
 }
