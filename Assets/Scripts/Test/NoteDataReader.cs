@@ -152,7 +152,7 @@ public class NoteDataReader
 		//노트데이터 송출(한 줄)
 		if(notebufferEmpty < 5)  //한 줄에 적어도 한 개 노트 존재 시
 		{
-			//Debug.Log("unit : " + (curReadingUnit - 1) + " 노트입력 됨");
+			//Debug.Log("ms : " + (curReadingUnit - 1) * noteReadDelay + " 노트입력 감지!  [ " + (curReadingUnit - 1) + " ]" );
 			return new MusicNoteData(noteDataBuffer, (curReadingUnit - 1) * noteReadDelay, curReadingUnit - 1, true);
 		}  //하나도 없다면
 		else  return new MusicNoteData(noteDataBuffer, (curReadingUnit - 1) * noteReadDelay, curReadingUnit - 1, false);
@@ -183,13 +183,12 @@ public class NoteDataReader
 		{
 			reader.ReadLine( );  //한 줄씩 건너 뛰기
 		}
-		
-		//BPM 부분 읽기 시작 부
-		reader.ReadLine( );
+
 		//읽기 부(한 줄 씩)			
 		string[] values = (reader.ReadLine()).Split(delimiter);  //'=' 문자를 기준으로 분석
 		//BPM 정보 추출
 		this.currentBpm = float.Parse(values[1]);
+		Debug.Log("BPM ex : " + currentBpm);
 		updateReadingDelay( );  //BPM에 따른 읽기 지연시간 초기 계산
 
 		//필요없는 메타데이터 마지막 한 줄 스킵 부

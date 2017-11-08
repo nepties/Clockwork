@@ -21,6 +21,6 @@ public class UIManager : MonoBehaviour
 
 	public void popJudegText(int type)
 	{
-		judgeText.writeText(type);
+		judgeText.popText(type);
 	}
 }

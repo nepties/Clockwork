@@ -111,34 +111,4 @@ public class fileReader : MonoBehaviour
 		//마무리 보고
 		dataCtrl.sendRefineData(judgeScroll);	
 	}
-
-	/// <summary>
-	///		가공된 노트데이터 저장 큐 내부 데이터 전체 텍본으로 출력
-	/// </summary>
-	public void exportJudgeScrollToTxT()
-	{
-		StreamWriter fp = new StreamWriter("CurMusicNoteData.txt");
-
-		//노트 데이터 순차 접근
-		foreach(MusicNoteData indic in noteDataStorage)
-		{
-			//노트데이터 있는 unit 찾을 시
-			if(indic.noteExistCheck() == true)
-			{
-				
-				//해당 유닛의 노트데이터 배열에 순차 접근
-				int [] note = indic.getLocatedArray( );
-				for(int i = 0; i < 13; i++)
-				{
-					
-					if(note[i] >= 1)  //노트 데이터만 검출
-					{
-						judgeScroll[i].Enqueue( new NoteJudgeCard(note[i], indic.getLineTiming(), indic.getLineUnit()) );						
-						//Debug.Log(indic.getLineTiming( ));
-						judgeScroll[i].Peek( ).printContent( ); //입력된 정보 출력
-					}
-				}
-			}
-		}
-	}
 }

@@ -29,13 +29,6 @@ namespace MusicScrolls
 			this.unitNum = unitNum;
 		}
 
-		public void setPropertyAsPureStruct(int noteType, float time, int unitNum)
-		{
-			this.noteType = noteType;
-			this.time = time;
-			this.unitNum = unitNum;
-		}
-
 		/// <summary>
 		///		해당 카드 내용 출력 for Test
 		/// </summary>

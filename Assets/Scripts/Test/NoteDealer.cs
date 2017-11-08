@@ -34,7 +34,7 @@ public class NoteDealer : MonoBehaviour
 		
 		//초기, 임의값 초기화 부
 		poolSize = 20;  //생성량 초기설정값		
-		preLoadingTime = 1000f;  //1초 프리로딩
+		preLoadingTime = 500f;  //1초 프리로딩
 
 		//비활성 오브젝트 대기큐 배열 생성 부
 		poolQueue = new Queue<GameObject>[12];
@@ -69,7 +69,7 @@ public class NoteDealer : MonoBehaviour
 			if(judgeLine.Peek().time <= stopwatch.ElapsedMilliseconds + preLoadingTime)
 			{				
 				forceDealNotes(judgeLine.Dequeue( ), i);  //큐에서 제외
-				Debug.Log("Pop ShortNote! __ PreLoading ( "  + (stopwatch.ElapsedMilliseconds + preLoadingTime) + " )" );
+				Debug.Log("Pop ShortNote! __ PreLoading ( "  + (stopwatch.ElapsedMilliseconds + preLoadingTime) + " ) corr : "  + stopwatch.ElapsedMilliseconds);
 			}
 
 			} //try close

@@ -44,7 +44,7 @@ public partial class DataManager : MonoBehaviour
 		triggerCtrl = GameObject.Find("StageTrigger(Temp)").GetComponent<StageTrigger>( );  //임시
 
 		//초기화 부
-		speedMultiplier = 5f;
+		speedMultiplier = 10f;
 		curReadingUnit = 0;
 		initialLoadaAmount = 20;  //초기 스테이지 배치 유닛 수
 		frontReadingUnit = initialLoadaAmount;
