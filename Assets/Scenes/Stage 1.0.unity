@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 892061517d5ced54b8045b8db826c4d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  steerObjectName: clockNeedle
+  coreCtrl: {fileID: 50618020}
 --- !u!4 &307586133
 Transform:
   m_ObjectHideFlags: 0
@@ -201,9 +201,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb0f6cf34e4e76c40b065542b6cb2998, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resourceCtrl: {fileID: 1171793175}
   auidioFile:
   - {fileID: 8300000, guid: e242ded06dc2fe24f9aa315ca46d9a02, type: 3}
   - {fileID: 8300000, guid: 6a142fd06ae33ec4cb629e27985c15c0, type: 3}
+  musicPlayer: {fileID: 345542901}
 --- !u!4 &345542900
 Transform:
   m_ObjectHideFlags: 0
@@ -542,7 +544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611b836a3c0a3d4469ed7e23a9a929ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  judgeText: {fileID: 0}
+  graphicCtrl: {fileID: 1164354872}
+  judgeText: {fileID: 705592087}
 --- !u!1 &956123791
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,6 +853,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec06fa4d5c30a94e8e67e9c92c0f098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resourceCtrl: {fileID: 1171793175}
+  gameObjectCtrl: {fileID: 1249220633}
 --- !u!1 &1171793173
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,6 +894,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4f83a66ad4b7a4c91f297c510af6f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coreCtrl: {fileID: 50618020}
+  graphicCtrl: {fileID: 1164354872}
+  soundCtrl: {fileID: 345542899}
 --- !u!1 &1249220631
 GameObject:
   m_ObjectHideFlags: 0
@@ -971,6 +979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8744d191fdbd06d40b14bfc6dddf0e7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dataCtrl: {fileID: 1941637880}
 --- !u!1 &1348294616
 GameObject:
   m_ObjectHideFlags: 0

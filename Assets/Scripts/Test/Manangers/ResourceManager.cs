@@ -5,22 +5,19 @@ public class ResourceManager : MonoBehaviour
 {
 	//클래스 레퍼런스s
 	//상위
-	GameManager coreCtrl;
+	[SerializeField]	GameManager coreCtrl;
 	//하위
-	GraphicMananger graphicCtrl;
-	SoundManager soundCtrl;
+	[SerializeField]	GraphicMananger graphicCtrl;
+	[SerializeField]	SoundManager soundCtrl;
 
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 	// Use this for initialization
-	void Start()
+	void Awake()
 	{
-		//제어 개체 레퍼런스 받아오기
-		coreCtrl = GameObject.Find("GameMainCore").GetComponent<GameManager>();
-		graphicCtrl = GameObject.Find("GraphicManager").GetComponent<GraphicMananger>();
-		soundCtrl = GameObject.Find("SoundMaster").GetComponent<SoundManager>();
+		
+		
 	}
-
 
 	// Update is called once per frame
 	void Update()

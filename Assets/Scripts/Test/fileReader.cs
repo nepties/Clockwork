@@ -8,7 +8,7 @@ public class fileReader : MonoBehaviour
 	
 	//클래스 레퍼런스s
 	//상위 개체 제어 레퍼런스
-	DataManager dataCtrl;
+	[SerializeField]	DataManager dataCtrl;
 	//하위 리더 개체 제어 레퍼런스
 	MetaDataReader MetaReaderCtrl;
 	NoteDataReader NoteReaderCtrl;
@@ -28,9 +28,6 @@ public class fileReader : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		//제어 개체 레퍼런스 받아오기
-		dataCtrl = GameObject.Find("DataManager").GetComponent<DataManager>();
-
 		//스트림리더 설정 부 (비유연형)
 		reader = new StreamReader("Follow Up.txt");  //객체 생성 후 개방		
 

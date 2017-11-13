@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
-using ReferenceSetting;
 
 public class StageTrigger : MonoBehaviour
 {
+	[SerializeField]	GameManager coreCtrl;
+	[SerializeField]	DataManager dataCtrl;
+
 	// Use this for initialization
 	void Awake ()
-	{
-		AddressBook.linkReference( );  //각 매니저, 오브젝트 레퍼런스 설정
+	{		
 		preprocess( );  //스테이지 로딩
 	}
 
@@ -25,7 +26,7 @@ public class StageTrigger : MonoBehaviour
 	public void FinalConfirmfileImportFinished( )
 	{
 		//GM에게 선곡 정보 전달
-		AddressBook.coreCtrl.receiveMusicData( );
+		coreCtrl.receiveMusicData( );
 	}
 
 	//명령 하달 : 
@@ -35,6 +36,6 @@ public class StageTrigger : MonoBehaviour
 		//yield return new WaitForSeconds(1f);
 		yield return new WaitForFixedUpdate( );
 		//곡 하나 읽어들이기
-		AddressBook.dataCtrl.forceLoadOneFile( );
+		dataCtrl.forceLoadOneFile( );
 	}
 }

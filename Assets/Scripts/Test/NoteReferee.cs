@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using ReferenceSetting;
 using MusicScrolls;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
@@ -11,7 +10,7 @@ public class NoteReferee : MonoBehaviour
 	public static NoteReferee instance;
 
 	//클래스 레퍼런스s
-	//직속 매니저
+	//직속 매니저(상위)
 	[SerializeField] DataManager DataCtrl;
 
 	public Queue<NoteJudgeCard> [] judgeScroll { get; set; }  //각 라인에 노트 판정을 위한 노트배치표 큐

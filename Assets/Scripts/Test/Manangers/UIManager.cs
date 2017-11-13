@@ -3,7 +3,10 @@ using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
-	//하위 요소
+	//클래스 레퍼런스s
+	//상위
+	[SerializeField]	GraphicMananger graphicCtrl;
+	//하위	
 	[SerializeField]	VerdicText judgeText;
 	
 	
@@ -19,6 +22,7 @@ public class UIManager : MonoBehaviour
 		
 	}
 
+	//판정 결과 통보
 	public void popJudegText(int type)
 	{
 		judgeText.popText(type);

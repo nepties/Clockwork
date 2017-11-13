@@ -1,20 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class InputKeyManager : MonoBehaviour
 {
 	//클래스 레퍼런스s
 	//상위
-	GameManager coreCtrl;
-
-	public string steerObjectName = "clockNeedle";  // clockNeedle 오브젝트 이름		
+	[SerializeField]
+	GameManager coreCtrl;	
 
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 	// Use this for initialization
-	void Start()
+	void Awake()
 	{
-		coreCtrl = GameObject.Find("GameMainCore").GetComponent<GameManager>();		
+		
 	}
 
 	// Update is called once per frame
