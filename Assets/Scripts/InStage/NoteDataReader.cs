@@ -7,7 +7,7 @@ public class NoteDataReader
 {
 	//클래스 레퍼런스s
 	//상위 개체 제어 레퍼런스
-	fileReader fileDataCtrl;  //파일 정보 수입 클래스
+	//fileReader fileDataCtrl;  //파일 정보 수입 클래스
 
 	StreamReader reader;  //읽기스트림 객체	
 	byte curReadingState;  //읽기 모드
@@ -32,7 +32,7 @@ public class NoteDataReader
 	public NoteDataReader(StreamReader readIndicator)
 	{
 		//제어 개체 레퍼런스 받아오기
-		fileDataCtrl = GameObject.Find("fileReader").GetComponent<fileReader>();
+		//fileDataCtrl = GameObject.Find("fileReader").GetComponent<fileReader>();
 
 		//초기화 부
 		curReadingState = (byte)ReadingState.Idle;  //유휴 상태

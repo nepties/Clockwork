@@ -61,3 +61,12 @@ Clockwork.sln
 Clockwork-csharp.sln
 .vs/Clockwork-csharp/v14/.suo
 .vs/Clockwork-csharp/v14/.suo
+.vs/Clockwork-csharp/v15/.suo
+.vs/Clockwork-csharp/v15/Server/sqlite3/db.lock
+.vs/Clockwork-csharp/v15/Server/sqlite3/storage.ide
+.vs/Clockwork-csharp/v15/Server/sqlite3/storage.ide-shm
+.vs/Clockwork-csharp/v15/Server/sqlite3/storage.ide-wal
+Assembly-CSharp-vs.csproj
+Assembly-CSharp-vs.csproj
+*.csproj
+obj/Debug/Assembly-CSharp-vs.csproj.CoreCompileInputs.cache

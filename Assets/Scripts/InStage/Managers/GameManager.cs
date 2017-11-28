@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
+using ClientStates;
 using System.Collections;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -10,18 +12,7 @@ public class GameManager : MonoBehaviour
 	[SerializeField] ResourceManager resourceCtrl;
 		
 	//상태 계
-	public byte gameState { get; set; }  //현 상태
-	//클라이언트 게임 진행 상태
-	public enum clientState : byte
-	{
-		firstEntry,  //최초 로딩
-		InMainMenu,  //메인 메뉴
-		enteringList,  //선곡 화면 로딩
-		InList,  //선곡 화면
-		enteringStage,  //스테이지 로딩
-		InStage,  //스테이지 화면
-		result  //결과 화면
-	};	
+	public inStageStates gameState { get; set; }  //현 상태	
 
 	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -29,7 +20,7 @@ public class GameManager : MonoBehaviour
 	void Start ()
 	{
 		//상태 설정 부
-		gameState = (byte)clientState.enteringStage;  //최초 상태 : 스테이지 로딩			
+		gameState = inStageStates.enteringStage;  //최초 상태 : 스테이지 로딩			
 	}
 
 	// Update is called once per frame
