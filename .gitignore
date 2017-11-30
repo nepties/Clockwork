@@ -70,3 +70,6 @@ Assembly-CSharp-vs.csproj
 Assembly-CSharp-vs.csproj
 *.csproj
 obj/Debug/Assembly-CSharp-vs.csproj.CoreCompileInputs.cache
+*.csproj
+*.csproj
+*.csproj

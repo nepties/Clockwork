@@ -2,10 +2,11 @@
 using System.Collections;
 
 
-namespace MusicSelectMenuScene
+namespace MainManuScene
 {
-	public class GameManager : MonoBehaviour
+	public class InputManager : MonoBehaviour
 	{
+		[SerializeField] GameManager coreCtrl;
 
 		// Use this for initialization
 		void Start()
