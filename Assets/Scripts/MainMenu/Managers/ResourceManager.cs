@@ -6,7 +6,9 @@ namespace MainManuScene
 {
 	public class ResourceManager : MonoBehaviour
 	{
+		//상위
 		[SerializeField] GameManager coreCtrl;
+		//하위
 		[SerializeField] SoundManager soundCtrl;
 		[SerializeField] GraphicManager graphicCtrl;
 
@@ -16,10 +18,9 @@ namespace MainManuScene
 
 		}
 
-		// Update is called once per frame
-		void Update()
+		public void relayD_ChangeSelect(MenuKeyDirection direc)
 		{
-
+			graphicCtrl.relayD_ChangeSelect(direc);
 		}
 	}
 }

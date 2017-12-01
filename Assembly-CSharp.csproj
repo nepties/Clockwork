@@ -68,6 +68,9 @@
      <Compile Include="Assets\Scripts\InStage\fileReader.cs" />
      <Compile Include="Assets\Scripts\Library\ClientStates.cs" />
      <Compile Include="Assets\Scripts\Library\MusicScrollsDefine.cs" />
+     <Compile Include="Assets\Scripts\MainMenu\ButtonPanel.cs" />
+     <Compile Include="Assets\Scripts\MainMenu\ExitButton.cs" />
+     <Compile Include="Assets\Scripts\MainMenu\KeyDirectionEnum.cs" />
      <Compile Include="Assets\Scripts\MainMenu\Managers\DataManager.cs" />
      <Compile Include="Assets\Scripts\MainMenu\Managers\GameManager.cs" />
      <Compile Include="Assets\Scripts\MainMenu\Managers\GraphicManager.cs" />
@@ -75,6 +78,8 @@
      <Compile Include="Assets\Scripts\MainMenu\Managers\ResourceManager.cs" />
      <Compile Include="Assets\Scripts\MainMenu\Managers\SoundManager.cs" />
      <Compile Include="Assets\Scripts\MainMenu\Managers\UIManager.cs" />
+     <Compile Include="Assets\Scripts\MainMenu\OptionButton.cs" />
+     <Compile Include="Assets\Scripts\MainMenu\StartButton.cs" />
      <Compile Include="Assets\Scripts\MusicSelectMenu\FileIndicator.cs" />
      <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\DataManager.cs" />
      <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\GameManager.cs" />

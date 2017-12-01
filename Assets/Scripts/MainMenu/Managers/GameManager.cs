@@ -6,6 +6,7 @@ namespace MainManuScene
 {
 	public class GameManager : MonoBehaviour
 	{
+		//하위
 		[SerializeField] DataManager dataCtrl;
 		[SerializeField] InputManager inputCtrl;
 		[SerializeField] ResourceManager resourceCtrl;
@@ -16,10 +17,14 @@ namespace MainManuScene
 
 		}
 
-		// Update is called once per frame
-		void Update()
+		public void forceChangeSelect(MenuKeyDirection direc)
 		{
+			resourceCtrl.relayD_ChangeSelect(direc);
+		}
 
+		public void forceEntering()
+		{
+			
 		}
 	}
 }
