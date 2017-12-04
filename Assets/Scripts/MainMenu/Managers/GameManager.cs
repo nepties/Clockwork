@@ -24,7 +24,7 @@ namespace MainManuScene
 
 		public void forceEntering()
 		{
-			
+			resourceCtrl.relayD_Entering();
 		}
 	}
 }

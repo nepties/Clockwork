@@ -12,15 +12,16 @@ namespace MainManuScene
 		[SerializeField] SoundManager soundCtrl;
 		[SerializeField] GraphicManager graphicCtrl;
 
-		// Use this for initialization
-		void Start()
-		{
-
-		}
+		// Use this for initialization	
 
 		public void relayD_ChangeSelect(MenuKeyDirection direc)
 		{
 			graphicCtrl.relayD_ChangeSelect(direc);
+		}
+
+		public void relayD_Entering()
+		{
+			graphicCtrl.relayD_Entering();
 		}
 	}
 }

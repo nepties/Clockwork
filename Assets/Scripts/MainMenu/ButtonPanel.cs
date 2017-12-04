@@ -23,12 +23,9 @@ namespace MainManuScene
 			//버튼 갯수 파악 부
 			buttonCount = transform.childCount;
 
-			StartCoroutine("deferredDeliRef");
+			buttonCtrl = gameObject.GetComponentsInChildren<Button>();			
 
-			Debug.Log("button Count in panel : " + buttonCount);
-			
-
-			//Debug.Log(buttonCtrl[0]);
+			Debug.Log("button Count in panel : " + buttonCount);			
 		}
 
 		//스타트 버튼 눌리면 호출될 메소드
@@ -63,28 +60,10 @@ namespace MainManuScene
 			buttonCtrl[buttonActiveIndicator].Select();
 		}
 
-		public void setButtonRef()
+		//키보드 엔터키 누를 시 취할 메소드
+		public void exeEntering()
 		{
-			buttonCtrl = gameObject.GetComponentsInChildren<Button>();
-		}
-
-
-		IEnumerator deferredDeliRef()
-		{
-			yield return new WaitForSeconds(1f);
-
-			setButtonRef();
-
-			test = buttonCtrl[0];
-
-			//if null ref
-			if (buttonCtrl[0] != null)
-			{
-				Debug.Log("has a ref");
-			}
-
-			//초기 선택 버튼 활성화(가장 위 버튼 활성화)
-			buttonCtrl[0].Select();
+			
 		}
 	}	
 }

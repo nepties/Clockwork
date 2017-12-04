@@ -21,5 +21,10 @@ namespace MainManuScene
 		{
 			uiCtrl.relayD_ChangeSelect(direc);
 		}
+
+		public void relayD_Entering()
+		{
+			uiCtrl.relayD_Entering();
+		}
 	}
 }

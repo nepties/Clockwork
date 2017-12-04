@@ -21,5 +21,10 @@ namespace MainManuScene
 		{
 			buttonPanelCtrl.exeChangeSelection(direc);
 		}
+
+		public void relayD_Entering()
+		{
+			buttonPanelCtrl.exeEntering();
+		}
 	}
 }
