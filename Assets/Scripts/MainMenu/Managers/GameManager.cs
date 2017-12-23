@@ -17,14 +17,14 @@ namespace MainManuScene
 
 		}
 
-		public void forceChangeSelect(MenuKeyDirection direc)
+		public void forceChangeSelect(KeyInputDirection direc)
 		{
 			resourceCtrl.relayD_ChangeSelect(direc);
 		}
 
-		public void forceEntering()
+		public void reportLoadStageScene()
 		{
-			resourceCtrl.relayD_Entering();
+
 		}
 	}
 }

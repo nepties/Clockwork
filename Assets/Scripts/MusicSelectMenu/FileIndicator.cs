@@ -8,37 +8,51 @@ namespace MusicSelectMenuScene
 	public class FileIndicator : MonoBehaviour
 	{
 
-		string songFolderName = "songs";
-		string startPath;
+		//ref
+		//상위
+		[SerializeField] DataManager dataCtrl;
+
+		string songFolderPath = "Resources\\Songs";  //Resources\Songs	folder	
 
 		// Use this for initialization
 		void Awake()
-		{			
-			startPath = Directory.GetCurrentDirectory();
-			songFolderName = Path.Combine(startPath, songFolderName);
+		{
+			string startPath = Application.dataPath;  // \Assets
+			songFolderPath = Path.Combine(startPath, songFolderPath);
+			
 
-			reportDataPath();
-
-			Debug.Log(songFolderName);
-			importFileList();
+			print(songFolderPath);  // \ClockWork\songs
+			
+			//importFileList();
 		}
 
+		void Start()
+		{
+			searchResources();
+		}
 
 		public void importFileList()
 		{
-			DirectoryInfo drinfo = new DirectoryInfo(songFolderName);
+			DirectoryInfo drinfo = new DirectoryInfo(songFolderPath);
+			DirectoryInfo [] songListDir = drinfo.GetDirectories();
+
 			foreach (FileInfo fiin in drinfo.GetFiles())
 			{
-				Debug.Log(fiin.FullName); //<< 가져오시면 되구요 Fullpath입니다.
-				Debug.Log(fiin.Name); // fiin.Name 이게 파일이름일겁니다.				
+				Debug.Log(fiin.FullName); //Fullpath
+				Debug.Log(fiin.Name); // fiin.Name 파일명		
 			}
 		}
 
-
 		//for Test
-		public void reportDataPath()
+		public void printDataPath()
 		{
-			Debug.Log(Application.dataPath);
+			print(Application.dataPath);
+		}
+
+		public void searchResources()
+		{
+			print("Textures " + Resources.FindObjectsOfTypeAll(typeof(Texture)).Length);
+			print("AudioClips " + Resources.FindObjectsOfTypeAll(typeof(AudioClip)).Length);
 		}
 	}
 }

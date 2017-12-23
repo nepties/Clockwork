@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace InStageScene
 {
-	public class SoundManager : MonoBehaviour
+	public partial class SoundManager : MonoBehaviour
 	{
 		//클래스 레퍼런스s
 		//상위
@@ -15,24 +15,92 @@ namespace InStageScene
 		public AudioClip[] auidioFile;  //오디오 파일 연결 클립(배열)
 		[SerializeField] AudioSource musicPlayer;  //오디오 플레이어
 
-		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 		// Use this for initialization
-		void Start()
+		void Awake()
 		{
-			musicPlayer = GetComponent<AudioSource>();  //컴포넌트의 음악 플레이어 연결
+			
 		}
 
-		//BGM 선택 재생
+		//클립 선택 재생
 		void playMusic(int clipNum)
 		{
 			musicPlayer.clip = auidioFile[clipNum];  //특정 번호의 클립 연결
 			musicPlayer.Play();  //재생
+		}		
+
+		//Sound fade In Routine
+		public IEnumerator fadeIn(float duration = 2f, float Interval = 0.05f)
+		{
+			Debug.Log("Curtain fade Out");
+
+			int fadingCount = (int)(1.0f / Interval);
+			if (1.0f % Interval != 0)
+				fadingCount += 1;
+
+			WaitForSeconds delayRoutine = new WaitForSeconds(duration / fadingCount);
+
+
+			//Fader
+			for (int i = 0; i < fadingCount; i++)
+			{
+				//checking already Done it
+				if (musicPlayer.volume == 1f)
+					break;
+
+				musicPlayer.volume += Interval;
+				musicPlayer.volume = Mathf.Clamp(musicPlayer.volume, 0, 1f);
+
+				//Delaying
+				yield return delayRoutine;
+			}			
+			yield break;
 		}
 
-		public void musicOn()
+		//Sound fade Out Routine
+		public IEnumerator fadeOut(float duration = 2f, float Interval = 0.05f)
+		{
+			Debug.Log("Curtain fade Out");
+
+			int fadingCount = (int)(1.0f / Interval);
+			if (1.0f % Interval != 0)
+				fadingCount += 1;			
+
+			WaitForSeconds delayRoutine = new WaitForSeconds(duration / fadingCount);
+
+
+			//Fader
+			for (int i = 0; i < fadingCount; i++)
+			{
+				//checking already Done it
+				if (musicPlayer.volume == 0)
+					break;
+
+				musicPlayer.volume -= Interval;
+				musicPlayer.volume = Mathf.Clamp(musicPlayer.volume, 0, 1f);
+
+				//Delaying
+				yield return delayRoutine;
+			}
+			yield break;			
+		}
+	}
+
+
+	//상하 명령 메서드 집합
+	public partial class SoundManager : MonoBehaviour
+	{
+		//Execution parts : exe-
+		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+		//Execute a stage music
+		public void exePlayStageMusic()
 		{
 			playMusic(1);
 		}
+
+		//relay parts : relayU_- or relayD_-
+		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	}
 }

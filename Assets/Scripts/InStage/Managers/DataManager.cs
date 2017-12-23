@@ -10,9 +10,7 @@ namespace InStageScene
 		//sigleTon parts
 		public static DataManager instance;
 
-		//클래스 레퍼런스s
-		//최상위 (임시)
-		[SerializeField] StageTrigger triggerCtrl;
+		//refs		
 		//상위
 		[SerializeField] GameManager coreCtrl;  //GM
 												//하위
@@ -41,10 +39,7 @@ namespace InStageScene
 		void Awake()
 		{
 			//sigleTon parts
-			instance = this;
-
-			//제어 개체 레퍼런스 받아오기				
-			triggerCtrl = GameObject.Find("StageTrigger(Temp)").GetComponent<StageTrigger>();  //임시
+			instance = this;			
 
 			//초기화 부
 			speedMultiplier = 10f;
@@ -99,24 +94,30 @@ namespace InStageScene
 			isLongactivated = false;
 			Debug.Log("force Long DeActive");
 		}
-
-
 	}
 
 
 	public partial class DataManager : MonoBehaviour
 	{
+
+		//Execution parts : exe-
+		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+		//relay parts : relayU_- or relayD_-
+		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 		//곡 하나 읽기 명령 하달(For Test)
-		public void forceLoadOneFile()
+		public void relayD_LoadOneFile()
 		{
-			fileDataCtrl.readOneFullFile();
+			fileDataCtrl.exeReadOneFullFile();
 		}
 
-		//특정 곡 리딩 완료
-		public void reportReadfinished()
+		//특정 곡 리딩 완료 : 곡 정보 읽기 완료 최종 확인
+		public void relayU_Readfinished()
 		{
-			//임시 트리거로 결과 보고
-			triggerCtrl.FinalConfirmfileImportFinished();
+			//GM에게 선곡 정보 전달
+			coreCtrl.confMusicData();
 		}
 
 		//스테이지 로딩 상태 2 : 변수 초기화 & 노트데이터 재가공

@@ -51,16 +51,20 @@ namespace InStageScene
 
 
 		//선곡 데이터 읽어들이기(for Test)
-		public void readOneFullFile()
+		public void exeReadOneFullFile()
 		{
+			//임시 읽기 부
+
 			//한 곡 풀세트(?) 읽기
 			forceReadMetaData();
 			forceReadNoteData();
 
 			//파일 데이터 로드 완료
 			metaDataStorage[0].printMetaData();
+
+
 			//로드 완료 상태 보고 to DataManager
-			dataCtrl.reportReadfinished();
+			dataCtrl.relayU_Readfinished();
 		}
 
 		//메타 데이터 읽기 명령

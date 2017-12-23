@@ -5,8 +5,7 @@ using System.Collections;
 namespace InStageScene
 {
 	public class ClockNeedle : MonoBehaviour
-	{	
-		[SerializeField]	
+	{				
 		float currentDegree;  //현재 회전 각도	
 		float targetDegree;  //회전 목표 각도
 
@@ -14,7 +13,7 @@ namespace InStageScene
 		[Range((0), (100))]
 		float rotationSmooth;  //회전 감도
 
-		bool isRotating;  //현재 오브젝트 회전 관련 명령 수행 여부
+		[SerializeField] bool isRotating;  //현재 오브젝트 회전 관련 명령 수행 여부
 
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 

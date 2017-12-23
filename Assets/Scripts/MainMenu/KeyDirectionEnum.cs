@@ -9,4 +9,13 @@
 		Right = 1,
 		Left = -1
 	}
+
+	//4방위 방향 정의
+	public enum KeyInputDirection
+	{
+		Up,
+		Down,
+		Left,
+		Right
+	}
 }

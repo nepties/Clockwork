@@ -8,7 +8,7 @@ namespace InStageScene
 {
 	public class MetaDataReader
 	{
-		StreamReader reader;  //읽기스트림 객체	
+		StreamReader reader;  //읽기스트림 객체
 
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -26,8 +26,8 @@ namespace InStageScene
 			//구분자 문자 설정 부
 			char[] delimiter = { '=' };  //'이퀄' 구분자를 구분
 
-			//메타데이터가 있는 7줄 읽기 부
-			for (int i = 0; i < 7; i++)
+			//메타데이터가 있는 9줄 읽기 부
+			for (int i = 0; i < 9; i++)
 			{
 				//읽기 부(한 줄 씩)			
 				string[] values = (reader.ReadLine()).Split(delimiter);  //'=' 문자를 기준으로 분석
@@ -38,7 +38,7 @@ namespace InStageScene
 					values[1] = null;  //'비어있음'을 입력
 				}
 
-				//분석된 (메타)데이터를 리스트에 추가
+				//분석된 (메타)데이터 부분들만 리스트에 추가
 				metaList.Add(values[1]);
 			}
 

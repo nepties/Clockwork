@@ -6,7 +6,10 @@ namespace MusicSelectMenuScene
 {
 	public class UIManager : MonoBehaviour
 	{
-
+		//ref
+		//상위
+		[SerializeField] GraphicManager graphicCtrl;		
+		
 		// Use this for initialization
 		void Start()
 		{

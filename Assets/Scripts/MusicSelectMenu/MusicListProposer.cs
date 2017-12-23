@@ -6,6 +6,10 @@ namespace MusicSelectMenuScene
 {
 	public class MusicListProposer : MonoBehaviour
 	{
+		//ref
+		//상위
+		[SerializeField] UIManager uiCtrl;
+		//하위
 
 		// Use this for initialization
 		void Start()

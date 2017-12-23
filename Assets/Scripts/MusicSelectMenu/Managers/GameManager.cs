@@ -6,6 +6,12 @@ namespace MusicSelectMenuScene
 {
 	public class GameManager : MonoBehaviour
 	{
+		//ref
+		//하위
+		[SerializeField] DataManager dataCtrl;
+		[SerializeField] InputManager inputCtrl;
+		[SerializeField] ResourceManager resourceCtrl;
+
 
 		// Use this for initialization
 		void Start()

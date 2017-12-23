@@ -4,19 +4,14 @@ using System.Collections;
 
 namespace MainManuScene
 {
-	public class OptionButton : MonoBehaviour
+	public class OptionButton : ButtonAddOn
 	{
 
-		// Use this for initialization
-		void Start()
+		//눌리면 실행할 메서드 : 옵션 창 열기
+		public override void occurOrder()
 		{
-
-		}
-
-		// Update is called once per frame
-		void Update()
-		{
-
+			
+			Debug.Log("config Window is OPened");
 		}
 	}
 }

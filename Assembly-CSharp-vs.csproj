@@ -62,12 +62,14 @@
      <Compile Include="Assets\Scripts\InStage\NoteObjectMethod.cs" />
      <Compile Include="Assets\Scripts\InStage\NoteReferee.cs" />
      <Compile Include="Assets\Scripts\InStage\ScoreCalculator.cs" />
-     <Compile Include="Assets\Scripts\InStage\StageTrigger.cs" />
      <Compile Include="Assets\Scripts\InStage\TestCode.cs" />
      <Compile Include="Assets\Scripts\InStage\VerdicText.cs" />
      <Compile Include="Assets\Scripts\InStage\fileReader.cs" />
      <Compile Include="Assets\Scripts\Library\ClientStates.cs" />
+     <Compile Include="Assets\Scripts\Library\GameManagerAddOn.cs" />
+     <Compile Include="Assets\Scripts\Library\ManagerAddOn.cs" />
      <Compile Include="Assets\Scripts\Library\MusicScrollsDefine.cs" />
+     <Compile Include="Assets\Scripts\MainMenu\ButtonAddOn.cs" />
      <Compile Include="Assets\Scripts\MainMenu\ButtonPanel.cs" />
      <Compile Include="Assets\Scripts\MainMenu\ExitButton.cs" />
      <Compile Include="Assets\Scripts\MainMenu\KeyDirectionEnum.cs" />
@@ -83,14 +85,22 @@
      <Compile Include="Assets\Scripts\MusicSelectMenu\FileIndicator.cs" />
      <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\DataManager.cs" />
      <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\GameManager.cs" />
+     <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\GraphicManager.cs" />
      <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\InputManager.cs" />
      <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\ResourceManager.cs" />
+     <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\SoundManager.cs" />
      <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\UIManager.cs" />
      <Compile Include="Assets\Scripts\MusicSelectMenu\MusicListProposer.cs" />
      <Compile Include="Assets\Scripts\Primary\DeepDataManager.cs" />
-     <Compile Include="Assets\Scripts\Primary\MasterOrders.cs" />
-     <Compile Include="Assets\Scripts\Primary\PrimaryGroupInit.cs" />
+     <Compile Include="Assets\Scripts\Primary\PrimalGroupInit.cs" />
+     <Compile Include="Assets\Scripts\Primary\PrimaryOrders.cs" />
      <Compile Include="Assets\Scripts\Primary\SceneNavigator.cs" />
+     <Compile Include="Assets\Scripts\SceneCurtain.cs" />
+     <None Include="Assets\Materials\NewShader.shader" />
+     <None Include="Assets\Resources\Songs\Follow Up\Follow Up.txt" />
+     <None Include="Assets\Resources\Songs\生存本能ヴァルキュリア\生存本能ヴァルキュリア.txt" />
+     <None Include="Assets\Resources\Songs\FLOWER REDALiCE Remix\FLOWER REDALiCE Remix.txt" />
+     <None Include="Assets\Resources\Songs\Tulip\Tulip.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

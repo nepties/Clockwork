@@ -14,14 +14,14 @@ namespace MainManuScene
 
 		// Use this for initialization	
 
-		public void relayD_ChangeSelect(MenuKeyDirection direc)
+		public void relayD_ChangeSelect(KeyInputDirection direc)
 		{
 			graphicCtrl.relayD_ChangeSelect(direc);
 		}
 
-		public void relayD_Entering()
+		public void relayU_loadStageScene()
 		{
-			graphicCtrl.relayD_Entering();
+			coreCtrl.reportLoadStageScene();
 		}
 	}
 }

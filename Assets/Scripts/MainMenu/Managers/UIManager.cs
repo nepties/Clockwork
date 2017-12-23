@@ -17,14 +17,14 @@ namespace MainManuScene
 
 		}
 		
-		public void relayD_ChangeSelect(MenuKeyDirection direc)
+		public void relayD_ChangeSelect(KeyInputDirection direc)
 		{
 			buttonPanelCtrl.exeChangeSelection(direc);
 		}
 
-		public void relayD_Entering()
+		public void relayU_loadStageScene()
 		{
-			buttonPanelCtrl.exeEntering();
+			graphicCtrl.relayU_loadStageScene();
 		}
 	}
 }

@@ -45,7 +45,7 @@ namespace InStageScene
 		public void stageStarting()
 		{
 			graphicCtrl.sendStageStart();
-			soundCtrl.musicOn();
+			soundCtrl.exePlayStageMusic();
 		}
 
 		//미싱 노트 오브젝트 처리 명령 하달
