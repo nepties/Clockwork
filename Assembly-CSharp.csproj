@@ -83,6 +83,7 @@
      <Compile Include="Assets\Scripts\MainMenu\OptionButton.cs" />
      <Compile Include="Assets\Scripts\MainMenu\StartButton.cs" />
      <Compile Include="Assets\Scripts\MusicSelectMenu\FileIndicator.cs" />
+     <Compile Include="Assets\Scripts\MusicSelectMenu\FileReader.cs" />
      <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\DataManager.cs" />
      <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\GameManager.cs" />
      <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\GraphicManager.cs" />

@@ -2,6 +2,8 @@
 using System.IO;
 using System.Collections.Generic;
 using MusicScrolls;
+using System.Diagnostics;
+
 
 
 namespace InStageScene
@@ -9,13 +11,16 @@ namespace InStageScene
 	public class fileReader : MonoBehaviour
 	{
 
-		//클래스 레퍼런스s
-		//상위 개체 제어 레퍼런스
+		//refs
+		//상위
 		[SerializeField] DataManager dataCtrl;
-		//하위 리더 개체 제어 레퍼런스
-		MetaDataReader MetaReaderCtrl;
-		NoteDataReader NoteReaderCtrl;
+		//하위
+		//분할 리더 개체 제어 레퍼런스
+		MetaDataReader MetaReaderCtrl;  //메타 데이터 리더
+		NoteDataReader NoteReaderCtrl;  //노트 데이터 리더
 
+
+		
 		StreamReader reader;  //읽기스트림 개체
 		StreamReader NoteReader;  //읽기스트림 개체
 
@@ -25,11 +30,14 @@ namespace InStageScene
 
 		//재가공 노트 데이터 저장 큐
 		Queue<NoteJudgeCard>[] judgeScroll = new Queue<NoteJudgeCard>[13];
+		
+		//for Test
+		Stopwatch stopwatch = GameManager.stopwatch;  //GM 클래스의 스톱워치 받기
 
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 		// Use this for initialization
-		void Start()
+		void Awake()
 		{
 			//스트림리더 설정 부 (비유연형)
 			reader = new StreamReader("Follow Up.txt");  //객체 생성 후 개방		
@@ -54,6 +62,7 @@ namespace InStageScene
 		public void exeReadOneFullFile()
 		{
 			//임시 읽기 부
+			print("(GMs)currTick exeReadOneFullFile() start: " + stopwatch.ElapsedTicks);
 
 			//한 곡 풀세트(?) 읽기
 			forceReadMetaData();
@@ -64,7 +73,8 @@ namespace InStageScene
 
 
 			//로드 완료 상태 보고 to DataManager
-			dataCtrl.relayU_Readfinished();
+			print("(GMs)currTick exeReadOneFullFile() end: " + stopwatch.ElapsedTicks);
+			dataCtrl.relayU_Readfinished();			
 		}
 
 		//메타 데이터 읽기 명령
@@ -88,10 +98,10 @@ namespace InStageScene
 			fp.Close();
 		}
 
-		//노트 데이터 재가공
+		//노트 데이터 재가공 메서드
 		public void extractJudgeScroll()
 		{
-			Debug.Log("start Refine NoteData...List size : " + noteDataStorage.Count);
+			print("start Refine NoteData...List size : " + noteDataStorage.Count);
 			//노트 데이터 순차 접근
 			foreach (MusicNoteData indic in noteDataStorage)
 			{

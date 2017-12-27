@@ -1,10 +1,12 @@
 title=Follow Up
 jacket=jacket.png
-difficulty=exh
+difficulty=nor
 music=Follow Up.mp3
 length=1280
 bpm=175
 unit=128
+samcur=68.1
+samlength=0
 --
 000|000|000|000|0
 000|000|000|000|0

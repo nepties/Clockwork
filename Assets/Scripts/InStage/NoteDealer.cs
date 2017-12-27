@@ -4,15 +4,17 @@ using System.Collections;
 using System.Collections.Generic;
 using MusicScrolls;
 using System.Diagnostics;
-using Debug = UnityEngine.Debug;
+
+
 
 namespace InStageScene
 {
-	public class NoteDealer : MonoBehaviour
+	public partial class NoteDealer : MonoBehaviour
 	{
-		//클래스 레퍼런스s
+		//refs
 		//상위
-		GameObjectsManager gameObjectCtrl;
+		[SerializeField] GameObjectsManager gameObjectCtrl;
+
 
 		[SerializeField] GameObject noteObject;  //숏 노트 오브젝트	
 		int poolSize;  //오브젝트 풀 최대 수용량
@@ -31,9 +33,6 @@ namespace InStageScene
 		// Use this for initialization
 		void Awake()
 		{
-			//제어 개체 레퍼런스 받아오기
-			gameObjectCtrl = GameObject.Find("GameObjects").GetComponent<GameObjectsManager>();
-
 			//초기, 임의값 초기화 부
 			poolSize = 20;  //생성량 초기설정값		
 			preLoadingTime = 500f;  //1초 프리로딩
@@ -72,7 +71,7 @@ namespace InStageScene
 					if (judgeLine.Peek().time <= stopwatch.ElapsedMilliseconds + preLoadingTime)
 					{
 						forceDealNotes(judgeLine.Dequeue(), i);  //큐에서 제외
-						Debug.Log("Pop ShortNote! __ PreLoading ( " + (stopwatch.ElapsedMilliseconds + preLoadingTime) + " ) corr : " + stopwatch.ElapsedMilliseconds);
+						print("Pop ShortNote! __ PreLoading ( " + (stopwatch.ElapsedMilliseconds + preLoadingTime) + " ) corr : " + stopwatch.ElapsedMilliseconds);
 					}
 
 				} //try close
@@ -135,5 +134,10 @@ namespace InStageScene
 		{
 			judgeScroll = (Queue<NoteJudgeCard>[])NoteReferee.instance.judgeScroll.Clone();
 		}
+	}
+
+	public partial class NoteDealer : MonoBehaviour
+	{
+
 	}
 }

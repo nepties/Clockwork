@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using MusicScrolls;
+using System.Diagnostics;
 
 
 namespace InStageScene
 {
-	public partial class DataManager : MonoBehaviour
+	public partial class DataManager : ManagerAddOn
 	{
 		//sigleTon parts
 		public static DataManager instance;
@@ -33,6 +34,10 @@ namespace InStageScene
 		float noteReadDelay;  //bpm에 따른 읽기 지연 시간(단위 : ms)
 		float noteReadDelayForSecond;  //bpm에 따른 읽기 지연 시간(단위 : sec)
 
+
+		//for Test
+		Stopwatch stopwatch = GameManager.stopwatch;  //GM 클래스의 스톱워치 받기
+
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 		// Use this for initialization
@@ -50,16 +55,10 @@ namespace InStageScene
 			railSpeed = speedConstant * speedMultiplier;  //최종 배속 설정
 
 		}
-
-		// Update is called once per frame
-		/*
-		void Update()
-		{
-		
-		}*/
+	
 
 		//숏노트 처리 관련 메소드
-		public void rotateNeedleData(float rotateDegree)  //rotateDegree : 1, -1, 3, -3 칸 회전 값(음수값 왼쪽)
+		public void exeShortNoteEngage(float rotateDegree)  //rotateDegree : 1, -1, 3, -3 칸 회전 값(음수값 왼쪽)
 		{
 			//바늘 방향에 따른 계산 분리
 			if (rotateDegree > 0)  //오른쪽 회전일 경우
@@ -80,42 +79,49 @@ namespace InStageScene
 			//후 처리
 			needlePhase = (needlePhase + 3 + (int)rotateDegree) % 3;  //후에 위치 조정
 		}
-
-		//롱노트 입력 활성화
-		public void LongNoteEngage()
-		{
-			isLongactivated = true;
-			Debug.Log("force Long Active");
-		}
-
-		//롱노트 입력 비활성화
-		public void LongNoteRelease()
-		{
-			isLongactivated = false;
-			Debug.Log("force Long DeActive");
-		}
 	}
 
 
-	public partial class DataManager : MonoBehaviour
+	public partial class DataManager : ManagerAddOn
 	{
 
 		//Execution parts : exe-
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+		//롱노트 입력 활성화
+		public void exeLongNoteEngage()
+		{
+			isLongactivated = true;
+			print("force Long Active");
+		}
+
+		//롱노트 입력 비활성화
+		public void exeLongNoteRelease()
+		{
+			isLongactivated = false;
+			print("force Long DeActive");
+		}
+
+		//report to GM parts : report-
+		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+		//force from GM parts : force-
+		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 		//relay parts : relayU_- or relayD_-
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 		//곡 하나 읽기 명령 하달(For Test)
-		public void relayD_LoadOneFile()
+		public void relayD_LoadOneFile(messagingDele simpleHandler)
 		{
 			fileDataCtrl.exeReadOneFullFile();
+			print("(GMs)currTick relayD_LoadOneFile() end: " + stopwatch.ElapsedTicks);
 		}
 
 		//특정 곡 리딩 완료 : 곡 정보 읽기 완료 최종 확인
 		public void relayU_Readfinished()
 		{
+			print("(GMs)currTick relayU_Readfinished() start: " + stopwatch.ElapsedTicks);
 			//GM에게 선곡 정보 전달
 			coreCtrl.confMusicData();
 		}
@@ -127,8 +133,11 @@ namespace InStageScene
 			curBpm = fileDataCtrl.metaDataStorage[0].bpm;
 			noteReadDelay = 3750f / curBpm; //읽기 지연 시간 초기화
 			noteReadDelayForSecond = noteReadDelay / 1000;
-			Debug.Log("first set BPM : " + curBpm);
-			Debug.Log("first set readDelay(ms) : " + noteReadDelay);
+			print("first set BPM : " + curBpm);
+			print("first set readDelay(ms) : " + noteReadDelay);
+
+
+			print("(GMs)currTick prepareStage() finish: " + stopwatch.ElapsedTicks);
 
 			//재가공 : 노트 판정을 위한 데이터 큐 제작
 			fileDataCtrl.extractJudgeScroll();

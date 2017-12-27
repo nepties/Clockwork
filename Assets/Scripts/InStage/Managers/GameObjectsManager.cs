@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace InStageScene
 {
-	public class GameObjectsManager : MonoBehaviour
+	public partial class GameObjectsManager : MonoBehaviour
 	{
 		//클래스 레퍼런스s
 		//상위
@@ -51,5 +51,16 @@ namespace InStageScene
 		{
 			noteObjectPoolCtrl.requestRefinedData();
 		}
+	}
+
+	//상하 명령 메서드 집합
+	public partial class GameObjectsManager : MonoBehaviour
+	{
+		//Execution parts : exe-
+		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+		//relay parts : relayU_- or relayD_-
+		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	}
 }

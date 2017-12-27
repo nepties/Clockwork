@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace InStageScene
 {
-	public class GraphicMananger : MonoBehaviour
+	public partial class GraphicMananger : MonoBehaviour
 	{
 		//클래스 레퍼런스s
 		//상위
@@ -50,5 +50,16 @@ namespace InStageScene
 		{
 			gameObjectCtrl.sendStageStart();
 		}
+	}
+
+	//상하 명령 메서드 집합
+	public partial class GraphicMananger : MonoBehaviour
+	{
+		//Execution parts : exe-
+		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+
+		//relay parts : relayU_- or relayD_-
+		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	}
 }

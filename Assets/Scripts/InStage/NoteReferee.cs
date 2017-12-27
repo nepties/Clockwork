@@ -9,16 +9,17 @@ namespace InStageScene
 {
 	public class NoteReferee : MonoBehaviour
 	{
+		//refs
+		//immediate Manager(상위)
+		[SerializeField] DataManager DataCtrl;
+		
+
 		//sigleTon parts
 		public static NoteReferee instance;
-
-		//클래스 레퍼런스s
-		//직속 매니저(상위)
-		[SerializeField] DataManager DataCtrl;
-
+		
 		public Queue<NoteJudgeCard>[] judgeScroll { get; set; }  //각 라인에 노트 판정을 위한 노트배치표 큐
-		[SerializeField] float perfectJudgeflexibility = 200f;  //판정 상수(ms)
-		[SerializeField] float niceJudgeflexibility = 450f;  //판정 상수(ms)
+		[SerializeField] const float perfectJudgeflexibility = 200f;  //판정 상수(ms)
+		[SerializeField] const float niceJudgeflexibility = 450f;  //판정 상수(ms)
 		[SerializeField] float judgeFactor;  //판정 배수(널널함, 엄격함)
 
 		//스톱 워치
@@ -31,6 +32,8 @@ namespace InStageScene
 		{
 			//sigleTon parts
 			instance = this;
+
+
 			judgeFactor = 1.0f;
 		}
 
