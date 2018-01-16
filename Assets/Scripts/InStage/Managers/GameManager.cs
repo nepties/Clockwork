@@ -1,28 +1,26 @@
-ï»¿using UnityEngine;
+using UnityEngine;
 using ClientStates;
+using Kaibrary.CallbackModule;
 using System.Collections;
-using System.Diagnostics;
 
 
 namespace InStageScene
 {
-	public partial class GameManager : ManagerAddOn
+	public partial class GameManager : MonoBehaviour
 	{
-		//í´ë˜ìŠ¤ ë ˆí¼ëŸ°ìŠ¤s
-		//í•˜ìœ„ ë§¤ë‹ˆì €
+		//Å¬·¡½º ·¹ÆÛ·±½ºs
+		//ÇÏÀ§ ¸Å´ÏÀú
 		[SerializeField] InputKeyManager inputCtrl;
 		[SerializeField] DataManager dataCtrl;
 		[SerializeField] ResourceManager resourceCtrl;
-
+		
 
 		//sigleTon parts
 		public static GameManager instance;
+		
 
-		//ìŠ¤í†± ì›Œì¹˜
-		public static Stopwatch stopwatch = new Stopwatch();
-
-		//ìƒíƒœ ê³„
-		public inStageStates gameState { get; set; }  //í˜„ ìƒíƒœ	
+		//»óÅÂ °è
+		public inStageStates gameState { get; set; }  //Çö »óÅÂ	
 
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -32,32 +30,25 @@ namespace InStageScene
 			//sigleTon parts
 			instance = this;
 
-			//ìƒíƒœ ì„¤ì • ë¶€
-			gameState = inStageStates.enteringStage;  //ìµœì´ˆ ìƒíƒœ : ìŠ¤í…Œì´ì§€ ë¡œë”©
+			//»óÅÂ ¼³Á¤ ºÎ
+			gameState = inStageStates.enteringStage;  //ÃÖÃÊ »óÅÂ : ½ºÅ×ÀÌÁö ·Îµù
 		}
 
 		// Use this for initialization after all Object are made
 		void Start()  //GO!!
 		{
-			forcePreprocess();  //ìŠ¤í…Œì´ì§€ ë¡œë”©
-		}
-		
-
-		//ìŠ¤í…Œì´ì§€ ì¤€ë¹„ ê´€ë ¨ ë°ì´í„° ì²˜ë¦¬ ëª¨ë‘ ì™„ë£Œ(ë°”ë¡œ ìŠ¤í…Œì´ì§€ ì˜¨)
-		public void dataAllLoaded()
-		{
-			dataCtrl.stageStarting();
-			resourceCtrl.stageStarting();
+			//!!Stage START POINT!!
+			forcePreprocess();  //½ºÅ×ÀÌÁö ·Îµù
 		}
 
-		//ë¯¸ì‹± ë…¸íŠ¸ ê´€ë ¨ ì²˜ë¦¬
+		//¹Ì½Ì ³ëÆ® °ü·Ã Ã³¸®
 		public void receiveMissingNote(int lineNum)
 		{
-			resourceCtrl.sendMissingNote(lineNum);
+			resourceCtrl.relayD_MissingNote(lineNum);
 		}
 	}
 
-	public partial class GameManager : ManagerAddOn
+	public partial class GameManager : MonoBehaviour
 	{
 		//occur parts : occur-
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -65,17 +56,52 @@ namespace InStageScene
 		//forcing parts : force-
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-		//ìŠ¤í…Œì´ì§€ ì¤€ë¹„ì§ì „ ë°ì´í„° ì„ -ì²˜ë¦¬
+		//½ºÅ×ÀÌÁö ÁØºñÁ÷Àü µ¥ÀÌÅÍ ¼±-Ã³¸® ( State : read files )
 		void forcePreprocess()
 		{
-			messagingDele simpleHandler;
-			//ê³¡ ì •ë³´ í•˜ë‚˜ ì½ê¸° ëª…ë ¹
-			stopwatch.Start();  //ì‹œê°„ì¸¡ì • ì‹œì‘!
-			print("START POINT :: for Test, force stage Loading...");
-			print("(GMs)currTick : " + stopwatch.ElapsedTicks);
-
-			//ê³¡ í•˜ë‚˜ ì½ì–´ë“¤ì´ê¸°
+			messagingDele simpleHandler = null;
+			simpleHandler = (string st) => { print(st); forceApplyData(); };
+			
+			//°î Á¤º¸ ÇÏ³ª ÀĞ±â ¸í·É			
 			dataCtrl.relayD_LoadOneFile(simpleHandler);
+		}
+
+		//¼±°î Á¤º¸ ¹ŞÀº ÈÄ µ¿ÀÛ ( State : apply file Data )
+		public void forceApplyData()
+		{
+			messagingDele simpleHandler = null;
+			simpleHandler = (string st) => { print(st); forceLinkTrigger(); };
+			
+			//½ºÅ×ÀÌÁö ÁØºñ ¸í·É
+			dataCtrl.exePrepareStage(simpleHandler);
+		}
+
+		//½ºÅ×ÀÌÁö ½ÃÀÛ Æ®¸®°Å ¿¬°á & ·Îµù ( State : load & link stage trigger )
+		public void forceLinkTrigger()
+		{
+			reflecMessagingDele handler = null;
+			LightweightDele trigger = null;
+			int callingCount = 0;
+			handler = (string st, LightweightDele recall) => 
+			{
+				callingCount++;
+				print(st + "||" + callingCount);
+				trigger += recall;
+				
+				if (callingCount == 3)
+					forceStageOn(trigger);
+			};
+
+
+			dataCtrl.relayD_loadStage(handler);
+			resourceCtrl.relayD_loadStage(handler);
+		}
+
+		//¹«´ë ½ÃÀÛ ( Stage : onStage )
+		public void forceStageOn(LightweightDele trigger)
+		{
+			//   !!SHOWTIME!!
+			trigger();
 		}
 
 		//Execution parts : exe-
@@ -84,29 +110,23 @@ namespace InStageScene
 		//(receiving) report parts : conf-
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-		//ë°”ëŠ˜ íšŒì „ í‚¤ì…ë ¥ ê°ì§€ & ëª…ë ¹ í•˜ë‹¬
+		//¹Ù´Ã È¸Àü Å°ÀÔ·Â °¨Áö & ¸í·É ÇÏ´Ş
 		public void confNeedleCtrlKeyInput(float rotDegree)
 		{
 			dataCtrl.exeShortNoteEngage(rotDegree);
-			resourceCtrl.forceRotateNeedleObject(rotDegree);
+			resourceCtrl.relayD_RotateNeedleObject(rotDegree);
 		}
 
-		//ë¡±ë…¸íŠ¸ í™œì„±í™” í‚¤ì…ë ¥ ê°ì§€ & ëª…ë ¹ í•˜ë‹¬
+		//·Õ³ëÆ® È°¼ºÈ­ Å°ÀÔ·Â °¨Áö & ¸í·É ÇÏ´Ş
 		public void confLongActiveKeyInput()
 		{
 			dataCtrl.exeLongNoteEngage();
 		}
 
-		//ë¡±ë…¸íŠ¸ 'ë¹„'í™œì„±í™” í‚¤ì…ë ¥ ê°ì§€ & ëª…ë ¹ í•˜ë‹¬
+		//·Õ³ëÆ® 'ºñ'È°¼ºÈ­ Å°ÀÔ·Â °¨Áö & ¸í·É ÇÏ´Ş
 		public void confLongDeactiveKeyInput()
 		{
 			dataCtrl.exeLongNoteRelease();
-		}
-
-		//ì„ ê³¡ ì •ë³´ ë°›ì€ í›„ ë™ì‘ (ìƒíƒœ ë³€í™” : load completed)
-		public void confMusicData()
-		{
-			dataCtrl.prepareStage();
 		}
 	}
 }

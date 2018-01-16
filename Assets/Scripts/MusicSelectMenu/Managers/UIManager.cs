@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace MusicSelectMenuScene
 {
-	public class UIManager : MonoBehaviour
+	public class UIManager : UnityEngine.MonoBehaviour
 	{
 		//ref
 		//상위

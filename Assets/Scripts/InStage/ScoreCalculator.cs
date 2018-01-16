@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace InStageScene
 {
-	public class ScoreCalculator : MonoBehaviour
+	public class ScoreCalculator : UnityEngine.MonoBehaviour
 	{
 
 		// Use this for initialization

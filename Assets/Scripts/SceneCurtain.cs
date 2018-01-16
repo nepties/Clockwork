@@ -2,9 +2,10 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class SceneCurtain : MonoBehaviour
+public class SceneCurtain : UnityEngine.MonoBehaviour
 {
-	[SerializeField]  Image imageCtrl;	
+	[SerializeField]  Image imageCtrl;
+	Transform loc;
 	
 	// Use this for initialization
 	void Awake()

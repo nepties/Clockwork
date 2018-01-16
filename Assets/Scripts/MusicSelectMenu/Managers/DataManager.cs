@@ -1,15 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using MusicScrolls;
+using Kaibrary.MusicScrolls;
 
 
 
 namespace MusicSelectMenuScene
 {
-	public partial class DataManager : MonoBehaviour
+	public partial class DataManager : UnityEngine.MonoBehaviour
 	{
-		//ref
+		//ref````````````````````````
 		//상위
 		[SerializeField] GameManager coreCtrl;
 		//하위
@@ -31,7 +31,7 @@ namespace MusicSelectMenuScene
 
 	}
 
-	public partial class DataManager : MonoBehaviour
+	public partial class DataManager : UnityEngine.MonoBehaviour
 	{
 
 		//Execution parts : exe-

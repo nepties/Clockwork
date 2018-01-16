@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using MusicScrolls;
-using System.Diagnostics;
+using Kaibrary.MusicScrolls;
+using Kaibrary.CallbackModule;
 
 
 namespace InStageScene
 {
-	public partial class DataManager : ManagerAddOn
+	public partial class DataManager : MonoBehaviour
 	{
 		//sigleTon parts
 		public static DataManager instance;
@@ -14,7 +14,7 @@ namespace InStageScene
 		//refs		
 		//상위
 		[SerializeField] GameManager coreCtrl;  //GM
-												//하위
+		//하위
 		[SerializeField] NoteReferee refereeCtrl;  //노트 판정확인 클래스
 		[SerializeField] fileReader fileDataCtrl;  //파일 정보 수입 클래스
 
@@ -27,7 +27,7 @@ namespace InStageScene
 
 		//배속 관련
 		public float curBpm { get; set; }  //현재 재생 곡 BPM
-		float speedConstant = 1f;  //배속 상수
+		float speedConstant = 1f;  //배속 상수s
 		[SerializeField] [Range((0), (10))] float speedMultiplier;  //배속 배수
 		public float railSpeed { get; set; }  //레일 스피드 : 최종 노트 속도
 
@@ -35,8 +35,6 @@ namespace InStageScene
 		float noteReadDelayForSecond;  //bpm에 따른 읽기 지연 시간(단위 : sec)
 
 
-		//for Test
-		Stopwatch stopwatch = GameManager.stopwatch;  //GM 클래스의 스톱워치 받기
 
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -44,7 +42,7 @@ namespace InStageScene
 		void Awake()
 		{
 			//sigleTon parts
-			instance = this;			
+			instance = this;
 
 			//초기화 부
 			speedMultiplier = 10f;
@@ -53,7 +51,6 @@ namespace InStageScene
 			frontReadingUnit = initialLoadaAmount;
 			needlePhase = 0;  //최초 바늘 상태에 맞춰
 			railSpeed = speedConstant * speedMultiplier;  //최종 배속 설정
-
 		}
 	
 
@@ -82,9 +79,8 @@ namespace InStageScene
 	}
 
 
-	public partial class DataManager : ManagerAddOn
+	public partial class DataManager : MonoBehaviour
 	{
-
 		//Execution parts : exe-
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -102,11 +98,35 @@ namespace InStageScene
 			print("force Long DeActive");
 		}
 
+		//재가공 데이터 노트판정 객체에게 넘기기
+		public void exeSendRefineData(messagingDele simpleHandler, Queue<NoteJudgeCard>[] RefineQueue)
+		{
+			refereeCtrl.reportKeepRefineData(simpleHandler, RefineQueue);
+		}
+
+		//스테이지 준비 : 변수 초기화 & 노트데이터 재가공
+		public void exePrepareStage(messagingDele simpleHandler)
+		{
+			//현재 BPM 정보 최초 초기화
+			curBpm = fileDataCtrl.metaDataStorage[0].bpm;
+			noteReadDelay = 3750f / curBpm; //읽기 지연 시간 초기화
+			noteReadDelayForSecond = noteReadDelay / 1000;
+			print("set BPM : " + curBpm);
+			print("set readDelay(ms) : " + noteReadDelay);
+
+
+			//재가공 : 노트 판정을 위한 데이터 큐 제작
+			fileDataCtrl.exeExtractJudgeScroll(simpleHandler);
+		}
+
 		//report to GM parts : report-
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-		//force from GM parts : force-
-		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+		//미싱 노트 받고 인식 from Referee
+		public void reportMissingNote(int lineNum)
+		{
+			coreCtrl.receiveMissingNote(lineNum);
+		}		
 
 		//relay parts : relayU_- or relayD_-
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -114,52 +134,13 @@ namespace InStageScene
 		//곡 하나 읽기 명령 하달(For Test)
 		public void relayD_LoadOneFile(messagingDele simpleHandler)
 		{
-			fileDataCtrl.exeReadOneFullFile();
-			print("(GMs)currTick relayD_LoadOneFile() end: " + stopwatch.ElapsedTicks);
-		}
-
-		//특정 곡 리딩 완료 : 곡 정보 읽기 완료 최종 확인
-		public void relayU_Readfinished()
-		{
-			print("(GMs)currTick relayU_Readfinished() start: " + stopwatch.ElapsedTicks);
-			//GM에게 선곡 정보 전달
-			coreCtrl.confMusicData();
-		}
-
-		//스테이지 로딩 상태 2 : 변수 초기화 & 노트데이터 재가공
-		public void prepareStage()
-		{
-			//현재 BPM 정보 최초 초기화
-			curBpm = fileDataCtrl.metaDataStorage[0].bpm;
-			noteReadDelay = 3750f / curBpm; //읽기 지연 시간 초기화
-			noteReadDelayForSecond = noteReadDelay / 1000;
-			print("first set BPM : " + curBpm);
-			print("first set readDelay(ms) : " + noteReadDelay);
-
-
-			print("(GMs)currTick prepareStage() finish: " + stopwatch.ElapsedTicks);
-
-			//재가공 : 노트 판정을 위한 데이터 큐 제작
-			fileDataCtrl.extractJudgeScroll();
-		}
-
-		//재가공 데이터 노트판정 객체에게 넘기기 & 스테이지 준비
-		public void sendRefineData(Queue<NoteJudgeCard>[] RefineQueue)
-		{
-			refereeCtrl.receiveRefineData(RefineQueue);
-			coreCtrl.dataAllLoaded();  //GM 보고		
+			fileDataCtrl.exeReadOneFullFile(simpleHandler);			
 		}
 
 		//스테이지 온
-		public void stageStarting()
+		public void relayD_loadStage(reflecMessagingDele Handler)
 		{
-			refereeCtrl.receiveStarting();
-		}
-
-		//미싱 노트 받고 인식 from Referee
-		public void recognizeMissingNote(int lineNum)
-		{
-			coreCtrl.receiveMissingNote(lineNum);
+			refereeCtrl.reportLinkTrigger(Handler);
 		}
 	}
 }

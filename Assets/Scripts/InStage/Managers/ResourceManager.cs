@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Kaibrary.CallbackModule;
 using System.Collections;
 
 
@@ -14,21 +15,7 @@ namespace InStageScene
 		[SerializeField] SoundManager soundCtrl;
 
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-
-
-		//명령 하달 : 스테이지 시작
-		public void stageStarting()
-		{
-			graphicCtrl.sendStageStart();
-			soundCtrl.exePlayStageMusic();
-		}
-
-		//미싱 노트 오브젝트 처리 명령 하달
-		public void sendMissingNote(int lineNum)
-		{
-			graphicCtrl.sendMissingNote(lineNum);
-		}
+		
 	}
 
 
@@ -42,16 +29,23 @@ namespace InStageScene
 		//relay parts : relayU_- or relayD_- or force
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+		//명령 하달 : 스테이지 시작
+		public void relayD_loadStage(reflecMessagingDele handler)
+		{
+			graphicCtrl.relayD_loadStage(handler);
+			soundCtrl.reportLinkTrigger(handler);
+		}
+
+		//명령 하달 : 미싱 노트 오브젝트 처리 명령 하달
+		public void relayD_MissingNote(int lineNum)
+		{
+			graphicCtrl.sendMissingNote(lineNum);
+		}
+
 		//명령 하달 : 바늘 회전 
-		public void forceRotateNeedleObject(float rotDegree)
+		public void relayD_RotateNeedleObject(float rotDegree)
 		{
 			graphicCtrl.rotateNeedleObject(rotDegree);
-		}
-		
-		//명령 하달 : 극초기 상태 스테이지 준비
-		public void forcePrepareStage()
-		{
-			graphicCtrl.prepareStage();
 		}
 	}
 }

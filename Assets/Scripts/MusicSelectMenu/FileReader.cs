@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
-using MusicScrolls;
+using Kaibrary.MusicScrolls;
 
 
 
 namespace MusicSelectMenuScene
 {
-	public partial class FileReader : MonoBehaviour
+	public partial class FileReader : UnityEngine.MonoBehaviour
 	{
 		//refs
 		//상위
@@ -40,7 +40,7 @@ namespace MusicSelectMenuScene
 		}
 	}
 
-	public partial class FileReader : MonoBehaviour
+	public partial class FileReader : UnityEngine.MonoBehaviour
 	{
 
 	}

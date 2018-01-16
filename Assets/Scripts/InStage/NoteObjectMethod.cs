@@ -3,7 +3,7 @@
 
 namespace InStageScene
 {
-	public class NoteObjectMethod : MonoBehaviour
+	public class NoteObjectMethod : UnityEngine.MonoBehaviour
 	{
 		// [SerializeField] NoteDealer spawnPool;  //노트 배치 클래스 레퍼런스
 		float Speed { set; get; }  //노트 진행 속도 배수

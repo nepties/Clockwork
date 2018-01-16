@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SceneNavigator : MonoBehaviour
+public class SceneNavigator : UnityEngine.MonoBehaviour
 {
 
 	//ref

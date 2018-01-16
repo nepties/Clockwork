@@ -65,7 +65,9 @@
      <Compile Include="Assets\Scripts\InStage\TestCode.cs" />
      <Compile Include="Assets\Scripts\InStage\VerdicText.cs" />
      <Compile Include="Assets\Scripts\InStage\fileReader.cs" />
+     <Compile Include="Assets\Scripts\Library\CallbackModule.cs" />
      <Compile Include="Assets\Scripts\Library\ClientStates.cs" />
+     <Compile Include="Assets\Scripts\Library\DecoTools.cs" />
      <Compile Include="Assets\Scripts\Library\GameManagerAddOn.cs" />
      <Compile Include="Assets\Scripts\Library\ManagerAddOn.cs" />
      <Compile Include="Assets\Scripts\Library\MusicScrollsDefine.cs" />

@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MusicSelectMenuScene
 {
-	public class FileIndicator : MonoBehaviour
+	public class FileIndicator : UnityEngine.MonoBehaviour
 	{
 		//ref
 		//상위
@@ -16,7 +16,7 @@ namespace MusicSelectMenuScene
 		string songFolderPath = "Resources\\Songs";  //Resources\Songs	folder	
 		string songsDirPath = "Songs/";  //Resources\Songs	folder
 
-		public enum SeekDirection { Forward, Backward }
+		public enum SeekDirection { Forward, Backward };
 
 		public AudioSource source;
 		public List<AudioClip> clips = new List<AudioClip>();
@@ -41,7 +41,7 @@ namespace MusicSelectMenuScene
 
 			ReloadSounds();*/
 		}
-
+		/*
 		void OnGUI()
 		{
 			if (GUILayout.Button("Previous"))
@@ -115,7 +115,7 @@ namespace MusicSelectMenuScene
 			clip.name = Path.GetFileName(path);
 			clips.Add(clip);
 		}
-
+		*/
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 		// Use this for initialization

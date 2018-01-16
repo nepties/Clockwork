@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61889ce2304b21146a71d9ed505bd530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PanelCtrl: {fileID: 0}
+  PanelCtrl: {fileID: 859740221}
 --- !u!1 &333407682
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,7 +1122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ff3a643ac2c7554fad52cc5fde566de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PanelCtrl: {fileID: 0}
+  PanelCtrl: {fileID: 859740221}
 --- !u!1 &1888473138
 GameObject:
   m_ObjectHideFlags: 0
@@ -1212,9 +1212,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageCtrl: {fileID: 1962265941}
-  fadeInterval: .0149999997
-  fadeLength: 2
-  fadingCount: 0
 --- !u!114 &1962265941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1369,4 +1366,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea1341d53cd7ec442a15afd909cde360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PanelCtrl: {fileID: 0}
+  PanelCtrl: {fileID: 859740221}

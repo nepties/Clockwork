@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
-using MusicScrolls;
-using System.Diagnostics;
+using Kaibrary.MusicScrolls;
+using Kaibrary.CallbackModule;
 
 
 
@@ -20,7 +20,10 @@ namespace InStageScene
 		NoteDataReader NoteReaderCtrl;  //노트 데이터 리더
 
 
-		
+		//sigleTon parts
+		public static fileReader instance;
+
+
 		StreamReader reader;  //읽기스트림 개체
 		StreamReader NoteReader;  //읽기스트림 개체
 
@@ -29,16 +32,17 @@ namespace InStageScene
 		public List<MusicNoteData> noteDataStorage { get; set; }  //선택 곡의 노트 데이터
 
 		//재가공 노트 데이터 저장 큐
-		Queue<NoteJudgeCard>[] judgeScroll = new Queue<NoteJudgeCard>[13];
+		Queue<NoteJudgeCard>[] judgeScroll = new Queue<NoteJudgeCard>[13];	
 		
-		//for Test
-		Stopwatch stopwatch = GameManager.stopwatch;  //GM 클래스의 스톱워치 받기
 
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 		// Use this for initialization
 		void Awake()
 		{
+			//sigleTon parts
+			instance = this;
+
 			//스트림리더 설정 부 (비유연형)
 			reader = new StreamReader("Follow Up.txt");  //객체 생성 후 개방		
 
@@ -59,11 +63,8 @@ namespace InStageScene
 
 
 		//선곡 데이터 읽어들이기(for Test)
-		public void exeReadOneFullFile()
+		public void exeReadOneFullFile(messagingDele simpleHandler)
 		{
-			//임시 읽기 부
-			print("(GMs)currTick exeReadOneFullFile() start: " + stopwatch.ElapsedTicks);
-
 			//한 곡 풀세트(?) 읽기
 			forceReadMetaData();
 			forceReadNoteData();
@@ -72,9 +73,8 @@ namespace InStageScene
 			metaDataStorage[0].printMetaData();
 
 
-			//로드 완료 상태 보고 to DataManager
-			print("(GMs)currTick exeReadOneFullFile() end: " + stopwatch.ElapsedTicks);
-			dataCtrl.relayU_Readfinished();			
+			//로드 완료 상태 보고 to GM [Callback]
+			simpleHandler("File Data Load Completed");
 		}
 
 		//메타 데이터 읽기 명령
@@ -99,7 +99,7 @@ namespace InStageScene
 		}
 
 		//노트 데이터 재가공 메서드
-		public void extractJudgeScroll()
+		public void exeExtractJudgeScroll(messagingDele simpleHandler)
 		{
 			print("start Refine NoteData...List size : " + noteDataStorage.Count);
 			//노트 데이터 순차 접근
@@ -123,7 +123,31 @@ namespace InStageScene
 			}
 
 			//마무리 보고
-			dataCtrl.sendRefineData(judgeScroll);
+			dataCtrl.exeSendRefineData(simpleHandler, judgeScroll);
+		}
+
+
+		//재가공 판정큐 깊은 복사 메소드
+		public Queue<NoteJudgeCard> [] copyRefinedQueue()
+		{
+			Queue<NoteJudgeCard> [] target = judgeScroll;  //복사할 원본
+			int queueVolume = target.Length;  //큐 크기
+			print("COPYING queueVolume : " + queueVolume);
+
+			Queue <NoteJudgeCard> [] copyScroll = new Queue<NoteJudgeCard>[queueVolume];
+
+			for(int i = 0; i < queueVolume; i++)
+			{
+				NoteJudgeCard [] sigleLine = target[i].ToArray();
+				print(sigleLine.Length);
+				for(int j = 0; j < sigleLine.Length; j++)
+				{
+					sigleLine[j].printContent();
+					copyScroll[i].Enqueue(sigleLine[j].turnToObject());
+				}
+			}
+
+			return copyScroll;
 		}
 	}
 }

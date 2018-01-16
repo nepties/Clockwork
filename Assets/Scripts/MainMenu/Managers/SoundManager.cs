@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace MainManuScene
 {
-	public class SoundManager : MonoBehaviour
+	public class SoundManager : UnityEngine.MonoBehaviour
 	{
 		[SerializeField] ResourceManager resourceCtrl;
 

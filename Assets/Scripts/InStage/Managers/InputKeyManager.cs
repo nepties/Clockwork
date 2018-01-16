@@ -3,7 +3,7 @@
 
 namespace InStageScene
 {
-	public class InputKeyManager : MonoBehaviour
+	public class InputKeyManager : UnityEngine.MonoBehaviour
 	{
 		//refs
 		//상위

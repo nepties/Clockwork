@@ -1,119 +1,121 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-	<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-	<ProductVersion>10.0.20506</ProductVersion>
-	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{1BD50271-87E2-26DD-4D02-573354F333EC}</ProjectGuid>
-	<OutputType>Library</OutputType>
-	<AppDesignerFolder>Properties</AppDesignerFolder>
-	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
-	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-	<FileAlignment>512</FileAlignment>
-	<BaseDirectory>Assets</BaseDirectory>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1BD50271-87E2-26DD-4D02-573354F333EC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kaibrary.CallbackModule</RootNamespace>
+    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <BaseDirectory>Assets</BaseDirectory>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-	<DebugSymbols>true</DebugSymbols>
-	<DebugType>full</DebugType>
-	<Optimize>false</Optimize>
-	<OutputPath>Temp\bin\Debug\</OutputPath>
-	<DefineConstants>DEBUG;TRACE;UNITY_5_1_1;UNITY_5_1;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_LICENSE;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_EDITOR_METRICS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Temp\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;UNITY_5_1_1;UNITY_5_1;UNITY_5;ENABLE_NEW_BUGREPORTER;ENABLE_2D_PHYSICS;ENABLE_4_6_FEATURES;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_DUCK_TYPING;ENABLE_FRAME_DEBUGGER;ENABLE_GENERICS;ENABLE_HOME_SCREEN;ENABLE_IMAGEEFFECTS;ENABLE_LIGHT_PROBES_LEGACY;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_PHYSICS_PHYSX3;ENABLE_PLUGIN_INSPECTOR;ENABLE_SHADOWS;ENABLE_SINGLE_INSTANCE_BUILD_SETTING;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_UNET;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_LICENSE;ENABLE_AUDIOMIXER_SUSPEND;ENABLE_EDITOR_METRICS;INCLUDE_DYNAMIC_GI;INCLUDE_GI;INCLUDE_IL2CPP;INCLUDE_DIRECTX12;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_LOCALIZATION;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_SUBSTANCE;ENABLE_TEXTUREID_MAP;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-	<DebugType>pdbonly</DebugType>
-	<Optimize>true</Optimize>
-	<OutputPath>Temp\bin\Release\</OutputPath>
-	<DefineConstants>TRACE</DefineConstants>
-	<ErrorReport>prompt</ErrorReport>
-	<WarningLevel>4</WarningLevel>
-	<NoWarn>0169</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Temp\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>0169</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-	<Reference Include="System" />
+    <Reference Include="System" />
     <Reference Include="System.XML" />
-	<Reference Include="System.Core" />
-	<Reference Include="System.Xml.Linq" />
-	<Reference Include="UnityEngine">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
-	</Reference>
-	<Reference Include="UnityEditor">
-	  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
-	</Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="UnityEngine">
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor">
+      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\InStage\ClockNeedle.cs" />
-     <Compile Include="Assets\Scripts\InStage\Managers\DataManager.cs" />
-     <Compile Include="Assets\Scripts\InStage\Managers\EffectManager.cs" />
-     <Compile Include="Assets\Scripts\InStage\Managers\GameManager.cs" />
-     <Compile Include="Assets\Scripts\InStage\Managers\GameObjectsManager.cs" />
-     <Compile Include="Assets\Scripts\InStage\Managers\GraphicMananger.cs" />
-     <Compile Include="Assets\Scripts\InStage\Managers\InputKeyManager.cs" />
-     <Compile Include="Assets\Scripts\InStage\Managers\ResourceManager.cs" />
-     <Compile Include="Assets\Scripts\InStage\Managers\SoundManager.cs" />
-     <Compile Include="Assets\Scripts\InStage\Managers\UIManager.cs" />
-     <Compile Include="Assets\Scripts\InStage\MetaDataReader.cs" />
-     <Compile Include="Assets\Scripts\InStage\NoteDataReader.cs" />
-     <Compile Include="Assets\Scripts\InStage\NoteDealer.cs" />
-     <Compile Include="Assets\Scripts\InStage\NoteObjectMethod.cs" />
-     <Compile Include="Assets\Scripts\InStage\NoteReferee.cs" />
-     <Compile Include="Assets\Scripts\InStage\ScoreCalculator.cs" />
-     <Compile Include="Assets\Scripts\InStage\TestCode.cs" />
-     <Compile Include="Assets\Scripts\InStage\VerdicText.cs" />
-     <Compile Include="Assets\Scripts\InStage\fileReader.cs" />
-     <Compile Include="Assets\Scripts\Library\ClientStates.cs" />
-     <Compile Include="Assets\Scripts\Library\GameManagerAddOn.cs" />
-     <Compile Include="Assets\Scripts\Library\ManagerAddOn.cs" />
-     <Compile Include="Assets\Scripts\Library\MusicScrollsDefine.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\ButtonAddOn.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\ButtonPanel.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\ExitButton.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\KeyDirectionEnum.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\Managers\DataManager.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\Managers\GameManager.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\Managers\GraphicManager.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\Managers\InputManager.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\Managers\ResourceManager.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\Managers\SoundManager.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\Managers\UIManager.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\OptionButton.cs" />
-     <Compile Include="Assets\Scripts\MainMenu\StartButton.cs" />
-     <Compile Include="Assets\Scripts\MusicSelectMenu\FileIndicator.cs" />
-     <Compile Include="Assets\Scripts\MusicSelectMenu\FileReader.cs" />
-     <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\DataManager.cs" />
-     <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\GameManager.cs" />
-     <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\GraphicManager.cs" />
-     <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\InputManager.cs" />
-     <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\ResourceManager.cs" />
-     <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\SoundManager.cs" />
-     <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\UIManager.cs" />
-     <Compile Include="Assets\Scripts\MusicSelectMenu\MusicListProposer.cs" />
-     <Compile Include="Assets\Scripts\Primary\DeepDataManager.cs" />
-     <Compile Include="Assets\Scripts\Primary\PrimalGroupInit.cs" />
-     <Compile Include="Assets\Scripts\Primary\PrimaryOrders.cs" />
-     <Compile Include="Assets\Scripts\Primary\SceneNavigator.cs" />
-     <Compile Include="Assets\Scripts\SceneCurtain.cs" />
-     <None Include="Assets\Materials\NewShader.shader" />
-     <None Include="Assets\Resources\Songs\Follow Up\Follow Up.txt" />
-     <None Include="Assets\Resources\Songs\生存本能ヴァルキュリア\生存本能ヴァルキュリア.txt" />
-     <None Include="Assets\Resources\Songs\FLOWER REDALiCE Remix\FLOWER REDALiCE Remix.txt" />
-     <None Include="Assets\Resources\Songs\Tulip\Tulip.txt" />
- <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
- </Reference>
+    <Compile Include="Assets\Scripts\InStage\ClockNeedle.cs" />
+    <Compile Include="Assets\Scripts\InStage\Managers\DataManager.cs" />
+    <Compile Include="Assets\Scripts\InStage\Managers\EffectManager.cs" />
+    <Compile Include="Assets\Scripts\InStage\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\InStage\Managers\GameObjectsManager.cs" />
+    <Compile Include="Assets\Scripts\InStage\Managers\GraphicMananger.cs" />
+    <Compile Include="Assets\Scripts\InStage\Managers\InputKeyManager.cs" />
+    <Compile Include="Assets\Scripts\InStage\Managers\ResourceManager.cs" />
+    <Compile Include="Assets\Scripts\InStage\Managers\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\InStage\Managers\UIManager.cs" />
+    <Compile Include="Assets\Scripts\InStage\MetaDataReader.cs" />
+    <Compile Include="Assets\Scripts\InStage\NoteDataReader.cs" />
+    <Compile Include="Assets\Scripts\InStage\NoteDealer.cs" />
+    <Compile Include="Assets\Scripts\InStage\NoteObjectMethod.cs" />
+    <Compile Include="Assets\Scripts\InStage\NoteReferee.cs" />
+    <Compile Include="Assets\Scripts\InStage\ScoreCalculator.cs" />
+    <Compile Include="Assets\Scripts\InStage\TestCode.cs" />
+    <Compile Include="Assets\Scripts\InStage\VerdicText.cs" />
+    <Compile Include="Assets\Scripts\InStage\fileReader.cs" />
+    <Compile Include="Assets\Scripts\Library\CallbackModule.cs" />
+    <Compile Include="Assets\Scripts\Library\ClientStates.cs" />
+    <Compile Include="Assets\Scripts\Library\DecoTools.cs" />
+    <Compile Include="Assets\Scripts\Library\GameManagerAddOn.cs" />
+    <Compile Include="Assets\Scripts\Library\ManagerAddOn.cs" />
+    <Compile Include="Assets\Scripts\Library\MusicScrollsDefine.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\ButtonAddOn.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\ButtonPanel.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\ExitButton.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\KeyDirectionEnum.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\Managers\DataManager.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\Managers\GraphicManager.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\Managers\InputManager.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\Managers\ResourceManager.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\Managers\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\Managers\UIManager.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\OptionButton.cs" />
+    <Compile Include="Assets\Scripts\MainMenu\StartButton.cs" />
+    <Compile Include="Assets\Scripts\MusicSelectMenu\FileIndicator.cs" />
+    <Compile Include="Assets\Scripts\MusicSelectMenu\FileReader.cs" />
+    <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\DataManager.cs" />
+    <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\GameManager.cs" />
+    <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\GraphicManager.cs" />
+    <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\InputManager.cs" />
+    <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\ResourceManager.cs" />
+    <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\MusicSelectMenu\Managers\UIManager.cs" />
+    <Compile Include="Assets\Scripts\MusicSelectMenu\MusicListProposer.cs" />
+    <Compile Include="Assets\Scripts\Primary\DeepDataManager.cs" />
+    <Compile Include="Assets\Scripts\Primary\PrimalGroupInit.cs" />
+    <Compile Include="Assets\Scripts\Primary\PrimaryOrders.cs" />
+    <Compile Include="Assets\Scripts\Primary\SceneNavigator.cs" />
+    <Compile Include="Assets\Scripts\SceneCurtain.cs" />
+    <None Include="Assets\Materials\NewShader.shader" />
+    <None Include="Assets\Resources\Songs\Follow Up\Follow Up.txt" />
+    <None Include="Assets\Resources\Songs\生存本能ヴァルキュリア\生存本能ヴァルキュリア.txt" />
+    <None Include="Assets\Resources\Songs\FLOWER REDALiCE Remix\FLOWER REDALiCE Remix.txt" />
+    <None Include="Assets\Resources\Songs\Tulip\Tulip.txt" />
+    <Reference Include="UnityEngine.UI">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Analytics">
+      <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -123,5 +125,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  
 </Project>

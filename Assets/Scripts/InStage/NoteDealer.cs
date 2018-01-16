@@ -2,7 +2,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using MusicScrolls;
+using Kaibrary.MusicScrolls;
+using Kaibrary.CallbackModule;
 using System.Diagnostics;
 
 
@@ -70,7 +71,7 @@ namespace InStageScene
 					//프리로드 시점에 걸친 노트 발견
 					if (judgeLine.Peek().time <= stopwatch.ElapsedMilliseconds + preLoadingTime)
 					{
-						forceDealNotes(judgeLine.Dequeue(), i);  //큐에서 제외
+						dealNotes(judgeLine.Dequeue(), i);  //큐에서 제외
 						print("Pop ShortNote! __ PreLoading ( " + (stopwatch.ElapsedMilliseconds + preLoadingTime) + " ) corr : " + stopwatch.ElapsedMilliseconds);
 					}
 
@@ -107,7 +108,7 @@ namespace InStageScene
 		}
 
 		//알맞는 시점(다음)에 노트 배치
-		void forceDealNotes(NoteJudgeCard shortNoteData, int lineNum)
+		void dealNotes(NoteJudgeCard shortNoteData, int lineNum)
 		{
 			GameObject shortNote = poolQueue[lineNum].Dequeue();  //비활성 풀에서 갓 꺼낸 노트
 			shortNote.SetActive(true);  //활성화 (노트 발사)
@@ -129,15 +130,21 @@ namespace InStageScene
 			poolQueue[lineNum].Enqueue(missingShortNote);  //비활성 풀에 넣기
 		}
 
-		//가공 데이터 입수
-		public void requestRefinedData()
+		//스테이지 로딩
+		public void exeloadStage(reflecMessagingDele handler)
 		{
-			judgeScroll = (Queue<NoteJudgeCard>[])NoteReferee.instance.judgeScroll.Clone();
+			judgeScroll = fileReader.instance.copyRefinedQueue();
+			handler("Dealer : im ready!!", null);
 		}
 	}
 
 	public partial class NoteDealer : MonoBehaviour
 	{
+		//Execution parts : exe-
+		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+
+		//relay parts : relayU_- or relayD_-
+		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 	}
 }

@@ -6,7 +6,7 @@ using System.Collections;
 
 namespace MainManuScene
 {
-	public class ButtonPanel : MonoBehaviour
+	public class ButtonPanel : UnityEngine.MonoBehaviour
 	{
 		//상위
 		[SerializeField] UIManager uiCtrl;

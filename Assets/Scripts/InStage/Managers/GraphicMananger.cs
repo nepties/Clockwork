@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Kaibrary.CallbackModule;
 using System.Collections;
 
 
@@ -13,47 +14,30 @@ namespace InStageScene
 		[SerializeField] GameObjectsManager gameObjectCtrl;
 
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-
-		// Use this for initialization
-		void Start()
-		{
-
-		}
-
-		// Update is called once per frame
-		void Update()
-		{
-
-		}
-
+		
 
 		//명령 하달 : 바늘 회전
 		public void rotateNeedleObject(float rotDegree)
 		{
-			gameObjectCtrl.rotateNeedleObject(rotDegree);
+			gameObjectCtrl.relayD_rotateNeedleObject(rotDegree);
 		}
 
-		//명령 하달 : 초기 스테이지 준비!
-		public void prepareStage()
-		{
-			gameObjectCtrl.prepareStage();
-		}
 
 		//명령 하달 : 미싱 노트 처리 
 		public void sendMissingNote(int lineNum)
 		{
-			gameObjectCtrl.sendMissingNote(lineNum);
+			gameObjectCtrl.relayD_treatMissingNote(lineNum);
 		}
 
-		//명령 하달 : 스테이지 시작
-		public void sendStageStart()
+		//명령 하달 : 스테이지 로딩
+		public void relayD_loadStage(reflecMessagingDele handler)
 		{
-			gameObjectCtrl.sendStageStart();
+			gameObjectCtrl.relayD_loadStage(handler);
 		}
 	}
 
 	//상하 명령 메서드 집합
-	public partial class GraphicMananger : MonoBehaviour
+	public partial class GraphicMananger : UnityEngine.MonoBehaviour
 	{
 		//Execution parts : exe-
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

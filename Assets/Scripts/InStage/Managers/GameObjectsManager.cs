@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Kaibrary.CallbackModule;
 using System.Collections;
 
 
@@ -13,44 +14,8 @@ namespace InStageScene
 		[SerializeField] ClockNeedle NeedleCtrl;
 		[SerializeField] NoteDealer noteObjectPoolCtrl;
 
-		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-		
 
-		// Use this for initialization
-		void Awake()
-		{
-
-		}
-
-
-		// Update is called once per frame
-		void Update()
-		{
-
-		}
-
-
-		//명령 하달 : 바늘 회전
-		public void rotateNeedleObject(float rotDegree)
-		{
-			NeedleCtrl.rotateNeedle(rotDegree);
-		}
-
-		//명령 하달 : 초기 스테이지 준비!
-		public void prepareStage()
-		{
-
-		}
-
-		//노트풀에 미싱 노트 처리 명령
-		public void sendMissingNote(int lineNum)
-		{
-			noteObjectPoolCtrl.returnMissingNote(lineNum);
-		}
-
-		public void sendStageStart()
-		{
-			noteObjectPoolCtrl.requestRefinedData();
-		}
 	}
 
 	//상하 명령 메서드 집합
@@ -62,5 +27,23 @@ namespace InStageScene
 
 		//relay parts : relayU_- or relayD_-
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+		//노트풀에 미싱 노트 처리 명령
+		public void relayD_treatMissingNote(int lineNum)
+		{
+			noteObjectPoolCtrl.returnMissingNote(lineNum);
+		}
+
+		//명령 하달 : 스테이지 로딩
+		public void relayD_loadStage(reflecMessagingDele handler)
+		{
+			noteObjectPoolCtrl.exeloadStage(handler);
+		}
+
+		//명령 하달 : 바늘 회전
+		public void relayD_rotateNeedleObject(float rotDegree)
+		{
+			NeedleCtrl.rotateNeedle(rotDegree);
+		}
 	}
 }

@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace InStageScene
 {
-	public partial class EffectManager : MonoBehaviour
+	public partial class EffectManager : UnityEngine.MonoBehaviour
 	{
 
 		// Use this for initialization
@@ -21,7 +21,7 @@ namespace InStageScene
 	}
 
 	//상하 명령 메서드 집합
-	public partial class EffectManager : MonoBehaviour
+	public partial class EffectManager : UnityEngine.MonoBehaviour
 	{
 		//Execution parts : exe-
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

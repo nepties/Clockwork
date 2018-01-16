@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using MusicScrolls;
+using Kaibrary.MusicScrolls;
+using Kaibrary.CallbackModule;
 using System.Diagnostics;
 using Debug = UnityEngine.Debug;
 
 
 namespace InStageScene
 {
-	public class NoteReferee : MonoBehaviour
+	public class NoteReferee : UnityEngine.MonoBehaviour
 	{
 		//refs
 		//immediate Manager(상위)
@@ -92,13 +93,21 @@ namespace InStageScene
 		}
 
 		//가공 데이터 수입
-		public void receiveRefineData(Queue<NoteJudgeCard>[] RefineQueue)
+		public void reportKeepRefineData(messagingDele simpleHandler, Queue<NoteJudgeCard>[] RefineQueue)
 		{
+			//연결
 			judgeScroll = RefineQueue;
+			simpleHandler("Refined Data has been received");
+		}
+
+		//트리거 연결
+		public void reportLinkTrigger(reflecMessagingDele Handler)
+		{
+			Handler("Referee : get a linker!", exeShowTime);
 		}
 
 		//무대 쇼타임 시작
-		public void receiveStarting()
+		public void exeShowTime()
 		{
 			//시간 측정
 			stopwatch.Start();
@@ -114,7 +123,7 @@ namespace InStageScene
 		//미싱 노트 처리 관련
 		public void treatMissingNote(int lineNum)
 		{
-			DataCtrl.recognizeMissingNote(lineNum);
+			DataCtrl.reportMissingNote(lineNum);
 		}
 	}
 }

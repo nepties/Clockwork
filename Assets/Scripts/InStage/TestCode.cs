@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace InStageScene
 {
-	public class TestCode : MonoBehaviour
+	public class TestCode : UnityEngine.MonoBehaviour
 	{
 		[SerializeField] List<Transform> cupPosList;
 		//인스펙터 창에서 리스트 크기 조절 및 수용값 넣기

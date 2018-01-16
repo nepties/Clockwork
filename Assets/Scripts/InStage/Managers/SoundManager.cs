@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Kaibrary.CallbackModule;
 
 
 namespace InStageScene
@@ -28,7 +29,13 @@ namespace InStageScene
 		{
 			musicPlayer.clip = auidioFile[clipNum];  //특정 번호의 클립 연결
 			musicPlayer.Play();  //재생
-		}		
+		}
+
+		//트리거 연결
+		public void reportLinkTrigger(reflecMessagingDele Handler)
+		{
+			Handler("SoundMaster : get a linker!", exeShowTime);
+		}
 
 		//Sound fade In Routine
 		public IEnumerator fadeIn(float duration = 2f, float Interval = 0.05f)
@@ -95,7 +102,7 @@ namespace InStageScene
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 		//Execute a stage music
-		public void exePlayStageMusic()
+		public void exeShowTime()
 		{
 			playMusic(1);
 		}
