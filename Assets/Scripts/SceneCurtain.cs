@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class SceneCurtain : UnityEngine.MonoBehaviour
+public class SceneCurtain : MonoBehaviour
 {
 	[SerializeField]  Image imageCtrl;
 	Transform loc;

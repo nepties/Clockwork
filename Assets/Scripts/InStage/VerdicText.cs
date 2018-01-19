@@ -1,12 +1,12 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
+
 
 
 namespace InStageScene
 {
-	public class VerdicText : UnityEngine.MonoBehaviour
+	public class VerdicText : MonoBehaviour
 	{
 		public Sprite[] texts;  //판정 결과 이미지 저장 배열
 		float fadingDuration;  //페이드 지속 시간

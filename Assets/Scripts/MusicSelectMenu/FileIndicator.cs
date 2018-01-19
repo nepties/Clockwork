@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace MusicSelectMenuScene
 {
-	public class FileIndicator : UnityEngine.MonoBehaviour
+	public class FileIndicator : MonoBehaviour
 	{
 		//ref
 		//상위

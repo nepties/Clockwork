@@ -116,7 +116,7 @@ namespace InStageScene
 						{
 							judgeScroll[i].Enqueue(new NoteJudgeCard(note, indic.getLineTiming(), indic.getLineUnit()));
 							//Debug.Log(indic.getLineTiming( ));
-							judgeScroll[i].Peek().printContent(); //입력된 정보 출력
+							//judgeScroll[i].Peek().printContent(); //입력된 정보 출력
 						}
 					}
 				}
@@ -134,19 +134,24 @@ namespace InStageScene
 			int queueVolume = target.Length;  //큐 크기
 			print("COPYING queueVolume : " + queueVolume);
 
-			Queue <NoteJudgeCard> [] copyScroll = new Queue<NoteJudgeCard>[queueVolume];
-
-			for(int i = 0; i < queueVolume; i++)
+			//사본 큐 배열 생성 부
+			Queue<NoteJudgeCard> [] copyScroll = new Queue<NoteJudgeCard>[queueVolume];
+			for (int i = 0; i < queueVolume; i++)
 			{
+				copyScroll[i] = new Queue<NoteJudgeCard>();
+			}
+
+			for (int i = 0; i < queueVolume; i++)
+			{                                                            
 				NoteJudgeCard [] sigleLine = target[i].ToArray();
-				print(sigleLine.Length);
+				
 				for(int j = 0; j < sigleLine.Length; j++)
-				{
-					sigleLine[j].printContent();
+				{					
 					copyScroll[i].Enqueue(sigleLine[j].turnToObject());
 				}
 			}
 
+			print("Copying Completed");
 			return copyScroll;
 		}
 	}

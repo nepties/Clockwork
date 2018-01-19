@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class PrimalGroupInit : UnityEngine.MonoBehaviour
+public class PrimalGroupInit : MonoBehaviour
 {
 
 	// Use this for initialization

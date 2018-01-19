@@ -20,14 +20,14 @@ namespace InStageScene
 
 		//노트 관련
 		public int needlePhase { get; set; }  // 0, 1, 2  :  phase 3 바늘 위치 상태 값
-		public bool isLongactivated { get; set; }  // 롱노트 활성화 여부
+		public bool isLongActivated { get; set; }  // 롱노트 활성화 여부
 		public int curReadingUnit { get; set; }  //현재 읽기 위치 (유닛 단위)
 		public int frontReadingUnit { get; set; }  //선행 읽기 위치 (유닛 단위)
 		public int initialLoadaAmount { get; set; }  //초기 로딩 노트 수 : 프론트와 커런트 사이 유닛 값
 
 		//배속 관련
 		public float curBpm { get; set; }  //현재 재생 곡 BPM
-		float speedConstant = 1f;  //배속 상수s
+		const float SPEEDCONST = 1f;  //배속 상수s
 		[SerializeField] [Range((0), (10))] float speedMultiplier;  //배속 배수
 		public float railSpeed { get; set; }  //레일 스피드 : 최종 노트 속도
 
@@ -50,7 +50,7 @@ namespace InStageScene
 			initialLoadaAmount = 20;  //초기 스테이지 배치 유닛 수
 			frontReadingUnit = initialLoadaAmount;
 			needlePhase = 0;  //최초 바늘 상태에 맞춰
-			railSpeed = speedConstant * speedMultiplier;  //최종 배속 설정
+			railSpeed = SPEEDCONST * speedMultiplier;  //최종 배속 설정
 		}
 	
 
@@ -87,14 +87,14 @@ namespace InStageScene
 		//롱노트 입력 활성화
 		public void exeLongNoteEngage()
 		{
-			isLongactivated = true;
+			isLongActivated = true;
 			print("force Long Active");
 		}
 
 		//롱노트 입력 비활성화
 		public void exeLongNoteRelease()
 		{
-			isLongactivated = false;
+			isLongActivated = false;
 			print("force Long DeActive");
 		}
 

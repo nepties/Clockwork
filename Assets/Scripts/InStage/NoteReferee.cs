@@ -1,14 +1,15 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using Kaibrary.CallbackModule;
 using Kaibrary.MusicScrolls;
-using Kaibrary.CallbackModule;
+using System.Collections.Generic;
 using System.Diagnostics;
+using UnityEngine;
 using Debug = UnityEngine.Debug;
+
 
 
 namespace InStageScene
 {
-	public class NoteReferee : UnityEngine.MonoBehaviour
+	public class NoteReferee : MonoBehaviour
 	{
 		//refs
 		//immediate Manager(상위)

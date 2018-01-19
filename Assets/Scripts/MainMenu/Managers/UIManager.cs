@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace MainManuScene
 {
-	public class UIManager : UnityEngine.MonoBehaviour
+	public class UIManager : MonoBehaviour
 	{
 		//상위
 		[SerializeField] GraphicManager graphicCtrl;

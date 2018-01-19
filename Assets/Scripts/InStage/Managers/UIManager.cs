@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace InStageScene
 {
-	public partial class UIManager : UnityEngine.MonoBehaviour
+	public partial class UIManager : MonoBehaviour
 	{
 		//클래스 레퍼런스s
 		//상위
@@ -33,7 +33,7 @@ namespace InStageScene
 	}
 
 	//상하 명령 메서드 집합
-	public partial class UIManager : UnityEngine.MonoBehaviour
+	public partial class UIManager : MonoBehaviour
 	{
 		//Execution parts : exe-
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

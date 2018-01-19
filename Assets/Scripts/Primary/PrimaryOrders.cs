@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PrimaryOrders : UnityEngine.MonoBehaviour
+public class PrimaryOrders : MonoBehaviour
 {
 	[SerializeField] SceneNavigator navigatorCtrl;
 	[SerializeField] SceneCurtain curtainCtrl;

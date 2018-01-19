@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace MainManuScene
 {
-	public abstract class ButtonAddOn : UnityEngine.MonoBehaviour
+	public abstract class ButtonAddOn : MonoBehaviour
 	{
 		//상위
 		[SerializeField]

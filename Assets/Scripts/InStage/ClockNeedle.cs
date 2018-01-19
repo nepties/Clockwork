@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
+
 
 
 namespace InStageScene
 {
-	public class ClockNeedle : UnityEngine.MonoBehaviour
+	public class ClockNeedle : MonoBehaviour
 	{				
 		float currentDegree;  //현재 회전 각도	
 		float targetDegree;  //회전 목표 각도

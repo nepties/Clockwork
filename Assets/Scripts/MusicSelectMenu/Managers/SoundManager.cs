@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace MusicSelectMenuScene
 {
-	public class SoundManager : UnityEngine.MonoBehaviour
+	public class SoundManager : MonoBehaviour
 	{
 		//ref
 		//상위

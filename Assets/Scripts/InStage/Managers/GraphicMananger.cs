@@ -37,7 +37,7 @@ namespace InStageScene
 	}
 
 	//상하 명령 메서드 집합
-	public partial class GraphicMananger : UnityEngine.MonoBehaviour
+	public partial class GraphicMananger : MonoBehaviour
 	{
 		//Execution parts : exe-
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

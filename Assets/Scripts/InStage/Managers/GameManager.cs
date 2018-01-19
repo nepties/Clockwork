@@ -88,6 +88,7 @@ namespace InStageScene
 				print(st + "||" + callingCount);
 				trigger += recall;
 				
+				//일정 회수 호출시 다음으로 넘어감
 				if (callingCount == 3)
 					forceStageOn(trigger);
 			};

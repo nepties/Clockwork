@@ -5,7 +5,7 @@ using Kaibrary.MusicScrolls;
 
 
 
-public class DeepDataManager : UnityEngine.MonoBehaviour
+public class DeepDataManager : MonoBehaviour
 {
 	//선곡 데이터 저장소
 	public MusicMetaData metaDataStorage { get; set; }  //읽은 곡들 메타 데이터

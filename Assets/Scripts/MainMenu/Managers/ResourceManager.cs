@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace MainManuScene
 {
-	public class ResourceManager : UnityEngine.MonoBehaviour
+	public class ResourceManager : MonoBehaviour
 	{
 		//상위
 		[SerializeField] GameManager coreCtrl;

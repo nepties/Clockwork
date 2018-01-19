@@ -7,7 +7,7 @@ using Kaibrary.MusicScrolls;
 
 namespace MusicSelectMenuScene
 {
-	public partial class DataManager : UnityEngine.MonoBehaviour
+	public partial class DataManager : MonoBehaviour
 	{
 		//ref````````````````````````
 		//상위
@@ -31,7 +31,7 @@ namespace MusicSelectMenuScene
 
 	}
 
-	public partial class DataManager : UnityEngine.MonoBehaviour
+	public partial class DataManager : MonoBehaviour
 	{
 
 		//Execution parts : exe-

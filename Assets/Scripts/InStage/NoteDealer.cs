@@ -1,10 +1,9 @@
-﻿using UnityEngine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Kaibrary.CallbackModule;
 using Kaibrary.MusicScrolls;
-using Kaibrary.CallbackModule;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using UnityEngine;
 
 
 
@@ -36,7 +35,7 @@ namespace InStageScene
 		{
 			//초기, 임의값 초기화 부
 			poolSize = 20;  //생성량 초기설정값		
-			preLoadingTime = 500f;  //1초 프리로딩
+			preLoadingTime = 500f;  //프리로딩
 
 			//비활성 오브젝트 대기큐 배열 생성 부
 			poolQueue = new Queue<GameObject>[12];
