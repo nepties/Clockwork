@@ -1,5 +1,5 @@
-﻿using Kaibrary.CallbackModule;
-using Kaibrary.MusicScrolls;
+﻿using ClockCore;
+using ClockCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -130,7 +130,7 @@ namespace InStageScene
 		}
 
 		//스테이지 로딩
-		public void exeloadStage(reflecMessagingDele handler)
+		public void exeloadStage(reflecMessagingHandler handler)
 		{
 			judgeScroll = fileReader.instance.copyRefinedQueue();
 			handler("Dealer : im ready!!", null);

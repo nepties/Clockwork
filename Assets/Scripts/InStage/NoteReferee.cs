@@ -1,5 +1,5 @@
-﻿using Kaibrary.CallbackModule;
-using Kaibrary.MusicScrolls;
+﻿using ClockCore;
+using ClockCore;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
@@ -94,7 +94,7 @@ namespace InStageScene
 		}
 
 		//가공 데이터 수입
-		public void reportKeepRefineData(messagingDele simpleHandler, Queue<NoteJudgeCard>[] RefineQueue)
+		public void reportKeepRefineData(messagingHandler simpleHandler, Queue<NoteJudgeCard>[] RefineQueue)
 		{
 			//연결
 			judgeScroll = RefineQueue;
@@ -102,7 +102,7 @@ namespace InStageScene
 		}
 
 		//트리거 연결
-		public void reportLinkTrigger(reflecMessagingDele Handler)
+		public void reportLinkTrigger(reflecMessagingHandler Handler)
 		{
 			Handler("Referee : get a linker!", exeShowTime);
 		}

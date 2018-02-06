@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Kaibrary.CallbackModule;
+using ClockCore;
 
 
 namespace InStageScene
@@ -32,7 +32,7 @@ namespace InStageScene
 		}
 
 		//트리거 연결
-		public void reportLinkTrigger(reflecMessagingDele Handler)
+		public void reportLinkTrigger(reflecMessagingHandler Handler)
 		{
 			Handler("SoundMaster : get a linker!", exeShowTime);
 		}
@@ -99,7 +99,7 @@ namespace InStageScene
 	public partial class SoundManager : MonoBehaviour
 	{
 		//Execution parts : exe-
-		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 		//Execute a stage music
 		public void exeShowTime()
@@ -108,6 +108,6 @@ namespace InStageScene
 		}
 
 		//relay parts : relayU_- or relayD_-
-		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 	}
 }

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Kaibrary.CallbackModule;
+using ClockCore;
 using System.Collections;
 
 
@@ -35,7 +35,7 @@ namespace InStageScene
 		}
 
 		//명령 하달 : 스테이지 로딩
-		public void relayD_loadStage(reflecMessagingDele handler)
+		public void relayD_loadStage(reflecMessagingHandler handler)
 		{
 			noteObjectPoolCtrl.exeloadStage(handler);
 		}

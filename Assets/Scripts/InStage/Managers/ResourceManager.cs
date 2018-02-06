@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Kaibrary.CallbackModule;
+using ClockCore;
 using System.Collections;
 
 
@@ -9,7 +9,7 @@ namespace InStageScene
 	{
 		//refs
 		//상위
-		[SerializeField] GameManager coreCtrl;
+		[SerializeField] RhythmCore coreCtrl;
 		//하위
 		[SerializeField] GraphicMananger graphicCtrl;
 		[SerializeField] SoundManager soundCtrl;
@@ -30,7 +30,7 @@ namespace InStageScene
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 		//명령 하달 : 스테이지 시작
-		public void relayD_loadStage(reflecMessagingDele handler)
+		public void relayD_loadStage(reflecMessagingHandler handler)
 		{
 			graphicCtrl.relayD_loadStage(handler);
 			soundCtrl.reportLinkTrigger(handler);

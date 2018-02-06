@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using Kaibrary.MusicScrolls;
-using Kaibrary.CallbackModule;
+using ClockCore;
+using ClockCore;
 
 
 namespace InStageScene
@@ -13,7 +13,7 @@ namespace InStageScene
 
 		//refs		
 		//상위
-		[SerializeField] GameManager coreCtrl;  //GM
+		[SerializeField] RhythmCore coreCtrl;  //GM
 		//하위
 		[SerializeField] NoteReferee refereeCtrl;  //노트 판정확인 클래스
 		[SerializeField] fileReader fileDataCtrl;  //파일 정보 수입 클래스
@@ -99,13 +99,13 @@ namespace InStageScene
 		}
 
 		//재가공 데이터 노트판정 객체에게 넘기기
-		public void exeSendRefineData(messagingDele simpleHandler, Queue<NoteJudgeCard>[] RefineQueue)
+		public void exeSendRefineData(messagingHandler simpleHandler, Queue<NoteJudgeCard>[] RefineQueue)
 		{
 			refereeCtrl.reportKeepRefineData(simpleHandler, RefineQueue);
 		}
 
 		//스테이지 준비 : 변수 초기화 & 노트데이터 재가공
-		public void exePrepareStage(messagingDele simpleHandler)
+		public void exePrepareStage(messagingHandler simpleHandler)
 		{
 			//현재 BPM 정보 최초 초기화
 			curBpm = fileDataCtrl.metaDataStorage[0].bpm;
@@ -132,13 +132,13 @@ namespace InStageScene
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 		//곡 하나 읽기 명령 하달(For Test)
-		public void relayD_LoadOneFile(messagingDele simpleHandler)
+		public void relayD_LoadOneFile(messagingHandler simpleHandler)
 		{
 			fileDataCtrl.exeReadOneFullFile(simpleHandler);			
 		}
 
 		//스테이지 온
-		public void relayD_loadStage(reflecMessagingDele Handler)
+		public void relayD_loadStage(reflecMessagingHandler Handler)
 		{
 			refereeCtrl.reportLinkTrigger(Handler);
 		}

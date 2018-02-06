@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
+
 
 public class SceneNavigator : MonoBehaviour
 {
@@ -15,6 +18,8 @@ public class SceneNavigator : MonoBehaviour
 		curtainCtrl = GameObject.Find("SceneCurtain").GetComponent<SceneCurtain>();  //link Curtain Object ref
 		
 		loadReportDelay = new WaitForSeconds(0.2f);  //delay set
+
+		SceneManager.activeSceneChanged += (Scene a, Scene b) => { exeInitialization(); StartCoroutine(curtainCtrl.fadeIn()); };
 	}
 	
 	//씬 로딩 코루틴 실행 메서드
@@ -30,8 +35,8 @@ public class SceneNavigator : MonoBehaviour
 	}
 
 	public IEnumerator forceloadNextScene(int sceneIndex)
-	{		
-		AsyncOperation async = Application.LoadLevelAsync(sceneIndex);
+	{
+		AsyncOperation async = SceneManager.LoadSceneAsync(sceneIndex);
 		async.allowSceneActivation = false;
 		yield return async;
 		Debug.Log("Loading complete");
@@ -40,7 +45,7 @@ public class SceneNavigator : MonoBehaviour
 
 	public IEnumerator forceloadNextScene(string sceneName)
 	{
-		AsyncOperation async = Application.LoadLevelAsync(sceneName);
+		AsyncOperation async = SceneManager.LoadSceneAsync(sceneName);
 		async.allowSceneActivation = false;
 		yield return async;
 		Debug.Log("Loading complete");
@@ -49,7 +54,7 @@ public class SceneNavigator : MonoBehaviour
 
 	public IEnumerator forceloadNextScene()
 	{
-		AsyncOperation async = Application.LoadLevelAsync(Application.loadedLevel + 1);
+		AsyncOperation async = SceneManager.LoadSceneAsync(SceneManager.sceneCount + 1);
 		async.allowSceneActivation = false;
 		yield return async;
 		Debug.Log("Loading complete");
@@ -62,7 +67,7 @@ public class SceneNavigator : MonoBehaviour
 		//yield return new WaitForSeconds(1f);
 
 		// Start an asynchronous operation to load the scene that was passed to the LoadNewScene coroutine.
-		AsyncOperation async = Application.LoadLevelAsync(Application.loadedLevel + 1);
+		AsyncOperation async = SceneManager.LoadSceneAsync(SceneManager.sceneCount + 1);
 		async.allowSceneActivation = false;
 		Debug.Log("execute Loading Next scene!!");
 
@@ -88,7 +93,7 @@ public class SceneNavigator : MonoBehaviour
 
 
 	//씬 로딩 후 호출될 메서드
-	void OnLevelWasLoaded(int level)
+	void afterLoading(int level)
 	{
 		exeInitialization();
 

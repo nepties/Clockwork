@@ -7,7 +7,7 @@ namespace InStageScene
 	{
 		//refs
 		//상위
-		[SerializeField] GameManager coreCtrl;
+		[SerializeField] RhythmCore coreCtrl;
 
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 

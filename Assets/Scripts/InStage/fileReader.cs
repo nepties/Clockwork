@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
-using Kaibrary.MusicScrolls;
-using Kaibrary.CallbackModule;
+using ClockCore;
 
 
 
@@ -63,7 +62,7 @@ namespace InStageScene
 
 
 		//선곡 데이터 읽어들이기(for Test)
-		public void exeReadOneFullFile(messagingDele simpleHandler)
+		public void exeReadOneFullFile(messagingHandler simpleHandler)
 		{
 			//한 곡 풀세트(?) 읽기
 			forceReadMetaData();
@@ -99,7 +98,7 @@ namespace InStageScene
 		}
 
 		//노트 데이터 재가공 메서드
-		public void exeExtractJudgeScroll(messagingDele simpleHandler)
+		public void exeExtractJudgeScroll(messagingHandler simpleHandler)
 		{
 			print("start Refine NoteData...List size : " + noteDataStorage.Count);
 			//노트 데이터 순차 접근
