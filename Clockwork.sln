@@ -1,7 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{E350A55F-D905-D2C9-29BE-81D398988FFF}") = "Clockwork", "Assembly-CSharp.csproj", "{1BD50271-87E2-26DD-4D02-573354F333EC}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clockwork", "Clockwork.csproj", "{20A723AA-1B19-D7C2-9DFA-4F961A46176B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,13 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1BD50271-87E2-26DD-4D02-573354F333EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1BD50271-87E2-26DD-4D02-573354F333EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1BD50271-87E2-26DD-4D02-573354F333EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1BD50271-87E2-26DD-4D02-573354F333EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20A723AA-1B19-D7C2-9DFA-4F961A46176B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20A723AA-1B19-D7C2-9DFA-4F961A46176B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20A723AA-1B19-D7C2-9DFA-4F961A46176B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20A723AA-1B19-D7C2-9DFA-4F961A46176B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	
 EndGlobal

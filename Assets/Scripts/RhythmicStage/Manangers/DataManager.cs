@@ -16,7 +16,7 @@ namespace RhythmicStage
 		[SerializeField] RhythmicCore coreCtrl;  //RhythmicCore
 		//하위
 		[SerializeField] DataPort portCtrl;
-		[SerializeField] fileReader parserCtrl;
+		fileReader parserCtrl;		
 		//localStorage
 		[SerializeField] LocalStorage storageCtrl;
 
@@ -32,12 +32,6 @@ namespace RhythmicStage
 			//sigleTon parts
 			instance = this;
 		}
-
-		// Use this for initialization after all Object are made
-		void Start()
-		{
-
-		}
 	}
 
 	//상하 명령 메서드 집합
@@ -49,20 +43,23 @@ namespace RhythmicStage
 		//선곡 로딩 명령
 		public void exeLoadMusicScroll(messagingHandler simpleHandler)
 		{
+			
 			//스트림 생성 부
-			parserCtrl = new ScrollParser(new StreamReader(storageCtrl.musicPath));
+			parserCtrl = new fileReader(new StreamReader(storageCtrl.musicPath));
 
 			//선곡 메타데이터 로드 부
 			storageCtrl.metaDataStorage = parserCtrl.readMetaData();			
 
 			//선곡 노트데이터 로드 부
-			storageCtrl.noteDataStorage = parserCtrl.readAllnoteData();
+			storageCtrl.noteDataStorage = parserCtrl.readNoteData();
 
 			//노트데이터 가공 부
 			storageCtrl.judgeScroll = parserCtrl.ExtractJudgeScroll();
 
 			//가공 데이터 깊은 복사 부
-			storageCtrl.noteScroll = parserCtrl.copyRefinedQueue(storageCtrl.judgeScroll);
+			storageCtrl.noteScroll = parserCtrl.copyRefinedQueue();
+			
+
 
 			//마무리 부
 			//Call Back

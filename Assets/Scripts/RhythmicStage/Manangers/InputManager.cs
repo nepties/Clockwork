@@ -16,22 +16,28 @@ namespace RhythmicStage
 		void Update()
 		{
 #if UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
-			
-			// [ 3key ] 숏노트 입력 & 롱노트 입력시작
-			if (Input.GetKeyDown(KeyCode.Keypad1))  // 1키 푸시
-				coreCtrl.confShortInput(0);
-			if (Input.GetKeyDown(KeyCode.Keypad2))  // 2키 푸시
-				coreCtrl.confShortInput(1);
-			if (Input.GetKeyDown(KeyCode.Keypad3))  // 3키 푸시
-				coreCtrl.confShortInput(2);
 
-			// [ 3key ] 롱노트 입력취소
-			if (Input.GetKeyUp(KeyCode.Keypad1))  // 1키 릴리즈
-				coreCtrl.confLongDeactivate(0);
-			if (Input.GetKeyUp(KeyCode.Keypad2))  // 2키 릴리즈
-				coreCtrl.confLongDeactivate(1);
-			if (Input.GetKeyUp(KeyCode.Keypad3))  // 3키 릴리즈
-				coreCtrl.confLongDeactivate(2);
+
+			//숏노트 계
+			if (Input.GetKeyDown(KeyCode.F))  // F키 스트록 : 왼쪽 한 칸
+				coreCtrl.confNeedleCtrlKeyInput(-1f);
+
+			if (Input.GetKeyDown(KeyCode.D))  // D키 스트록 : 왼쪽 세 칸
+				coreCtrl.confNeedleCtrlKeyInput(-3f);
+
+			if (Input.GetKeyDown(KeyCode.J))  // J키 스트록 : 오른쪽 한 칸
+				coreCtrl.confNeedleCtrlKeyInput(1f);
+
+			if (Input.GetKeyDown(KeyCode.K))  // K키 스트록 : 오른쪽 한 칸
+				coreCtrl.confNeedleCtrlKeyInput(3f);
+
+
+			//롱노트 계
+			if (Input.GetKeyDown("space"))  // 스페이스바 스트록 : 롱노트 입력 활성화
+				coreCtrl.confLongActiveKeyInput();
+			if (Input.GetKeyUp("space"))  // : 릴리즈 : 롱노트 입력 '비'활성화
+				coreCtrl.confLongDeactiveKeyInput();
+
 #else
 
 

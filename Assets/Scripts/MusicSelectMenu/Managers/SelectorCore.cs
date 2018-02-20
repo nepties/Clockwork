@@ -2,14 +2,16 @@
 using System.Collections;
 
 
-namespace MainManuScene
+namespace MusicSelectMenuScene
 {
-	public class GameManager : MonoBehaviour
+	public class SelectorCore : MonoBehaviour
 	{
+		//ref
 		//하위
 		[SerializeField] DataManager dataCtrl;
 		[SerializeField] InputManager inputCtrl;
 		[SerializeField] ResourceManager resourceCtrl;
+
 
 		// Use this for initialization
 		void Start()
@@ -17,12 +19,8 @@ namespace MainManuScene
 
 		}
 
-		public void forceChangeSelect(KeyInputDirection direc)
-		{
-			resourceCtrl.relayD_ChangeSelect(direc);
-		}
-
-		public void reportLoadStageScene()
+		// Update is called once per frame
+		void Update()
 		{
 
 		}

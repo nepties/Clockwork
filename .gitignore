@@ -59,13 +59,7 @@ obj/Debug/Assembly-CSharp.dll
 obj/Debug/Assembly-CSharp-vs.csproj.FileListAbsolute.txt
 Clockwork.sln
 Clockwork-csharp.sln
-.vs/Clockwork-csharp/v14/.suo
-.vs/Clockwork-csharp/v14/.suo
-.vs/Clockwork-csharp/v15/.suo
-.vs/Clockwork-csharp/v15/Server/sqlite3/db.lock
-.vs/Clockwork-csharp/v15/Server/sqlite3/storage.ide
-.vs/Clockwork-csharp/v15/Server/sqlite3/storage.ide-shm
-.vs/Clockwork-csharp/v15/Server/sqlite3/storage.ide-wal
+.vs/*
 Assembly-CSharp-vs.csproj
 Assembly-CSharp-vs.csproj
 *.csproj

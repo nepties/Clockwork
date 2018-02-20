@@ -7,7 +7,7 @@ using ClockCore;
 
 namespace RhythmicStage
 {
-	public class fileReader : MonoBehaviour
+	public class fileReader
 	{
 
 		//refs
@@ -36,15 +36,16 @@ namespace RhythmicStage
 
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-		// Use this for initialization
-		void Awake()
+		public fileReader(StreamReader reader)
 		{
-			//sigleTon parts
-			instance = this;
+			this.reader = reader;
 
-			//스트림리더 설정 부 (비유연형)
-			reader = new StreamReader("Follow Up.txt");  //객체 생성 후 개방		
+			initializing();
+		}
 
+		// Use this for initialization
+		void initializing()
+		{
 			//하위 리더 객체 생성 부 (1회성(for Test)
 			MetaReaderCtrl = new MetaDataReader(reader);
 			NoteReaderCtrl = new NoteDataReader(reader);
@@ -60,13 +61,13 @@ namespace RhythmicStage
 			}
 		}
 
-
+		/*
 		//선곡 데이터 읽어들이기(for Test)
 		public void exeReadOneFullFile(messagingHandler simpleHandler)
 		{
 			//한 곡 풀세트(?) 읽기
-			forceReadMetaData();
-			forceReadNoteData();
+			readMetaData();
+			readNoteData();
 
 			//파일 데이터 로드 완료
 			metaDataStorage[0].printMetaData();
@@ -74,16 +75,16 @@ namespace RhythmicStage
 
 			//로드 완료 상태 보고 to GM [Callback]
 			simpleHandler("File Data Load Completed");
-		}
+		}*/
 
 		//메타 데이터 읽기 명령
-		void forceReadMetaData()
+		public MusicMetaData readMetaData()
 		{
-			metaDataStorage.Add(MetaReaderCtrl.readMetaData());  //리스트에 하나 추가(임시)
+			return MetaReaderCtrl.readMetaData();  //리스트에 하나 추가(임시)
 		}
 
 		//노트 데이터 읽기 명령
-		void forceReadNoteData()
+		public List<MusicNoteData> readNoteData()
 		{
 			noteDataStorage.AddRange(NoteReaderCtrl.readAllnoteData());  //리스트에 추가(임시)	
 
@@ -95,12 +96,14 @@ namespace RhythmicStage
 					fp.WriteLine(arrList.getCurNoteDataAsString());
 			}
 			fp.Close();
+
+			return noteDataStorage;
 		}
 
 		//노트 데이터 재가공 메서드
-		public void exeExtractJudgeScroll(messagingHandler simpleHandler)
+		public Queue<NoteJudgeCard>[] ExtractJudgeScroll()
 		{
-			print("start Refine NoteData...List size : " + noteDataStorage.Count);
+			Debug.Log("start Refine NoteData...List size : " + noteDataStorage.Count);
 			//노트 데이터 순차 접근
 			foreach (MusicNoteData indic in noteDataStorage)
 			{
@@ -115,14 +118,13 @@ namespace RhythmicStage
 						{
 							judgeScroll[i].Enqueue(new NoteJudgeCard(note, indic.getLineTiming(), indic.getLineUnit()));
 							//Debug.Log(indic.getLineTiming( ));
-							//judgeScroll[i].Peek().printContent(); //입력된 정보 출력
+							//judgeScroll[i].Peek().Debug.LogContent(); //입력된 정보 출력
 						}
 					}
 				}
 			}
 
-			//마무리 보고
-			dataCtrl.exeSendRefineData(simpleHandler, judgeScroll);
+			return judgeScroll;
 		}
 
 
@@ -131,7 +133,7 @@ namespace RhythmicStage
 		{
 			Queue<NoteJudgeCard>[] target = judgeScroll;  //복사할 원본
 			int queueVolume = target.Length;  //큐 크기
-			print("COPYING queueVolume : " + queueVolume);
+			Debug.Log("COPYING queueVolume : " + queueVolume);
 
 			//사본 큐 배열 생성 부
 			Queue<NoteJudgeCard>[] copyScroll = new Queue<NoteJudgeCard>[queueVolume];
@@ -150,7 +152,7 @@ namespace RhythmicStage
 				}
 			}
 
-			print("Copying Completed");
+			Debug.Log("Copying Completed");
 			return copyScroll;
 		}
 	}

@@ -2,12 +2,12 @@
 using System.Collections;
 
 
-namespace MainManuScene
+namespace MainMenuScene
 {
 	public class InputManager : MonoBehaviour
 	{
 		//상위
-		[SerializeField] GameManager coreCtrl;
+		[SerializeField] MainMenuCore coreCtrl;
 
 		// Use this for initialization
 		void Awake()

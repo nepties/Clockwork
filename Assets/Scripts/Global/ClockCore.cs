@@ -19,17 +19,20 @@ namespace ClockCore
 
 	//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+	#region Single Active Scene List
+	public enum SingleScene
+	{
+		StartUp,
+		MainMenu,
+		MusicSelect,
+		OnStage,
+		Result
+	}
+		
+	#endregion
+
 
 	#region State Definition
-
-	//씬 전반 진행 상태
-	public enum sceneState
-	{
-		primalLoading, //최초 로딩 씬
-		mainMenu,  //엔트리 메뉴 씬
-		collecting,  //재료 수집 리듬겜 씬
-		encounter  //몬스터 전투 리듬겜 씬
-	}
 
 	//스테이지 씬 진행 상태
 	public enum inRhythmicStageStates
@@ -41,11 +44,25 @@ namespace ClockCore
 	}
 	#endregion
 
-	//노트 판정 열거자
+
+	#region Definition about Notes
+	//노트 판정
 	public enum noteJudgement
 	{
 		perfect,
 		nice,
 		miss
 	}
+
+	//노트 타입
+	public enum noteType
+	{
+		Blank,
+		Short,
+		RightQuarter,
+		LeftQuarter,
+		LongS,
+		LongF
+	}
+	#endregion
 }

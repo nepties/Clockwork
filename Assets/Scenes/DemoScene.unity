@@ -137,11 +137,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 557508494}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5654ee7d8a1c0e74a9740fa871c48146, type: 3}
+  m_Script: {fileID: 11500000, guid: 2218b9124cf20e146956bd9c857f3faf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clips: []
-  pathList: []
 --- !u!4 &557508496
 Transform:
   m_ObjectHideFlags: 0

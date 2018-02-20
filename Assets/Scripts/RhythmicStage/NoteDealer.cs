@@ -1,17 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
-using Kaibrary;
 using ClockCore;
+using Kaibrary;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using UnityEngine;
 
 
 
 namespace RhythmicStage
 {
 	//내부 실행 요소 정의
-	public partial class NoteDropper : MonoBehaviour
+	public partial class NoteDealer : MonoBehaviour
 	{
 		//refs
 		//상위
@@ -20,12 +19,13 @@ namespace RhythmicStage
 		[SerializeField] LocalStorage dataCtrl;
 
 		//Pure fields
-		[SerializeField] Transform judgeLine;
-		[SerializeField] Transform[] dropPoint;
+		[SerializeField] Transform judgeLine;		
 		[SerializeField] float dropDistance;
 
-		[SerializeField] GameObject shortNoteObject;  //숏 노트 오브젝트	
-		
+		[SerializeField] GameObject shortNoteObject;  //숏 노트 오브젝트
+		[SerializeField] GameObject RightQuarterNoteObject;  //오른쪽 방향 쿼터 노트 오브젝트
+		[SerializeField] GameObject LeftQuarterNoteObject;  //왼쪽 방향 쿼터 노트 오브젝트
+
 
 		//Object Pool
 		Queue<GameObject>[] poolQueue;  //비활성 오브젝트 대기큐
@@ -36,8 +36,8 @@ namespace RhythmicStage
 		Queue<NoteJudgeCard>[] noteScroll;  //복사본(임시)
 		Stopwatch stopwatch = NoteReferee.stopwatch;  //판정자 클래스의 스톱워치 받기
 		float preLoadingTime;
-		int Channel;
-		float railSpeed = 0;
+		int Channel;  //채널 수
+		float railSpeed;
 
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
@@ -47,7 +47,7 @@ namespace RhythmicStage
 			//초기, 임의값 초기화 부
 			poolSize = 50;  //생성량 초기설정값		
 			preLoadingTime = 500f;  //프리로딩
-			Channel = dataCtrl.curChannel;
+			Channel = dataCtrl.shortNoteChannel;
 
 
 			//비활성 오브젝트 대기큐 배열 생성 부
@@ -113,18 +113,14 @@ namespace RhythmicStage
 			{  //채널 수에 따른
 				for (int i = 0; i < poolSize; i++)
 				{  //풀 사이즈 만큼
-					GameObject creation = Instantiate(shortNoteObject, dropPoint[row]);  //오브젝트 생성
-					
+					GameObject creation = (GameObject)Instantiate(shortNoteObject, transform);  //오브젝트 생성
+					creation.transform.Rotate(row * -30f * Vector3.forward);  //알맞게 회전
+
 					creation.SetActive(false);  //비활성화
+					//creation.GetComponent<NoteObjectMethod>( ).setQueueNumber(i);  //출신 대기큐 번호 부여
 					poolQueue[row].Enqueue(creation);  //오브젝트를 대기큐 입력
 				}
 			}
-		}
-
-		//스테이지 최초 로드 직후 노트 배치
-		void dealInitialNote()
-		{
-
 		}
 
 		//알맞는 시점(다음)에 노트 배치
@@ -147,7 +143,7 @@ namespace RhythmicStage
 		{
 			GameObject ShortNote = activePoolQueue[channel].Dequeue();  //활성 풀에서 꺼낸 후
 			ShortNote.SetActive(false);  //비활성화,
-			ShortNote.transform.position = dropPoint[channel].position;  //위치 초기화 후			
+			ShortNote.transform.position = transform.position;  //위치 초기화 후			
 			poolQueue[channel].Enqueue(ShortNote);  //비활성 풀에 넣기
 		}
 
@@ -155,6 +151,12 @@ namespace RhythmicStage
 		public void speedCal()
 		{	
 			railSpeed = dropDistance / (preLoadingTime / 1000f);
+		}
+
+		//이동거리와 속도에 따른 프리로딩 시점 계산
+		public void preLoadingTimeCal()
+		{
+			//time = dropDistance / speed
 		}
 
 		//업데이트 활성화
@@ -166,7 +168,7 @@ namespace RhythmicStage
 	}
 
 	//상하 명령 메서드 집합
-	public partial class NoteDropper : MonoBehaviour
+	public partial class NoteDealer : MonoBehaviour
 	{
 		//Execution parts : exe-
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-

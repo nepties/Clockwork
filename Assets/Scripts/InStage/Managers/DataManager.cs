@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using ClockCore;
-using ClockCore;
 
 
 namespace InStageScene

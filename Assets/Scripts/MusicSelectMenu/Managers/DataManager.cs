@@ -15,7 +15,7 @@ namespace MusicSelectMenuScene
 		//하위
 		[SerializeField] FileIndicator indicator;
 		//DSU
-		[SerializeField] DeepDataManager deepStorageCtrl;
+		[SerializeField] DeepStorageUnit deepStorageCtrl;
 
 
 		//수입 파일 데이터 저장 공간 (가공된 데이터)
@@ -25,7 +25,7 @@ namespace MusicSelectMenuScene
 		// Use this for initialization
 		void Start()
 		{
-			deepStorageCtrl = GameObject.Find("DeepStorageUnit").GetComponent<DeepDataManager>();  //link ref
+			
 		}
 
 

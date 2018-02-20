@@ -2,7 +2,7 @@
 using System.Collections;
 
 
-namespace MainManuScene
+namespace MainMenuScene
 {
 	public class DataManager : MonoBehaviour
 	{

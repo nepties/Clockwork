@@ -14,9 +14,9 @@ namespace RhythmicStage
 		//상위
 		[SerializeField] RhythmicCore coreCtrl;
 		//하위
-		[SerializeField] NoteDropper dropperCtrl;
+		[SerializeField] NoteDealer dealerCtrl;
 		[SerializeField] NoteRailPlatform platformCtrl;
-		[SerializeField] BackLighter [] backlightCtrl;
+		[SerializeField] ClockNeedle NeedleCtrl;
 		//localStorage
 		[SerializeField] LocalStorage storageCtrl;
 
@@ -33,29 +33,25 @@ namespace RhythmicStage
 		//relay parts : relayU_- or relayD_-
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
-		public void relayD_ShortInput(int InputChannel)
-		{
-			backlightCtrl[InputChannel].exeLightOn();
-		}
-
-		public void relayD_LongDeactivate(int InputChannel)
-		{
-			backlightCtrl[InputChannel].exeLightOff();
-		}
-
 		public void relayD_LinkTriggerNLoad(reflecMessagingHandler Handler)
 		{
-			dropperCtrl.exeLinkTriggerNLoad(Handler);
+			dealerCtrl.exeLinkTriggerNLoad(Handler);
 		}		
 
 		public void relayD_treatMissingNote(int channel)
 		{
-			dropperCtrl.exeTreatMissingNote(channel);
+			dealerCtrl.exeTreatMissingNote(channel);
 		}
 
 		public void relayD_ShortNoteJudge(int channel, noteJudgement judgement)
 		{
-			dropperCtrl.exeShortNoteJudge(channel);
+			dealerCtrl.exeShortNoteJudge(channel);
+		}
+
+		//명령 하달 : 바늘 회전
+		public void relayD_rotateNeedleObject(float rotDegree)
+		{
+			NeedleCtrl.rotateNeedle(rotDegree);
 		}
 	}
 }

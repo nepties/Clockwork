@@ -18,8 +18,18 @@ namespace RhythmicStage
 		[SerializeField] NoteReferee refereeCtrl;
 		[SerializeField] UIManager uiCtrl;
 
+		//pure fields
+
+
+		//event Def for UI Manager
+		public delegate void noteJudgedHandler(noteJudgement judgement);
+		event noteJudgedHandler noteJudgedEvent;
+		//{ add { noteJudgedEvent += value; } remove { noteJudgedEvent -= value; } }
+		
+
+
 		//sigleTon parts
-		public static RhythmicCore instance;		
+		public static RhythmicCore instance;
 
 		//상태 계
 		public inRhythmicStageStates State { get; set; }  //현 상태	
@@ -112,7 +122,27 @@ namespace RhythmicStage
 
 		//(receiving) report parts : conf-
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+		
+		//바늘 회전 키입력 감지 & 명령 하달
+		public void confNeedleCtrlKeyInput(float rotDegree)
+		{
+			refereeCtrl.exeShortNoteEngage(rotDegree);
+			objectsCtrl.relayD_rotateNeedleObject(rotDegree);
+		}
 
+		//롱노트 활성화 키입력 감지 & 명령 하달
+		public void confLongActiveKeyInput()
+		{
+			refereeCtrl.exeLongNoteEngage();
+		}
+
+		//롱노트 '비'활성화 키입력 감지 & 명령 하달
+		public void confLongDeactiveKeyInput()
+		{
+			refereeCtrl.exeLongNoteRelease();
+		}
+		
+		/*
 		//입력 감지
 		public void confShortInput(int InputChannel)
 		{
@@ -125,7 +155,7 @@ namespace RhythmicStage
 		{
 			refereeCtrl.exeReferDeActivation(InputChannel);
 			objectsCtrl.relayD_LongDeactivate(InputChannel);
-		}
+		}*/
 
 		//미싱 노트 감지
 		public void confMissingNote(int channel)
@@ -137,6 +167,9 @@ namespace RhythmicStage
 		public void confShortNoteJudge(int channel, noteJudgement judgement)
 		{
 			objectsCtrl.relayD_ShortNoteJudge(channel, judgement);
+
+			if (noteJudgedEvent != null)
+				noteJudgedEvent(judgement);
 		}
 	}
 }

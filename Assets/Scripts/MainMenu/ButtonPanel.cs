@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections;
 
 
-namespace MainManuScene
+namespace MainMenuScene
 {
 	public class ButtonPanel : MonoBehaviour
 	{

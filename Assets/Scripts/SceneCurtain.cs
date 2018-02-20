@@ -1,78 +1,46 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using Kaibrary.UIForge;
+using ClockCore;
+
+
 
 public class SceneCurtain : MonoBehaviour
 {
 	[SerializeField]  Image imageCtrl;
-	Transform loc;
-	
-	// Use this for initialization
-	void Awake()
-	{
-		//imageCtrl.color = Color.black;
 
-		//image component On
-		imageCtrl.enabled = true;  //cuz disable in initial
+	event LightweightHandler fadingCompleted;
+
+	//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+	public void exeFadeOutCurtain()
+	{
+		StartCoroutine(FadeOutCurtain());
 	}
 
-	/*
-	void OnEnable()
+	public void exeFadeinCurtain()
 	{
-		//image component On for Reloading
-		imageCtrl.enabled = true;
-	}*/
+		StartCoroutine(FadeInCurtain());
+	}
 
-	//(Image alpha value) fade In Routine
-	public IEnumerator fadeIn(float duration = 2f, float Interval = 0.05f)
+	IEnumerator FadeOutCurtain()
 	{
-		Debug.Log("Curtain fade In");
+		yield return StartCoroutine(UIForge.alphaFadeOut(imageCtrl));
 
-		int fadingCount = (int)(1.0f / Interval);
-		if (1.0f % Interval != 0)
-			fadingCount += 1;
+		if (fadingCompleted != null)
+			fadingCompleted();
 
-		WaitForSeconds delayRoutine = new WaitForSeconds(duration / fadingCount);
-
-		for (int i = 0; i < fadingCount; i++)
-		{
-			Color curColor = imageCtrl.color;
-
-			if (curColor.a == 0f)
-				break;
-
-			curColor.a -= Interval;
-			curColor.a = Mathf.Clamp(curColor.a, 0, 1f);
-			imageCtrl.color = curColor;
-			yield return delayRoutine;
-		}
-		gameObject.SetActive(false);  //자동 비활성화
 		yield return null;
 	}
 
-	//(Image alpha value) fade Out Routine
-	public IEnumerator fadeOut(float duration = 2f, float Interval = 0.05f)
+	IEnumerator FadeInCurtain()
 	{
-		Debug.Log("Curtain fade Out");
+		yield return StartCoroutine(UIForge.alphaFadeIn(imageCtrl));
 
-		int fadingCount = (int)(1.0f / Interval);
-		if (1.0f % Interval != 0)
-			fadingCount += 1;
+		if (fadingCompleted != null)
+			fadingCompleted();
 
-		WaitForSeconds delayRoutine = new WaitForSeconds(duration / fadingCount);
-
-		for (int i = 0; i < fadingCount; i++)
-		{
-			Color curColor = imageCtrl.color;
-
-			if (curColor.a == 1f)
-				break;
-
-			curColor.a += Interval;
-			curColor.a = Mathf.Clamp(curColor.a, 0, 1f);
-			imageCtrl.color = curColor;
-			yield return delayRoutine;
-		}
 		yield return null;
 	}
 }

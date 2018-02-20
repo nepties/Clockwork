@@ -2,12 +2,13 @@
 using System.Collections;
 
 
-namespace MainManuScene
+namespace MainMenuScene
 {
 	public class ResourceManager : MonoBehaviour
 	{
 		//상위
-		[SerializeField] GameManager coreCtrl;
+		[SerializeField] MainMenuCore coreCtrl;
+		
 		//하위
 		[SerializeField] SoundManager soundCtrl;
 		[SerializeField] GraphicManager graphicCtrl;

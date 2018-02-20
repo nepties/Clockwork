@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 
 
-namespace MainManuScene
+namespace MainMenuScene
 {
 	public abstract class ButtonAddOn : MonoBehaviour
 	{

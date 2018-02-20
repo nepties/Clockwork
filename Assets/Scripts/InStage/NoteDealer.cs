@@ -1,5 +1,5 @@
 ﻿using ClockCore;
-using ClockCore;
+using Kaibrary;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -98,12 +98,6 @@ namespace InStageScene
 					poolQueue[i].Enqueue(creation);  //오브젝트를 대기큐 입력
 				}
 			}
-		}
-
-		//스테이지 최초 로드 직후 노트 배치
-		void dealInitialNote()
-		{
-
 		}
 
 		//알맞는 시점(다음)에 노트 배치

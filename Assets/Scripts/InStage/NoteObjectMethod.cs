@@ -6,9 +6,8 @@ namespace InStageScene
 	public class NoteObjectMethod : MonoBehaviour
 	{
 		// [SerializeField] NoteDealer spawnPool;  //노트 배치 클래스 레퍼런스
-		float Speed { set; get; }  //노트 진행 속도 배수
-
-
+		float Speed { set; get; }  //노트 진행 속도 배수		
+		
 		//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 		// Use this for initialization

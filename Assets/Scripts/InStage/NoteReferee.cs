@@ -1,5 +1,4 @@
 ﻿using ClockCore;
-using ClockCore;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
@@ -15,6 +14,7 @@ namespace InStageScene
 		//immediate Manager(상위)
 		[SerializeField] DataManager DataCtrl;
 		
+
 
 		//sigleTon parts
 		public static NoteReferee instance;
